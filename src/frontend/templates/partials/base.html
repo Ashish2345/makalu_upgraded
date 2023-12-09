@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
+
+
+<!-- Mirrored from creativelayers.net/themes/viatours-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 06 Dec 2023 17:16:59 GMT -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  {% include "partials/css.html" %}
+
+  <style>
+
+
+    .search-trip:hover {
+      background-color: #2e8ab7 !important;
+      color: white !important;
+      border-color: none;
+     }
+
+     .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 29px;
+  }
+  .image-box-pair {
+    position: relative;
+    width: 246px;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.image-box-pair img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.featureCard.-type-6 .featureCard__image::after {
+
+  background-color: unset;
+  
+}
+
+
+/* Default styles for main_header_logo */
+#main_header_logo {
+  margin-top: 7px;
+  height: 99px;
+}
+
+/* Media query for screens with a width of 768 pixels or less (adjust as needed) */
+@media (max-width: 768px) {
+  #main_header_logo {
+    height: 74px;
+    margin-top: 7px;
+  }
+
+
+  .search__box {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    color: white;
+  }
+
+  .search__box input::placeholder {
+    font-size: 26px;
+    color: white;
+  }
+
+  
+  .search__box input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff!important;
+    border-radius: 0;
+    font-size: 25px;
+    color: #fff!important;
+    font-weight: 500;
+  }
+  .search__box label {
+    margin-top: 7px !important;
+  } 
+
+  .search__box-close {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    font-size: 32px;
+    color: #fff!important;
+    z-index: 111;
+    transition: all .2s ease-in-out;
+  }
+
+  .search__box input {
+    padding: 10px 0;
+}
+
+
+
+}
+
+
+.search__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.search__wrapper.active {
+  display: block;
+  animation: fadeIn 0.3s linear;
+}
+
+  </style>
+
+  <title>Makalu Mountaineering</title>
+</head>
+
+<body>
+  <main>
+    {% include "partials/header.html" %}
+
+    {% block content %}
+    
+    {% endblock content %}
+
+    <div class="search__wrapper">
+      <div class="search__box">
+          <form method="get" action="">
+              <input type="text" class="form-control"  name="q" id="search__box" placeholder="Search ...">
+              <label for="">Type above and press enter to search.</label>
+          </form>
+      </div>
+      <a href="#" class="search__box-close">
+          <i class="fa-solid fa-xmark"></i>
+      </a>
+  </div>
+
+    {% include "partials/footer.html" %}
+
+  </main>
+
+
+    {% include "partials/js.html" %}
+
+    
+
+    <script>
+      
+      
+      const searchBtn = document.querySelectorAll("#navbar__cta-search");
+      const searchWrapper = document.querySelector(".search__wrapper");
+      const searchClose = document.querySelector(".search__box-close");
+
+      
+      searchBtn.forEach((toggleSearch) => {
+        toggleSearch.addEventListener("click", (e) => {
+          e.preventDefault();
+          searchWrapper.classList.add("active");
+        });
+      })
+
+      searchClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        searchWrapper.classList.remove("active");
+      });
+      
+      searchClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        searchWrapper.classList.remove("active");
+      });
+    </script>
+
+    {% block js %}
+    
+    
+    {% endblock js %}
+
+
+</body>
+
+
+</html>
