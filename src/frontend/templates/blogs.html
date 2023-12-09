@@ -1,0 +1,180 @@
+{% extends 'partials/base.html' %} 
+
+
+{% load static %} 
+
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+
+<section data-anim="fade" class="hero -type-1 -min-2 is-in-view">
+    <div class="hero__bg">
+      <img src="{% static "img/hero/1.png" %}" alt="image">
+      <img src="{% static "img/hero/1/shape.svg" %}" alt="image">
+    </div>
+
+    <div class="container">
+      <div class="row justify-center">
+        <div class="col-xl-12">
+          <div class="hero__content">
+            <h1 class="hero__title">
+              Your guide to everywhere
+            </h1>
+
+            <p class="hero__text">
+              Find inspiration, guides and stories for wherever you're going Select a destination
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="layout-pt-md layout-pb-xl">
+    <div class="container">
+      <div class="row y-gap-30 justify-between">
+        <div class="col-lg-8">
+          <div class="row y-gap-30">
+
+            <div class="col-12">
+              <a href="#" class="pl-blog-list">
+                <div class="pl-blog-list__image">
+                  <img src="img/blogCards/1/1.png" alt="image">
+                </div>
+
+                <div class="pl-blog-list__content">
+                  <div class="d-flex x-gap-10 text-14">
+                    <div class="lh-13">April 06 2023</div>
+                    <div class="lh-13">By Ali Tufan</div>
+                  </div>
+
+                  <h3 class="blogCard__title text-20 fw-500 lh-15 mt-10">Kenya vs Tanzania Safari: The Better African Safari Experience</h3>
+
+                  <p class="mt-10">
+                    From creepy coach rides with comedic theatrics to somber strolls through tragic neighborhoods.
+                  </p>
+
+                  <button class="fw-500 mt-10">
+                    <span class="mr-10">Read More</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_142_28418)">
+                        <path d="M15.5553 0H5.77756C5.53189 0 5.3331 0.198792 5.3331 0.444458C5.3331 0.690125 5.53189 0.888917 5.77756 0.888917H14.4824L0.129975 15.2413C-0.0436504 15.415 -0.0436504 15.6962 0.129975 15.8698C0.216766 15.9566 0.330516 16 0.444225 16C0.557933 16 0.671641 15.9566 0.758475 15.8698L15.1109 1.51738V10.2223C15.1109 10.4679 15.3097 10.6667 15.5553 10.6667C15.801 10.6667 15.9998 10.4679 15.9998 10.2223V0.444458C15.9998 0.198792 15.801 0 15.5553 0Z" fill="#05073C"></path>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_142_28418">
+                          <rect width="16" height="16" fill="white"></rect>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </button>
+                </div>
+              </a>
+            </div>
+
+
+          </div>
+
+          <div class="d-flex justify-center flex-column mt-60">
+
+            <div class="pagination justify-center">
+              <button class="pagination__button button -accent-1 mr-15 -prev">
+                <i class="icon-arrow-left text-15"></i>
+              </button>
+
+              <div class="pagination__count">
+                <a href="#">1</a>
+                <a href="#" class="is-active">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <div>...</div>
+                <a href="#">20</a>
+              </div>
+
+              <button class="pagination__button button -accent-1 ml-15 -next">
+                <i class="icon-arrow-right text-15"></i>
+              </button>
+            </div>
+
+            <div class="text-14 text-center mt-20">Showing results 1-30 of 1,415</div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="sidebar -type-2">
+            <div class="sidebar__search">
+              <i>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.20459 1.44849C4.48555 1.44849 1.45605 4.47798 1.45605 8.19703C1.45605 11.9161 4.48555 14.9515 8.20459 14.9515C9.7931 14.9515 11.254 14.3948 12.4087 13.4705L15.2197 16.28C15.3616 16.416 15.5511 16.491 15.7476 16.489C15.944 16.487 16.1319 16.4082 16.271 16.2693C16.41 16.1304 16.4892 15.9427 16.4915 15.7462C16.4937 15.5497 16.419 15.3601 16.2832 15.2181L13.4722 12.407C14.3972 11.2506 14.9546 9.78738 14.9546 8.19703C14.9546 4.47798 11.9236 1.44849 8.20459 1.44849ZM8.20459 2.94851C11.113 2.94851 13.4531 5.28866 13.4531 8.19703C13.4531 11.1054 11.113 13.4514 8.20459 13.4514C5.29621 13.4514 2.95605 11.1054 2.95605 8.19703C2.95605 5.28866 5.29621 2.94851 8.20459 2.94851Z" fill="#05073C"></path>
+                </svg>
+              </i>
+
+              <input type="text" placeholder="Search">
+            </div>
+
+            <div class="sidebar__item">
+              <h4 class="text-18 fw-500 mb-20">Blog Categories</h4>
+
+              <div class="d-flex flex-column y-gap-5">
+                <a href="#">Nature</a>
+                <a href="#">Adventure</a>
+                <a href="#">Cultural</a>
+                <a href="#">Food</a>
+                <a href="#">City</a>
+                <a href="#">Cruises</a>
+              </div>
+            </div>
+
+            <div class="sidebar__item">
+              <h4 class="text-18 fw-500 mb-20">Recent Posts</h4>
+
+              <div class="d-flex y-gap-20 flex-column">
+
+                <a href="#" class="d-flex align-center">
+                  <div class="size-70 overflow-hidden rounded-12">
+                    <img src="img/blogCards/1/1.png" alt="image" class="img-cover">
+                  </div>
+
+                  <div class="ml-20">
+                    <h5 class="text-15 lh-14 fw-500">10 of the Best Solo Travel Destinations for Women</h5>
+                    <div class="text-14 lh-1 mt-10">April 06 2023</div>
+                  </div>
+                </a>
+
+                <a href="#" class="d-flex align-center">
+                  <div class="size-70 overflow-hidden rounded-12">
+                    <img src="img/blogCards/1/1.png" alt="image" class="img-cover">
+                  </div>
+
+                  <div class="ml-20">
+                    <h5 class="text-15 lh-14 fw-500">10 of the Best Solo Travel Destinations for Women</h5>
+                    <div class="text-14 lh-1 mt-10">April 06 2023</div>
+                  </div>
+                </a>
+
+                <a href="#" class="d-flex align-center">
+                  <div class="size-70 overflow-hidden rounded-12">
+                    <img src="img/blogCards/1/1.png" alt="image" class="img-cover">
+                  </div>
+
+                  <div class="ml-20">
+                    <h5 class="text-15 lh-14 fw-500">10 of the Best Solo Travel Destinations for Women</h5>
+                    <div class="text-14 lh-1 mt-10">April 06 2023</div>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
