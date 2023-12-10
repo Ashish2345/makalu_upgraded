@@ -140,55 +140,39 @@ class ToursDetailsView(View):
         return render(request, self.template_name, self.args)
 
 
-class BlogsView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "blogs.html"
-        return super().dispatch(request, *args, **kwargs)
+class BlogsView(FrontendMixin, TemplateView):
+    template_name = "blogs.html"
+
+class BlogDetailsView(FrontendMixin, TemplateView):
+    template_name = "blogs-details.html"
+
+    # You can override the get_context_data method to pass additional context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Example: Fetch blog details using the provided ID
+        # context['blog'] = get_object_or_404(Blogs, id=self.kwargs.get("id"))
+        return context
+
+class TermsandConditionView(FrontendMixin, TemplateView):
+    template_name = "terms.html"
+
+class TripAdvisory(FrontendMixin, TemplateView):
+    template_name = "trip_advisory.html"
+
+class FAQView(FrontendMixin, TemplateView):
+    template_name = "faq.html"
     
-    def get(self, request, *args, **kwargs):
-        # blog_lists = Blogs.objects.all()
-        return render(request, self.template_name)
+    # You can override the get_context_data method to pass additional context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Example: Add data to the payload
+        # context['payload'] = {'key': 'value'}
+        return context
     
 
-class BlogDetailsView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "blogs-details.html"
-        self.args = {}
-        return super().dispatch(request, *args, **kwargs)
-    
+class GalleryView(FrontendMixin, TemplateView):
+    template_name = "gallery.html"
 
-
-    def get(self, request, *args, **kwargs):
-            # id = kwargs.get("id")
-            # blogs = get_object_or_404(Blogs, id=id)
-            # self.args = {
-            #     "blog":blogs
-            # }
-            return render(request, self.template_name, self.args)
-
-
-class TermsandConditionView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "terms.html"
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-class TripAdvisory(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "trip_advisory.html"
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        
-        return render(request, self.template_name)
-
-class FAQView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "faq.html"
-        self.payload = {}
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

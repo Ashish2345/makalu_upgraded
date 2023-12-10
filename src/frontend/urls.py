@@ -22,4 +22,6 @@ urlpatterns = [
     path('trip-advisory/', TripAdvisory.as_view(), name="trip-advisory"),
 
     path('faq/', FAQView.as_view(), name="faq"),
+    path('gallery/', GalleryView.as_view(), name="blogs"),
+
 ]
