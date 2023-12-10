@@ -10,7 +10,7 @@
       </div>
 
       <div class="header__logo">
-        <a href="index-2.html" class="header__logo">
+        <a href="/" class="header__logo">
           <img src="{% static "img/logo/logoblack.png" %}" alt="logo icon" id="main_header_logo">
         </a>
 
@@ -33,7 +33,7 @@
                     </div>
                     <div class="ml-10">
                       <div class="fw-500 js-search-option-target">MT MERA PEAK</div>
-                      <div class="lh-14 text-14 text-light-2">Thailand, Asia</div>
+                      <div class="lh-14 text-14 text-light-2">Everest Region</div>
                     </div>
                   </button>
 
@@ -81,1044 +81,23 @@
                   <div class="tabsMenu__content">
                     <div class="tabs__content js-tabs-content">
 
-                      <div class="tabs__pane -tab-item-1 is-tab-el-active">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
+                      {% for expeditions_individual in expeditions_peek %}
+                      <div class="tabs__pane -tab-item-{{forloop.counter}} {% if forloop.counter == 1 %}is-tab-el-active{% endif %}">
+                        <div class="row-image-test">
+                          {% for individual_peek in expeditions_individual %}
                             <div class="image-container">
-
-                                                        
-                              <a href="/expedition/details/11/">
-                              <div class="image-box-pair">
-                                  
-                                  <img src="" alt="Image 1">                                                     
-                                  <div class="image-text">MT. MAKALU EXPEDITION</div>
-                              </div>
-                          </a>
-                              
-         
-
-                          </div>
-                            
-                          </div>
-
-                          
+                              <a href="/peek/details/{{individual_peek.id}}/">
+                                <div class="image-box-pair">
+                                  <img src="{{individual_peek.thumbnail.url}}" alt="Image 1">  
+                                  <div class="image-text">{{individual_peek.name|upper}}</div>
+                                </div>
+                              </a>
+                            </div>
+                          {% endfor %}
                         </div>
                       </div>
+                      {% endfor %}
 
-                      <div class="tabs__pane -tab-item-2 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-3 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-4 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-5 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-6 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-7 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-8 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Italy Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Spain Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">France Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Portugal Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Turkey Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Albania Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Andorra Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Armenia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Austria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Lithuania Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Azerbaijan Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Belgium Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bosnia Herzegovina Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Bulgaria Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Croatia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cyprus Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Iceland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Ireland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Kosovo Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Latvia Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Europe Travel Guide</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Czech Republic Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Denmark Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">England Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Estonia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Finland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Georgia Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Germany Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Greece Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holland Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Hungary Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                     </div>
                   </div>
@@ -1142,619 +121,38 @@
                   <div class="tabsMenu__tabs">
                     <div class="tabs__controls js-tabs-controls">
 
-                      <button class="tabs__button js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Top world landmarks</button>
+                      {% for region in regions %}
 
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-2">Food and Nightlife</button>
+                      <button class="tabs__button js-tabs-button {% if forloop.counter == 1 %}is-tab-el-active{% endif %}" data-tab-target=".-tab-item-{{forloop.counter}}">{{region.name|title}}</button>
 
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-3">Adventure and Sport</button>
-
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-4">Landscapes and Nature</button>
-
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-5">Boat Tours</button>
-
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-6">Water Sports</button>
-
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-7">Air Tours</button>
-
-                      <button class="tabs__button js-tabs-button " data-tab-target=".-tab-item-8">Road Trips</button>
-
+                      {% endfor %}
+                      
                     </div>
                   </div>
 
                   <div class="tabsMenu__content">
                     <div class="tabs__content js-tabs-content">
 
-                      <div class="tabs__pane -tab-item-1 is-tab-el-active">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
+                      {% for peek in regions_peek %}
 
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
+                      <div class="tabs__pane -tab-item-{{forloop.counter}} {% if forloop.counter == 1 %}is-tab-el-active{% endif %}">
+                       
+                        <div class="row-image-test">
+                          {% for individual_peek in peek %}
+                            <div class="image-container">
+                              <a href="/peek/details/{{individual_peek.id}}/">
+                                <div class="image-box-pair">
+                                  <img src="https://makalumountaineering.com/media/thumbnail/thumbnail/makalu_peak_wuAlFwE.png" alt="Image 1">  
+                                  <div class="image-text">{{individual_peek.name|upper}}</div>
+                                </div>
+                              </a>
                             </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
+                          {% endfor %}
                         </div>
                       </div>
+                        
+                      {% endfor %}
 
-                      <div class="tabs__pane -tab-item-2 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-3 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-4 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-5 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-6 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-7 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="tabs__pane -tab-item-8 ">
-                        <div class="tabsMenu__lists">
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Holi Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Christmas markets Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Day of the Dead Festival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Food tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Party and nightlife Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Rio Carnival Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Pub and bar crawl Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">St Patricks Day Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cooking classes Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Wine tasting tours Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-
-                          <div class="tabsMenu-list">
-                            <div class="tabsMenu-list__title">Food and Nightlife</div>
-                            <div class="tabsMenu-list__content">
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Concerts and shows Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Coffee and tea tours Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Beer and drinks tasting Tours</a>
-                              </div>
-
-                              <div class="tabsMenu-list__item">
-                                <a href="#">Cherry Blossom Tours</a>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
                     </div>
                   </div>
@@ -1776,15 +174,15 @@
               <div class="headerDropdown__container">
 
                 <div class="headerDropdown__item">
-                  <button class="">Blogs</button>
+                  <a class="" href="/blogs/">Blogs</a>
                 </div>
 
                 <div class="headerDropdown__item">
-                  <button class="">FAQ</button>
+                  <a class="" href="/faq/">FAQ</a>
                 </div>
 
                 <div class="headerDropdown__item">
-                  <button class="">Gallery</button>
+                  <a class="" href="/gallery/">Gallery</a>
                 </div>
 
                 
@@ -1798,7 +196,7 @@
 
        
 
-        <a href="login.html" class="button -sm -dark-1 bg-accent-1 rounded-200 text-white ml-30">
+        <a href="/contact-us/" class="button -sm -dark-1 bg-accent-1 rounded-200 text-white ml-30">
           Contact
         </a>
 
@@ -1836,12 +234,85 @@
           </li>
 
           <li class="menuNav__item -has-submenu js-has-submenu">
-            <a>
+            <a href="/about-us/">
               About Us
             </a>
           </li>
+          <li class="menuNav__item -has-submenu js-has-submenu">
+            <a>
+              Expedition
+              <i class="icon-chevron-right"></i>
+            </a>
+
+            <ul class="submenu">
+              <li class="submenu__item js-nav-list-back">
+                <a>Back</a>
+              </li>
 
 
+              <li class="submenu__item">
+                <a href="/expedition/lists/?exp=8000">8000ers</a>
+              </li>
+
+              <li class="submenu__item">
+                <a href="/expedition/lists/?exp=8000">7000ers</a>
+              </li>
+
+              <li class="submenu__item">
+                <a href="/expedition/lists/?exp=8000">6000ers</a>
+              </li>
+
+            </ul>
+          </li>
+
+
+          <li class="menuNav__item -has-submenu js-has-submenu">
+            <a>
+              Trekking
+              <i class="icon-chevron-right"></i>
+            </a>
+
+            <ul class="submenu">
+             
+              <li class="submenu__item js-nav-list-back">
+                <a>Back</a>
+              </li>
+
+              {% for region in regions %}
+              <li class="submenu__item">
+                <a href="/trekking/lists/?region={{region.name}}">{{region.name|title}}</a>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </li>
+
+
+          <li class="menuNav__item -has-submenu js-has-submenu">
+            <a>
+              Quick Links
+              <i class="icon-chevron-right"></i>
+            </a>
+
+            <ul class="submenu">
+             
+              <li class="submenu__item js-nav-list-back">
+                <a>Back</a>
+              </li>
+
+              <li class="submenu__item">
+                <a href="/blogs/">Blogs</a>
+              </li>
+
+              <li class="submenu__item">
+                <a href="/faq/">FAQ</a>
+              </li>
+
+              <li class="submenu__item">
+                <a href="/gallery/">Gallery</a>
+              </li>
+
+              
           <li class="menuNav__item -has-submenu js-has-submenu">
             <a>
               Visa Procedures
@@ -1849,7 +320,7 @@
           </li>
 
           <li class="menuNav__item -has-submenu js-has-submenu">
-            <a>
+            <a href="trip-advisory/'">
               Travel Advisory
             </a>
 
@@ -1863,15 +334,28 @@
             
           </li>
 
+          
+
+          <li class="menuNav__item">
+            <a href="contact.html">Privacy Policy</a>
+          </li>
+
+
+            </ul>
+          </li>
+
           <li class="menuNav__item -has-submenu js-has-submenu">
-            <a>
+            <a href="terms-and-conditions/">
               Terms and Condition
             </a>
 
           </li>
 
+
+
+         
           <li class="menuNav__item">
-            <a href="contact.html">Privacy Policy</a>
+            <a href="/contact-us/">Contact</a>
           </li>
         </ul>
       </div>

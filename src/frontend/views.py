@@ -1,27 +1,48 @@
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import TemplateView
+
 from django.http import JsonResponse
 
 from .models import *
 
-class HomeView(View):
 
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "index.html"
-        self.args = {}
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        popular_destinatioon = PopularPeaks.objects.select_related("peek_info").filter(popular_last_month=False)[:3]
-        this_month = PopularPeaks.objects.select_related("peek_info").filter(popular_last_month=True).first()
-        blogs = Blogs.objects.all()[:5]
-        self.args = {
-            "popular_destinatioon":popular_destinatioon,
-            "this_month":this_month,
-            
-            "blogs":blogs
-        }
-        return render(request, self.template_name, self.args)
+from django.shortcuts import render
+from .models import Region, PopularPeaks, Blogs
+
+class FrontendMixin:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        region = Region.objects.all()
+        all_region_treks = []
+        expediton_peeks = []
+        all_expedition = ["8000","7000","6000"]
+        for region in region:
+            region_trek = PeeksLists.objects.filter(region_peak=region, peek_type="treks").values("name","id")[:6]
+            all_region_treks.append(region_trek)
+
+        for region in all_expedition:
+            region_trek = PeeksLists.objects.filter(peek_type="expedition", peeks_catg__name=region)[:6]
+            expediton_peeks.append(region_trek)
+        print(expediton_peeks)
+        # print(PeeksLists.objects.filter(region_peak__in=region))
+        context["regions"] = Region.objects.all()
+        context["regions_peek"] = all_region_treks
+        
+        context["expeditions_peek"] = expediton_peeks
+        return context
+
+class HomeView(FrontendMixin, TemplateView):
+    template_name = "index.html"
+
+    def get_context_data(self, **kwargs):
+        trending_destination = PeeksLists.objects.select_related("region_peak").filter(trending=True)[:5]
+        context = super().get_context_data(**kwargs)
+        context["all_exp"] = PeeksLists.objects.filter(peek_type="expedition")[:4]
+        context["top_trendings"] = trending_destination
+        context["blogs"] = Blogs.objects.all()[:3]
+        return context
+
 
     def post(self, request, *args, **kwargs):
         email = request.POST.get("email")

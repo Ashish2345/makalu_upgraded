@@ -10,7 +10,8 @@ urlpatterns = [
     path('about-us/', AboutUsView.as_view(), name="about_us"),
     path('contact-us/', ContactUsView.as_view(), name="contact_us"),
 
-    path('peak/lists/', cache_page(0*60)(PeeksListsView.as_view()), name="peek-lists"),
+    path('expedition/lists/', cache_page(0*60)(PeeksListsView.as_view()), name="peek-lists"),
+    path('trekking/lists/', cache_page(0*60)(PeeksListsView.as_view()), name="peek-lists"),
 
     path('peek/details/<int:id>/', cache_page(0*60)(ToursDetailsView.as_view()), name="tour_details"),
 

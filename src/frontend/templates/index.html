@@ -3,14 +3,39 @@
 
 {% load static %} 
 
+{% load rating %}
+
 {% block css %}
+
+<style>
+  .see__more {
+    display: inline-block;
+    padding: 8px 20px 4px;
+    border: 1px solid #2e8ab7;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #2e8ab7;
+    transition: all .3s ease-in-out;
+}
+
+.see__more-wrapper {
+  justify-content: flex-start;
+  padding-top: 30px !important;
+  display: flex;
+}
+
+.see__more:hover {
+  background-color: #2e8ab7;
+  color: #fff;
+}
+</style>
 
 {% endblock css %}
 
 {% block content %}
 <section class="hero -type-1">
     <div class="hero__bg">
-      <img src="https://makalumountaineering.com/static/assets/new/images/banner/everestbanner1.png" alt="image">
+      <img src="{% static "img/banner/banner.png" %}" alt="image">
       <img src="{% static "img/hero/1/shape.svg" %}" alt="image">
     </div>
 
@@ -43,13 +68,16 @@
                     <div class="searchFormItemDropdown -location" data-x="location" data-x-toggle="is-active">
                       <div class="searchFormItemDropdown__container">
                         <div class="searchFormItemDropdown__list sroll-bar-1">
-
+                          {% for region in regions %}
                           <div class="searchFormItemDropdown__item">
                             <button class="js-select-control-button">
-                              <span class="js-select-control-choice">Everest</span>
-                              <span>Region</span>
+                              <span class="js-select-control-choice">{{region.name|title}}</span>
+                              {% comment %} <span>Region</span> {% endcomment %}
                             </button>
                           </div>
+
+                          {% endfor %}
+                          
 
 
                         </div>
@@ -2623,46 +2651,38 @@
     <div data-anim-child="slide-up delay-2" class="relative pt-40 sm:pt-20 is-in-view">
       <div class="overflow-hidden pb-30 js-section-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-autoheight swiper-watch-progress swiper-backface-hidden" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-1 base-1" data-nav-prev="js-slider1-prev" data-nav-next="js-slider1-next">
         <div class="swiper-wrapper" id="swiper-wrapper-bc103fc124dbd18d10" aria-live="polite" style="height: 388px;">
-
+          {% for top_trending in top_trendings %}
           <div class="swiper-slide swiper-slide-visible swiper-slide-active" role="group" aria-label="1 / 7" style="width: 300px; margin-right: 30px;">
 
             <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12 bg-white -hover-shadow">
               <div class="tourCard__header">
                 <div class="tourCard__image ratio ratio-28:20">
-                  <img src="https://www.journeyera.com/wp-content/uploads/2022/01/langtang-valley-trek-160.jpg" alt="image" class="img-ratio rounded-12">
+                  <img src="{{top_trending.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                 </div>
 
-                <button class="tourCard__favorite">
-                  <i class="icon-heart"></i>
-                </button>
+               
               </div>
 
               <div class="tourCard__content px-10 pt-10">
                 <div class="tourCard__location d-flex items-center text-13 text-light-2">
                   <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                  Langtang Region
+                  {{top_trending.region_peak|title}}
                 </div>
 
                 <h3 class="tourCard__title text-16 fw-500 mt-5">
-                  <span>Langtang Trek with Yala Peak</span>
+                  <span>{{top_trending.name|title}}</span>
                 </h3>
 
                 <div class="tourCard__rating d-flex items-center text-13 mt-5">
                   <div class="d-flex x-gap-5">
 
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
 
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
+                    {% render_stars top_trending.rating %}
 
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
 
                   </div>
 
-                  <span class="text-dark-1 ml-10">4.8 (269)</span>
+                  <span class="text-dark-1 ml-10">{{top_trending.rating}} ({{top_trending.rate_total}})</span>
                 </div>
 
                 <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
@@ -2671,228 +2691,13 @@
                     4 days
                   </div>
 
-                  <div>From <span class="text-16 fw-500">$189,25</span></div>
+                  <div>From <span class="text-16 fw-500">${{top_trending.price}}</span></div>
                 </div>
               </div>
             </a>
 
           </div>
-
-          <div class="swiper-slide swiper-slide-visible swiper-slide-next" role="group" aria-label="2 / 7" style="width: 300px; margin-right: 30px;">
-
-            <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12 bg-white -hover-shadow">
-              <div class="tourCard__header">
-                <div class="tourCard__image ratio ratio-28:20">
-                  <img src="https://www.intrepidtravel.com/v3/assets/blt0de87ff52d9c34a8/blt52ca437014b1b15e/63c9328e8bec7c3a7c0f5f2f/HNXS_Intrepid_Travel-Nepal_Annapurna-Basecamp_2019_79655_1.jpg" alt="image" class="img-ratio rounded-12">
-                </div>
-
-                <button class="tourCard__favorite">
-                  <i class="icon-heart"></i>
-                </button>
-              </div>
-
-              <div class="tourCard__content px-10 pt-10">
-                <div class="tourCard__location d-flex items-center text-13 text-light-2">
-                  <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                  Annapurna Region
-                </div>
-
-                <h3 class="tourCard__title text-16 fw-500 mt-5">
-                  <span>Annapurna Base camp Trek</span>
-                </h3>
-
-                <div class="tourCard__rating d-flex items-center text-13 mt-5">
-                  <div class="d-flex x-gap-5">
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                  </div>
-
-                  <span class="text-dark-1 ml-10">4.8 (269)</span>
-                </div>
-
-                <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
-                  <div class="d-flex items-center">
-                    <i class="icon-clock text-16 mr-5"></i>
-                    4 days
-                  </div>
-
-                  <div>From <span class="text-16 fw-500">$225,00</span></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-
-          <div class="swiper-slide swiper-slide-visible" role="group" aria-label="3 / 7" style="width: 300px; margin-right: 30px;">
-
-            <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12 bg-white -hover-shadow">
-              <div class="tourCard__header">
-                <div class="tourCard__image ratio ratio-28:20">
-                  <img src="https://www.linkagetour.com/public/uploads/poonhill%20trek.jpg" alt="image" class="img-ratio rounded-12">
-                </div>
-
-                <button class="tourCard__favorite">
-                  <i class="icon-heart"></i>
-                </button>
-              </div>
-
-              <div class="tourCard__content px-10 pt-10">
-                <div class="tourCard__location d-flex items-center text-13 text-light-2">
-                  <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                  Makalu Region
-                </div>
-
-                <h3 class="tourCard__title text-16 fw-500 mt-5">
-                  <span>Ghorepani poon hill with Chitwan</span>
-                </h3>
-
-                <div class="tourCard__rating d-flex items-center text-13 mt-5">
-                  <div class="d-flex x-gap-5">
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                  </div>
-
-                  <span class="text-dark-1 ml-10">4.8 (269)</span>
-                </div>
-
-                <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
-                  <div class="d-flex items-center">
-                    <i class="icon-clock text-16 mr-5"></i>
-                    4 days
-                  </div>
-
-                  <div>From <span class="text-16 fw-500">$943,00</span></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-
-          <div class="swiper-slide swiper-slide-visible" role="group" aria-label="4 / 7" style="width: 300px; margin-right: 30px;">
-
-            <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12 bg-white -hover-shadow">
-              <div class="tourCard__header">
-                <div class="tourCard__image ratio ratio-28:20">
-                  <img src="https://makalumountaineering.com/media/thumbnail/main_image/mardi.jpg" alt="image" class="img-ratio rounded-12">
-                </div>
-
-                <button class="tourCard__favorite">
-                  <i class="icon-heart"></i>
-                </button>
-              </div>
-
-              <div class="tourCard__content px-10 pt-10">
-                <div class="tourCard__location d-flex items-center text-13 text-light-2">
-                  <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                  Annapurna Region
-                </div>
-
-                <h3 class="tourCard__title text-16 fw-500 mt-5">
-                  <span>Mardi Himal Trek</span>
-                </h3>
-
-                <div class="tourCard__rating d-flex items-center text-13 mt-5">
-                  <div class="d-flex x-gap-5">
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                  </div>
-
-                  <span class="text-dark-1 ml-10">4.8 (269)</span>
-                </div>
-
-                <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
-                  <div class="d-flex items-center">
-                    <i class="icon-clock text-16 mr-5"></i>
-                    4 days
-                  </div>
-
-                  <div>From <span class="text-16 fw-500">$771,00</span></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-
-          <div class="swiper-slide" role="group" aria-label="5 / 7" style="width: 300px; margin-right: 30px;">
-
-            <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12 bg-white -hover-shadow">
-              <div class="tourCard__header">
-                <div class="tourCard__image ratio ratio-28:20">
-                  <img src="https://makalumountaineering.com/media/thumbnail/thumbnail/Three_pass.png" alt="image" class="img-ratio rounded-12">
-                </div>
-
-                <button class="tourCard__favorite">
-                  <i class="icon-heart"></i>
-                </button>
-              </div>
-
-              <div class="tourCard__content px-10 pt-10">
-                <div class="tourCard__location d-flex items-center text-13 text-light-2">
-                  <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                  Everest Region
-                </div>
-
-                <h3 class="tourCard__title text-16 fw-500 mt-5">
-                  <span>Everest Base Camp</span>
-                </h3>
-
-                <div class="tourCard__rating d-flex items-center text-13 mt-5">
-                  <div class="d-flex x-gap-5">
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                    <div><i class="icon-star text-10 text-yellow-2"></i></div>
-
-                  </div>
-
-                  <span class="text-dark-1 ml-10">4.8 (269)</span>
-                </div>
-
-                <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
-                  <div class="d-flex items-center">
-                    <i class="icon-clock text-16 mr-5"></i>
-                    4 days
-                  </div>
-
-                  <div>From <span class="text-16 fw-500">$189,25</span></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
+          {% endfor %}
 
         </div>
       <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -2946,45 +2751,36 @@
         <div class="tabs__pane -tab-item-1 is-tab-el-active">
           <div class="row y-gap-30 pt-30">
 
+
+            
+            {% for expedition in all_exp %}
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
   
-              <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
+              <a href="/peek/details/{{expedition.id}}/" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
-                    <img src="img/tourCards/1/1.png" alt="image" class="img-ratio rounded-12">
+                    <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
   
-                  <button class="tourCard__favorite">
-                    <i class="icon-heart"></i>
-                  </button>
                 </div>
   
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                    Paris, France
+                    {{expedition.region_peak|title}}
                   </div>
   
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
-                    <span>Centipede Tour - Guided Arizona Desert Tour by ATV</span>
+                    <span>{{expedition.name|title}}</span>
                   </h3>
   
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
   
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
+                      {% render_stars expedition.rating %}
                     </div>
   
-                    <span class="text-dark-1 ml-10">4.8 (269)</span>
+                    <span class="text-dark-1 ml-10">{{expedition.rating|default_if_none:"4.0"}} ({{expedition.rate_total|default_if_none:"668"}})</span>
                   </div>
   
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
@@ -2993,12 +2789,22 @@
                       4 days
                     </div>
   
-                    <div>From <span class="text-16 fw-500">$189,25</span></div>
+                    <div>From <span class="text-16 fw-500">${{expedition.price|default_if_none:"999"}}</span></div>
                   </div>
                 </div>
               </a>
   
             </div>
+            {% endfor %}
+
+            <div class="see__more-wrapper" style="padding-top: 50px; ">
+              <a class="button -h-50 px-20 -outline-dark-1 text-dark-1" href="">Explore More <i class="fas fa-angle-right" style="padding-left: 10px;"></i></a>
+             
+            </div>
+
+
+
+              {% comment %} <a class="button -h-50 px-20 -text-dark-1">Explore All</button> {% endcomment %}
             
   
   
@@ -3008,45 +2814,33 @@
         <div class="tabs__pane -tab-item-2">
           <div class="row y-gap-30 pt-30">
 
+            {% for expedition in expeditions_peek.0|slice:"0:4" %}
+
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
   
-              <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
+              <a href="/peek/details/{{expedition.id}}/" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
-                    <img src="img/tourCards/1/1.png" alt="image" class="img-ratio rounded-12">
+                    <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
-  
-                  <button class="tourCard__favorite">
-                    <i class="icon-heart"></i>
-                  </button>
                 </div>
   
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                    Paris, France
+                    {{expedition.region_peak}}
                   </div>
   
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
-                    <span>Centipede Tour - Guided Arizona Desert Tour by ATV</span>
+                    <span>{{expedition.name|title}}</span>
                   </h3>
   
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
+                      {% render_stars expedition.rating %}
                     </div>
   
-                    <span class="text-dark-1 ml-10">4.8 (269)</span>
+                    <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
   
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
@@ -3055,12 +2849,14 @@
                       4 days
                     </div>
   
-                    <div>From <span class="text-16 fw-500">$189,25</span></div>
+                    <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
   
             </div>
+
+            {% endfor %}
             
   
   
@@ -3071,45 +2867,33 @@
         <div class="tabs__pane -tab-item-3">
           <div class="row y-gap-30 pt-30">
 
+            {% for expedition in expeditions_peek.1|slice:"0:4" %}
+
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
   
-              <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
+              <a href="/peek/details/{{expedition.id}}/" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
-                    <img src="img/tourCards/1/1.png" alt="image" class="img-ratio rounded-12">
+                    <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
-  
-                  <button class="tourCard__favorite">
-                    <i class="icon-heart"></i>
-                  </button>
                 </div>
   
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                    Paris, France
+                    {{expedition.region_peak}}
                   </div>
   
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
-                    <span>Centipede Tour - Guided Arizona Desert Tour by ATV</span>
+                    <span>{{expedition.name|title}}</span>
                   </h3>
   
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
+                      {% render_stars expedition.rating %}
                     </div>
   
-                    <span class="text-dark-1 ml-10">4.8 (269)</span>
+                    <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
   
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
@@ -3118,12 +2902,14 @@
                       4 days
                     </div>
   
-                    <div>From <span class="text-16 fw-500">$189,25</span></div>
+                    <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
   
             </div>
+
+            {% endfor %}
             
   
   
@@ -3133,45 +2919,33 @@
         <div class="tabs__pane -tab-item-4">
           <div class="row y-gap-30 pt-30">
 
+            {% for expedition in expeditions_peek.2|slice:"0:4" %}
+
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
   
-              <a href="#" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
+              <a href="/peek/details/{{expedition.id}}/" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
-                    <img src="img/tourCards/1/1.png" alt="image" class="img-ratio rounded-12">
+                    <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
-  
-                  <button class="tourCard__favorite">
-                    <i class="icon-heart"></i>
-                  </button>
                 </div>
   
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
-                    Paris, France
+                    {{expedition.region_peak}}
                   </div>
   
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
-                    <span>Centipede Tour - Guided Arizona Desert Tour by ATV</span>
+                    <span>{{expedition.name|title}}</span>
                   </h3>
   
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
-                      <div><i class="icon-star text-10 text-yellow-2"></i></div>
-  
+                      {% render_stars expedition.rating %}
                     </div>
   
-                    <span class="text-dark-1 ml-10">4.8 (269)</span>
+                    <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
   
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
@@ -3180,12 +2954,14 @@
                       4 days
                     </div>
   
-                    <div>From <span class="text-16 fw-500">$189,25</span></div>
+                    <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
   
             </div>
+
+            {% endfor %}
             
   
   
@@ -3213,11 +2989,11 @@
         <div class="row x-gap-40 y-gap-30 pt-30 md:pt-10">
           <div class="col-md-6">
             <div class="fw-700 text-40 lh-1/1 text-white">4.8</div>
-            <div class="text-white">1000+ reviews on TripAdvisor. Certificate of Excellence</div>
+            <div class="text-white">Thrilling journeys, five-star reviews – hear what our clients love about their Nepal adventures!</div>
           </div>
 
           <div class="col-md-6">
-            <div class="fw-700 text-40 lh-1/1 text-white">16M</div>
+            <div class="fw-700 text-40 lh-1/1 text-white">10K</div>
             <div class="text-white">Happy customers</div>
           </div>
         </div>
@@ -3239,7 +3015,7 @@
                   </div>
                 </div>
 
-                <div class="text-15 fw-500 mt-15">“I think Educrat is the best theme I ever seen this year. Amazing design, easy to customize and a design quality superlative account on its cloud platform for the optimized performance”</div>
+                <div class="text-15 fw-500 mt-15">“An exhilarating journey with Malaku Mountaineering! From the breathtaking views to the expert guidance, our trekking experience was nothing short of exceptional. Highly recommended for anyone seeking an adventure of a lifetime”</div>
 
                 <div class="d-flex items-center mt-20 pt-20 border-1-top">
                   <div class="testimonials__image size-60 rounded-full">
@@ -3392,26 +3168,30 @@
     </div>
 
     <div data-anim-child="slide-up delay-2" class="row y-gap-30 pt-40 sm:pt-20">
-
+      {% for blogs in blogs %}
       <div class="col-lg-4 col-md-6">
         <a href="#" class="blogCard -type-1">
           <div class="blogCard__image ratio ratio-41:30">
-            <img src="{% static "img/blogCards/1/1.png" %}" alt="image" class="img-ratio rounded-12">
+            <img src="{{blogs.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
 
-            <div class="blogCard__badge">Trips</div>
+            <div class="blogCard__badge">Information</div>
           </div>
 
           <div class="blogCard__content mt-30">
             <div class="blogCard__info text-14">
-              <div class="lh-13">April 06 2023</div>
+              <div class="lh-13">{{ blogs.created_at|date:"F d, Y" }}
+              </div>
               <div class="blogCard__line"></div>
-              <div class="lh-13">By Ali Tufan</div>
+              <div class="lh-13">By Makalu Mountaineering</div>
             </div>
 
-            <h3 class="blogCard__title text-18 fw-500 mt-10">Kenya vs Tanzania Safari: The Better African Safari Experience</h3>
+            <h3 class="blogCard__title text-18 fw-500 mt-10">{{blogs.title}}</h3>
           </div>
         </a>
+        
       </div>
+
+      {% endfor %}
 
 
     </div>
@@ -3432,12 +3212,15 @@
         <div class="cta__content">
           <h2 class="text-40 md:text-24 lh-13 text-white">
             Get 5% off your 1st<br class="lg:d-none">
-            app booking
+            booking
           </h2>
 
           <p class="mt-10 text-white">
-            Booking's better on the app. Use promo code<br class="lg:d-none">
-            "TourBooking" to save!
+
+            Unlock exclusive savings with promo code 
+            
+            <br class="lg:d-none">'MAKALUMOUNTAINEERING
+          
           </p>
 
           <div class="text-18 text-white mt-40 md:mt-20">
@@ -3530,7 +3313,7 @@
       <div data-anim-child="slide-up delay-1" class="col-lg-3 col-sm-6 is-in-view">
         <a href="#" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12">
-            <img src="https://makalumountaineering.com/static/assets/img/two.jpg" alt="image">
+            <img src="{% static "img/instagram/1.jpg" %}" alt="image">
           </div>
 
           {% comment %} <div class="featureCard__content">
@@ -3542,7 +3325,7 @@
       <div data-anim-child="slide-up delay-2" class="col-lg-3 col-sm-6 is-in-view">
         <a href="#" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12">
-            <img src="https://makalumountaineering.com/static/assets/img/two.jpg" alt="image">
+            <img src="{% static "img/instagram/2.jpg" %}" alt="image">
           </div>
 
         </a>
@@ -3551,7 +3334,7 @@
       <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
         <a href="#" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12">
-            <img src="https://makalumountaineering.com/static/assets/img/two.jpg" alt="image">
+            <img src="{% static "img/instagram/3.jpg" %}" alt="image">
           </div>
 
          
@@ -3562,7 +3345,7 @@
       <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
         <a href="#" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12">
-            <img src="https://makalumountaineering.com/static/assets/img/two.jpg" alt="image">
+            <img src="{% static "img/instagram/4.jpg" %}" alt="image">
           </div>
 
          

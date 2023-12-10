@@ -32,8 +32,8 @@
   }
   .image-box-pair {
     position: relative;
-    width: 246px;
-    height: 220px;
+    width: 270px;
+    height: 200px;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -52,6 +52,11 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
+}
+
+.image-box-pair:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .featureCard.-type-6 .featureCard__image::after {
@@ -141,7 +146,25 @@
   animation: fadeIn 0.3s linear;
 }
 
+
+
+.row-image-test {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.image-container {
+  flex: 0 0 30%; /* 24% to allow for some spacing between the elements */
+}
+
+
   </style>
+
+  {% block css %}
+
+
+  {% endblock %}
 
   <title>Makalu Mountaineering</title>
 </head>

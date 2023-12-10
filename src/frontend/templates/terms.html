@@ -5,6 +5,37 @@
 
 {% block css %}
 
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #D8F1FD;
+    }
+    .table-header {
+        font-weight: bold;
+    }
+    .clause {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f5f5f5;
+    }
+    
+    .note {
+        font-style: italic;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+</style>
+
 {% endblock css %}
 
 {% block content %}
@@ -13,7 +44,7 @@
     <div class="container">
       <div class="breadcrumbs mb-30 md:mb-15">
         <span class="breadcrumbs__item">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </span>
         <span>&gt;</span>
        
@@ -37,23 +68,32 @@
             <div class="tabs__controls row y-gap-10 js-tabs-controls">
 
               <div class="col-12">
-                <button class="tabs__button relative pl-20 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Account &amp; Payments</button>
+                <button class="tabs__button relative pl-20 js-tabs-button is-tab-el-active" data-tab-target=".-tab-item-1">Advance Booking &amp; Payments</button>
               </div>
 
               <div class="col-12">
-                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-2">Manage Orders</button>
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-2">Cancellation Policy</button>
               </div>
 
               <div class="col-12">
-                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-3">Returns &amp; Refunds</button>
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-3">Last-Minute Booking</button>
               </div>
 
               <div class="col-12">
-                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-4">COVID-19</button>
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-4">Insurance and Travel Risks</button>
               </div>
 
               <div class="col-12">
-                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-5">Other</button>
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-5">Incomplete Tours</button>
+              </div>
+
+
+              <div class="col-12">
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-6">Compliance Agreement</button>
+              </div>
+
+              <div class="col-12">
+                <button class="tabs__button relative pl-20 js-tabs-button " data-tab-target=".-tab-item-7">Others</button>
               </div>
 
             </div>
@@ -63,118 +103,218 @@
             <div class="tabs__content js-tabs-content">
 
               <div class="tabs__pane -tab-item-1 is-tab-el-active">
-                <h2 class="text-20 fw-500">1. Introduction</h2>
+                <h2 class="text-20 fw-500">Advance Booking &amp; Payments</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
+                    To embark on an unforgettable journey with Malaku Mountaineering, you are kindly requested to make your reservation at least 3 months prior to your intended trip. This advance notice period of three months is essential to guarantee the utmost safety and overall satisfaction of our valued clients. Upon booking, a reservation deposit equivalent to 30% of the total trip cost is required. This initial payment serves to secure vital reservations for accommodations, flights, experienced guides, and capable porters. Additionally, it facilitates the necessary approvals from governmental authorities to ensure a seamless expedition.
                   <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                  To embark on an unforgettable journey with Malaku As your adventure date approaches, we kindly ask that an additional 30% of the total trip cost be remitted no later than one month prior to your scheduled flight to Nepal. This will help us finalize preparations for your journey, ensuring that every detail is in place for your arrival. Upon your arrival in Nepal, the remaining 40% of the total trip cost should be settled before your adventure officially commences. This allows us to provide you with the exceptional service, support, and resources that are essential for an unforgettable experience in the Himalayas., you are kindly requested to make your reservation at least 3 months prior to your intended trip. This advance notice period of three months is essential to guarantee the utmost safety and overall satisfaction of our valued clients. Upon booking, a reservation deposit equivalent to 30% of the total trip cost is required. This initial payment serves to secure vital reservations for accommodations, flights, experienced guides, and capable porters. Additionally, it facilitates the necessary approvals from governmental authorities to ensure a seamless expedition.                </p>
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Bank Details</h2>
+                <p class="mt-10">
+                    <table>
+                        <tbody><tr>
+                            <th colspan="2" class="table-header">Bank Information</th>
+                        </tr>
+                        <tr>
+                            <td>Name of The Bank:</td>
+                            <td>Nepal Investment Mega Bank Ltd.</td>
+                        </tr>
+                        <tr>
+                            <td>Beneficiary Account Holder’s Name:</td>
+                            <td>Makalu Mountaineering Treks And Expedition Pvt. Ltd.</td>
+                        </tr>
+                        <tr>
+                            <td>Beneficiary Account Number:</td>
+                            <td>13201040250238</td>
+                        </tr>
+                        <tr>
+                            <td>Swift Code / BIC:</td>
+                            <td>NIBLNPKT</td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td>THAMEL, KATHMANDU, NEPAL</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile:</td>
+                            <td>+977 9843685256</td>
+                        </tr>
+                        <tr>
+                            <td>Zip Code:</td>
+                            <td>44600</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><a href="mailto:makalumountaineering@gmail.com">makalumountaineering@gmail.com</a></td>
+                        </tr>
+                    </tbody></table>
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Your Use of the Zenmart Sites</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
-
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">3. Content and Ideas</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
               </div>
 
               <div class="tabs__pane -tab-item-2 ">
-                <h2 class="text-20 fw-500">1. Introduction</h2>
+              
+                <h2 class="text-20 fw-500">Cancellation Policy</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    At Malaku Mountaineering, we recognize that circumstances may change, leading to the need for trip cancellations. Our cancellation policy has been thoughtfully designed to reflect our commitment to managing expenses related to personnel and resources once they have been allocated for a trip. We kindly ask you to review the following clauses carefully:
+                </p>
+                <p class="mt-10">
+
+                    <div class="bg-light-1" style="padding:10px">
+                            <b>Cancellation 45 Days Prior to Departure:</b>
+
+                            <ul class="list-disc y-gap-15">
+                                <li>The company will charge a cancellation fee of 20% of the total trip amount.</li>
+                                <li>The remaining amount will be refunded to you after deducting the processing charge of Nepal Rastra Bank.</li>
+                                <li>Alternatively, if you prefer, the refundable amount can be retained by the company as a charge for your future trip to Nepal.</li>
+                              </ul>
+                    </div>
+
+                    <div class="bg-light-1" style="padding:10px">
+                        <b>Cancellation 25 Days Prior to Departure:</b>
+
+                        <ul class="list-disc y-gap-15">
+                            <li>The company will charge a cancellation fee ranging from 30% to 40% of the total trip amount.</li>
+                            <li>The remaining amount will be refunded to you as outlined in the terms of clause first.</li>
+                          </ul>
+                </div>
+
+
+                <div class="bg-light-1" style="padding:10px">
+                    <b>Cancellation 1 Week Prior to Departure:</b>
+
+                    <ul class="list-disc y-gap-15">
+                        <li>The company will charge a cancellation fee ranging from 50% to 60% of the total trip amount.</li>
+                        <li>The remaining amount will be refunded to you as outlined in the previous clause.</li>
+                      </ul>
+                 </div>
+
+
+                   
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Your Use of the Zenmart Sites</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
-
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">3. Content and Ideas</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    <p class="note">Note: Please note that the refund percentages mentioned above are based on the total trip amount and are meant to cover the costs associated with personnel, resources, and logistical arrangements that have been made for your trip. We highly recommend considering travel insurance to mitigate any potential losses due to unforeseen circumstances that might necessitate cancellation.</p>
                 </p>
               </div>
 
               <div class="tabs__pane -tab-item-3 ">
-                <h2 class="text-20 fw-500">1. Introduction</h2>
+                <h2 class="text-20 fw-500">Last-Minute Booking</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    For those who wish to make late bookings, we offer the flexibility to do so as early as 10 days before your scheduled departure from your home country. However, it's important to bear in mind that late bookings may incur additional costs.                  <br><br>
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Your Use of the Zenmart Sites</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
-
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">3. Content and Ideas</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
               </div>
 
               <div class="tabs__pane -tab-item-4 ">
-                <h2 class="text-20 fw-500">1. Introduction</h2>
+                <h2 class="text-20 fw-500">Insurance and Travel Risks</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    In accordance with government regulations, it is imperative to note that foreign nationals are unable to obtain insurance within Nepal. Therefore, it is a fundamental requirement for our clients to secure comprehensive travel insurance packages (covering medical expenses, air evacuation, search and rescue missions) in their home countries. Trekking and expedition adventures are inherently associated with certain uncertainties, including medical emergencies and natural calamities, particularly in high-altitude regions. We prioritize the safety and well-being of our clients and strongly recommend that they obtain insurance coverage for helicopter evacuations, trip cancellations, and personal accidents. This safeguards them from experiencing undue financial burdens in unforeseen circumstances.                  
+                    <br><br>
+                    Our agency will request clients to provide their personal and insurance details to facilitate swift and efficient handling of any unpredictable situations. In the event of a rescue requirement, our company will initiate contact with reputable rescue service providers and manage all necessary documentation and procedures.                
+                    <br><br>
+                
+                    Please be aware that the company assumes no responsibility for any financial losses or compensation in cases where a guest's insurance fails to cover some or all aspects of the trip.
+                
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Your Use of the Zenmart Sites</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
-
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">3. Content and Ideas</h2>
-                <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
-                </p>
+               
               </div>
 
               <div class="tabs__pane -tab-item-5 ">
-                <h2 class="text-20 fw-500">1. Introduction</h2>
+                <h2 class="text-20 fw-500">Incomplete Tours</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    Clients should be aware that no compensation will be provided under any circumstances if they choose to abstain from commencing a trek or expedition due to personal injury or any other reasons. Furthermore, if the government revokes permits for a trek or expedition due to unforeseen disasters in the area, clients shall not seek reimbursement for their payment. We encourage clients to exercise caution and consider travel insurance to address unforeseen events that may impact their trip. Your safety remains our top priority, and we appreciate your understanding of these policies.                  <br><br>
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">2. Your Use of the Zenmart Sites</h2>
+              </div>
+
+              <div class="tabs__pane -tab-item-6 ">
+                <h2 class="text-20 fw-500">Compliance Agreement</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    
+                    As a guest, it is imperative that you adhere to the rules and regulations of the country during your stay. Engaging in any illegal activities is strongly discouraged, and any intentional or unintentional violation of the law by a guest will not impose an obligation upon the company to advocate on their behalf. Should any illegal activities be witnessed on the part of a client, the company reserves the right to alert the appropriate authorities and cooperate fully with them. In the event that a client faces legal consequences due to unlawful actions, the company is not liable to provide financial compensation.
+                    
+                    <br><br>
+                    Furthermore, during your tour, trek, or expedition, the appointed team leader assumes authority, and their decisions are considered final. Our team leaders and guides are selected based on years of training and extensive experience in mountainous regions. To ensure the safety and well-being of our clients, we strongly encourage guests to heed the instructions of our team leaders and guides and refrain from any actions contrary to their guidance. In the event of conflicts between clients, whether verbal, physical, or otherwise, the company's staff will intervene to resolve the issue, and if necessary, may involve law enforcement.
+
                 </p>
 
-                <h2 class="text-20 fw-500 mt-60 md:mt-30">3. Content and Ideas</h2>
+              </div>
+
+
+              <div class="tabs__pane -tab-item-7">
+                <h2 class="text-20 fw-500">Adjustments in Costs, Timing, and Additional Charges</h2>
                 <p class="mt-10">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nascetur morbi nisl, mi, in semper metus porttitor non. Augue nunc amet fringilla sit. Fringilla eget arcu sodales sed a, parturient fermentum amet scelerisque. Amet purus urna, dictumst aliquet aliquam natoque non, morbi pretium. Integer amet fermentum nibh viverra mollis consectetur arcu, ultrices dolor. Gravida purus arcu viverra eget. Aliquet tincidunt dignissim aliquam tempor nec id. Habitant suscipit sit semper duis odio amet, at.
-                  <br><br>
-                  Massa ultricies a arcu velit eget gravida purus ultrices eget. Orci, fames eu facilisi justo. Lacus netus a at sed justo vel leo leo pellentesque. Nulla ut laoreet luctus cum turpis et amet ac viverra. Vitae neque orci dui eu ac tincidunt. Egestas placerat egestas netus nec velit gravida consectetur laoreet vitae. Velit sed enim habitant habitant non diam. Semper tellus turpis tempus ac leo tempor. Ultricies amet, habitasse adipiscing bibendum consequat amet, sed. Id convallis suspendisse vitae, lacinia mattis cursus montes, dui. Tortor lobortis dignissim eget egestas. Eget enim auctor nunc eget mattis sollicitudin senectus diam. Tincidunt morbi egestas dignissim eget id aliquam.
+                    
+                    The packages crafted by Makalu Mountaineering Pvt. Ltd. adhere to rigorous standards, benefiting from the wisdom of experienced professionals. However, we acknowledge the unique preferences of our clients and are open to customizing packages based on your requests, provided you are willing to accommodate the associated additional time and costs. Additionally, circumstances in the region may sometimes necessitate alterations to the standard cost and timing.
+                    <br><br>
+                    In such cases, adjustments to price and time can be agreed upon through mutual discussion between clients and the company. Damage to company equipment, trip delays, requests for additional services beyond the initially agreed-upon terms, and other similar circumstances initiated by the client may result in an increase in the previously established price. Our aim is to ensure your experience is tailored to your needs while maintaining transparency in our arrangements.
                 </p>
+
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Early Completion of Schedule</h2>
+                <p class="mt-10">
+                    
+                    There may be instances when the scheduled itinerary concludes a few days ahead of the designated timeframe. In such cases, it's important to note that the company will not issue refunds to clients. For example, if a tour package spans 14 days but concludes in 12 days, the company will not reimburse the costs for the two unutilized days.
+                </p>
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Flight Cancellations (International/Domestic)</h2>
+                <p class="mt-10">
+                    
+                    In the event of flight cancellations, unless the cancellation is initiated by the company, the company is not obligated to provide financial compensation. Nevertheless, it is the responsibility of the agency to arrange accommodations for guests in case of flight cancellations.
+                </p>
+
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Overnight Stay & Food</h2>
+                <p class="mt-10">
+                    
+                    Should overnight stays occur due to issues caused by or related to the client, or as a result of flight cancellations (Domestic/International), the client will be responsible for covering the expenses incurred for overnight accommodation and meals. However, if the stay is necessitated by reasons attributable to the agency, the agency shall bear the associated costs.
+                                </p>
+
+                                <h2 class="text-20 fw-500 mt-60 md:mt-30">Accommodation Agreement</h2>
+                                <p class="mt-10">
+                                    
+                                    The locations of our treks and expeditions are often situated in demanding environments, far removed from the luxuries of the 21st century. It is important to recognize that expectations of normalcy may not always be met. Occasionally, despite our best efforts, clients may not receive precisely what they anticipated, even when willing to pay for it. As a hosting company, we strive to offer the most reasonable and fulfilling experiences possible. However, in certain situations, we may encounter limitations in delivering all that we have promised. During such times, we rely on our guests to display understanding and adapt to the available circumstances. Above all, we encourage guests to thoroughly comprehend the nature of their chosen adventure before booking, ensuring alignment with their expectations. We are committed to providing exceptional experiences, but it is crucial that our guests are well-prepared for the unique challenges that may arise in remote and demanding locations.
+                                                                                </p>
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Meals</h2>
+                <p class="mt-10">
+                    
+                    We take pride in having experienced cooks in the mountaineering sector. While we strive to provide the best food possible, please understand that the taste may vary from what you are accustomed to in your hometown. To ensure a smooth dining experience, clients are kindly requested to follow the guidance of the tour guide when selecting items from the food menu.
+                </p>
+
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Stuffs and Equipment</h2>
+                <p class="mt-10">
+                    
+                    If Makalu Mountaineering Pvt. Ltd temporarily provides any materials, gear, or equipment, whether or not it is the property of the company, clients are required to return it to the company's designated official at the conclusion of the trip, expedition, or trek. Any damage to the aforementioned equipment will necessitate compensation, the amount of which will be determined by the agency.                
+                </p>
+
+                <h2 class="text-20 fw-500 mt-60 md:mt-30">Publicity</h2>
+                <p class="mt-10">
+                    
+                    Makalu Mountaineering may request guests to provide us with photographs taken from their cameras free of charge for promotional purposes. We kindly ask our guests to oblige with our request. Rest assured, these photographs will be used solely for promotional purposes.
+                 </p>
+
+
+                 <h2 class="text-20 fw-500 mt-60 md:mt-30">Children</h2>
+                <p class="mt-10">
+                    All children under the age of 16 must be accompanied by their legal guardian during our expeditions and activities.
+                 </p>
+
+
+                 <h2 class="text-20 fw-500 mt-60 md:mt-30">Extra Activities</h2>
+                 <p class="mt-10">
+                    For any additional activities such as skiing, drone flights, paragliding, or large flag displays, clients are required to inform the company in advance. These extra activities are subject to charges imposed by the Nepal Government. Failure to inform the company in advance will result in clients bearing all associated costs, and the company will not assume any responsibility. However, if notified in advance, the company will ensure that all necessary procedures and permits are obtained. Any activities listed above that are undertaken by clients without prior notification and proper permits will be considered illegal acts.
+                  </p>
+                
+
+                  <h2 class="text-20 fw-500 mt-60 md:mt-30">Modifications</h2>
+                  <p class="mt-10">
+                    If you wish to make changes to your arrangements, please inform us via email at least 2 weeks before your scheduled trip. Please be aware that once government permits, travel tickets, or insurance have been issued and cannot be withdrawn or refunded, you will be responsible for covering these expenses. Additionally, you will be responsible for any airfare cancellation fees incurred on your behalf.
+                   </p>
+              
               </div>
 
             </div>

@@ -47,11 +47,15 @@ import sys
 class PeeksLists(AuditFields):
     choices = (
         ("expedition", "expedition"),
-        ("treks" ,"treks")
+        ("treks" ,"treks"),
+        ("hiking" ,"hiking"),
+        ("peek_climbing" ,"peek_climbing"),
+        ("tours" ,"tours"),
+        ("sightseeing" ,"sightseeing"),
     )
 
     peeks_catg = models.ForeignKey(PeeksModel, verbose_name=("Peeks Lists"), on_delete=models.CASCADE, null=True, blank=True)
-    region = models.ForeignKey(Region, verbose_name=("Peeks Lists"), on_delete=models.CASCADE)
+    region_peak = models.ForeignKey(Region, verbose_name=("Peeks Region"), on_delete=models.SET_NULL, null=True, blank=True)
     peek_type = models.CharField(choices=choices, max_length=50, null=True, blank=True)
     name = models.CharField(max_length=150)
     thumbnail = models.FileField(upload_to="thumbnail", 
@@ -59,9 +63,8 @@ class PeeksLists(AuditFields):
     
     main_iamge = models.FileField(upload_to="main_image", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    
-    region = models.CharField(max_length=150, null=True, blank=True)
-    rating = models.IntegerField(default=0)
+    rating = models.DecimalField(max_digits=5, decimal_places=1)
+    rate_total = models.IntegerField(default=0)
     overview = RichTextField(null=True, blank=True)
     duration = models.IntegerField(default=0)
     highest_elevation = models.CharField(max_length=150)
@@ -71,6 +74,9 @@ class PeeksLists(AuditFields):
     location = models.CharField(max_length=150)
     popular = models.BooleanField(default=False)
     location_frame = models.TextField(null=True, blank=True)
+    price = models.IntegerField(default=0)
+
+    trending = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.name
     
@@ -99,6 +105,7 @@ class PeeksLists(AuditFields):
             self.main_iamge = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
 
         super(PeeksLists, self).save(*args, **kwargs)
+
 
 class PopularPeaks(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="popular_peek")
