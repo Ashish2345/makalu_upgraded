@@ -1,7 +1,11 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator, MaxValueValidator
+from django.urls import reverse
 
 from ckeditor.fields import RichTextField
+
+import random
+
 
 
 # Create your mod9(els here.
@@ -60,7 +64,7 @@ class PeeksLists(AuditFields):
     name = models.CharField(max_length=150)
     thumbnail = models.FileField(upload_to="thumbnail", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    
+
     main_iamge = models.FileField(upload_to="main_image", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
     rating = models.DecimalField(max_digits=5, decimal_places=1)
@@ -105,6 +109,31 @@ class PeeksLists(AuditFields):
             self.main_iamge = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
 
         super(PeeksLists, self).save(*args, **kwargs)
+
+    def total_booked(self):
+        random_number = random.randint(500, 1000)
+        if BookaTour.objects.filter(peek_info = self).exists():
+            return BookaTour.objects.filter(peek_info = self).count() + random_number
+        else:
+            return random_number
+        
+    def get_highlight(self):
+        if PeeeksHighlights.objects.filter(peek_info = self).exists():
+            return PeeeksHighlights.objects.filter(peek_info = self).first()
+        else:
+            return None 
+        
+    def get_itenary(self):
+        if PeeeksItenary.objects.filter(peek_info = self).exists():
+            return PeeeksItenary.objects.filter(peek_info = self)
+        else:
+            return None 
+        
+    def get_comments(self):
+        if CommentsTours.objects.filter(peek_info = self).exists():
+            return CommentsTours.objects.filter(peek_info = self)
+        else:
+            return None 
 
 
 class PopularPeaks(AuditFields):

@@ -14,3 +14,15 @@ def render_stars(rating):
                 html += '<div><i class="icon-star text-10 text-yellow-2"></i></div>'
         return mark_safe(html)
     return mark_safe('<div><i class="icon-star text-10 text-yellow-2"></i></div><div><i class="icon-star text-10 text-yellow-2"></i></div><div><i class="icon-star text-10 text-yellow-2"></i></div><div><i class="icon-star text-10 text-yellow-2"></i></div>')
+
+
+@register.simple_tag
+def render_stars_details(rating):
+    stars = range(1, 6)
+    html = ""
+    if rating:
+        for star in stars:
+            if rating >= star:
+                html += '<i class="flex-center icon-star text-yellow-2 text-12"></i>'
+        return mark_safe(html)
+    return mark_safe('<i class="flex-center icon-star text-yellow-2 text-12"></i>')

@@ -86,7 +86,7 @@
                         <div class="row-image-test">
                           {% for individual_peek in expeditions_individual %}
                             <div class="image-container">
-                              <a href="/peek/details/{{individual_peek.id}}/">
+                              <a href="/tours/details/{{individual_peek.id}}/">
                                 <div class="image-box-pair">
                                   <img src="{{individual_peek.thumbnail.url}}" alt="Image 1">  
                                   <div class="image-text">{{individual_peek.name|upper}}</div>
@@ -140,7 +140,7 @@
                         <div class="row-image-test">
                           {% for individual_peek in peek %}
                             <div class="image-container">
-                              <a href="/peek/details/{{individual_peek.id}}/">
+                              <a href="/tours/details/{{individual_peek.id}}/">
                                 <div class="image-box-pair">
                                   <img src="https://makalumountaineering.com/media/thumbnail/thumbnail/makalu_peak_wuAlFwE.png" alt="Image 1">  
                                   <div class="image-text">{{individual_peek.name|upper}}</div>
@@ -246,15 +246,15 @@
 
 
               <li class="submenu__item">
-                <a href="/expedition/lists/?exp=8000">8000ers</a>
+                <a href="/expeditions/?q=8000">8000ers</a>
               </li>
 
               <li class="submenu__item">
-                <a href="/expedition/lists/?exp=8000">7000ers</a>
+                <a href="/expeditions/?q=7000">7000ers</a>
               </li>
 
               <li class="submenu__item">
-                <a href="/expedition/lists/?exp=8000">6000ers</a>
+                <a href="/expeditions/?q=6000">6000ers</a>
               </li>
 
             </ul>
@@ -275,7 +275,7 @@
 
               {% for region in regions %}
               <li class="submenu__item">
-                <a href="/trekking/lists/?region={{region.name}}">{{region.name|title}}</a>
+                <a href="/trekkings/?q={{region.name}}">{{region.name|title}}</a>
               </li>
               {% endfor %}
 
@@ -309,7 +309,7 @@
 
               
           <li class="submenu__item">
-            <a>
+            <a href="https://www.immigration.gov.np/page/tourist-visa">
               Visa Procedures
             </a>
           </li>
@@ -322,7 +322,7 @@
           </li>
 
           <li class="submenu__item">
-            <a>
+            <a href="https://www.tourismdepartment.gov.np/pages/mountaineering-royalty/105">
               Permit/Garbage Fees
             </a>
 

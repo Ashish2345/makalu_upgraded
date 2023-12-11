@@ -1,0 +1,43 @@
+
+{% if is_paginated %}
+<div class="d-flex justify-center flex-column mt-60">
+    <div class="pagination justify-center">
+
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="pagination__button button -accent-1 mr-15 -prev">
+                <i class="icon-arrow-left text-15"></i>
+            </a>
+        {% else %}
+            <span class="pagination__button button -accent-1 mr-15 -prev disabled">
+                <i class="icon-arrow-left text-15"></i>
+            </span>
+        {% endif %}
+
+        <div class="pagination__count">
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a href="#" class="is-active">{{ num }}</a>
+                {% else %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination__button button -accent-1 ml-15 -next">
+                <i class="icon-arrow-right text-15"></i>
+            </a>
+        {% else %}
+            <span class="pagination__button button -accent-1 ml-15 -next disabled">
+                <i class="icon-arrow-right text-15"></i>
+            </span>
+        {% endif %}
+    </div>
+
+    <div class="text-14 text-center mt-20">
+        Showing results {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }}
+    </div>
+</div>
+
+
+{% endif %}

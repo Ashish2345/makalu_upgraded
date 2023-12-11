@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from django.http import JsonResponse
 
@@ -24,7 +24,6 @@ class FrontendMixin:
         for region in all_expedition:
             region_trek = PeeksLists.objects.filter(peek_type="expedition", peeks_catg__name=region)[:6]
             expediton_peeks.append(region_trek)
-        print(expediton_peeks)
         # print(PeeksLists.objects.filter(region_peak__in=region))
         context["regions"] = Region.objects.all()
         context["regions_peek"] = all_region_treks
@@ -82,63 +81,99 @@ class ContactUsView(View):
 
 
 
-class PeeksListsView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "peeklists.html"
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-    
+class TrekkingListsView(FrontendMixin, ListView):
+    model = PeeksLists 
+    template_name = "peeklists.html"
+    context_object_name = "object_lists"
+    paginate_by = 8
 
-class ToursDetailsView(View):
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "details.html"
-        return super().dispatch(request, *args, **kwargs)
-    
-    def data_get(self, tours_details):
-        comments = CommentsTours.objects.filter(peek_info=tours_details)
-        return comments
-    
-    def get(self, request, *args, **kwargs):
-        id = kwargs.get("id")
-        # tours_details = get_object_or_404(PeeksLists, id=id)
-        self.args = {
-            # "tour":tours_details,
-            # "highlight": tours_details.peek_highlights.first(),
-            # "itemary": tours_details.peek_itemary,
-            # "comment": self.data_get(tours_details)
-        }
+    def get_queryset(self):
+        if self.request.GET.get("q"):
+            return PeeksLists.objects.filter(peek_type="treks",region_peak__name = self.request.GET.get("q"))
+        return PeeksLists.objects.filter(peek_type="treks")
 
-        return render(request, self.template_name, self.args)
-    
-    def post(self, request, *args, **kwargs):
-        id = kwargs.get("id")
-        tours_details = get_object_or_404(PeeksLists, id=id)
-        data = request.POST.dict()
-        data.pop('csrfmiddlewaretoken', None)
-
-        if "comments" in request.POST:
-            data.pop('comments', None)
-            comment = CommentsTours(**data, peek_info=tours_details)
-            comment.save()
-            message = "Comment Added Successfully!"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.GET.get("q"):
+            context["type"] = f"{self.request.GET.get('q')} Treks"
         else:
-            data.pop('book_tour', None)
-            print(data)
-            tour = BookaTour(**data, peek_info=tours_details)
-            tour.save()
-            message = "Booked Successfully!"
+            context["type"] = "Treks"
+        return context
 
-        self.args = {
-            "tour":tours_details,
-            "highlight": tours_details.peek_highlights.first(),
-            "itemary": tours_details.peek_itemary.first(),
-            "message":message,
-            "comment": self.data_get(tours_details)
-        }
-        return render(request, self.template_name, self.args)
 
+class PeekListsView(FrontendMixin, ListView):
+    model = PeeksLists 
+    template_name = "peeklists.html"
+    context_object_name = "object_lists"
+    paginate_by = 8
+
+    def get_queryset(self):
+        if self.request.GET.get("q") == "trending":
+            return PeeksLists.objects.filter(trending = True)
+        return PeeksLists.objects.filter(peek_type="expedition")
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.GET.get("q"):
+            context["type"] = f"{self.request.GET.get('q')}"
+        else:
+            context["type"] = "Peeks"
+        return context
+
+
+class ExpeditionListsView(FrontendMixin, ListView):
+    model = PeeksLists 
+    template_name = "peeklists.html"
+    context_object_name = "object_lists"
+    paginate_by = 8
+
+    def get_queryset(self):
+        if self.request.GET.get("q"):
+            return PeeksLists.objects.filter(peek_type="expedition",peeks_catg__name = self.request.GET.get("q"))
+        return PeeksLists.objects.filter(peek_type="expedition")
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.GET.get("q"):
+            context["type"] = f"{self.request.GET.get('q')} Expeditions"
+        else:
+            context["type"] = "Expeditions"
+        return context
+
+class ToursDetailsView(FrontendMixin, DetailView):
+    model = PeeksLists
+    template_name = "details.html"
+    context_object_name = "tour"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_object = self.get_object()
+        context['related_tours'] = PeeksLists.objects.filter(peeks_catg=current_object.peeks_catg).exclude(id=current_object.id).order_by('?')[:6]
+        return context
+
+    # def post(self, request, *args, **kwargs):
+    #     id = kwargs.get("pk")
+    #     tours_details = self.get_object()
+    #     data = request.POST.dict()
+    #     data.pop('csrfmiddlewaretoken', None)
+
+    #     if "comments" in request.POST:
+    #         data.pop('comments', None)
+    #         comment = CommentsTours(**data, peek_info=tours_details)
+    #         comment.save()
+    #         message = "Comment Added Successfully!"
+    #     else:
+    #         data.pop('book_tour', None)
+    #         print(data)
+    #         tour = BookaTour(**data, peek_info=tours_details)
+    #         tour.save()
+    #         message = "Booked Successfully!"
+
+    #     self.object = self.get_object()  # Refresh the object after the POST request
+    #     self.object.message = message
+    #     return self.render_to_response(self.get_context_data())
+
+    
 
 class BlogsView(FrontendMixin, TemplateView):
     template_name = "blogs.html"

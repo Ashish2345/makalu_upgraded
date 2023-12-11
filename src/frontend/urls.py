@@ -9,11 +9,15 @@ urlpatterns = [
     path('', cache_page(0*60)(HomeView.as_view()), name="home_view"),
     path('about-us/', AboutUsView.as_view(), name="about_us"),
     path('contact-us/', ContactUsView.as_view(), name="contact_us"),
+    
 
-    path('expedition/lists/', cache_page(0*60)(PeeksListsView.as_view()), name="peek-lists"),
-    path('trekking/lists/', cache_page(0*60)(PeeksListsView.as_view()), name="peek-lists"),
+    path('peeks/', cache_page(0*60)(PeekListsView.as_view()), name="peek-lists"),
 
-    path('peek/details/<int:id>/', cache_page(0*60)(ToursDetailsView.as_view()), name="tour_details"),
+
+    path('expeditions/', cache_page(0*60)(ExpeditionListsView.as_view()), name="expeditions-lists"),
+    path('trekkings/', cache_page(0*60)(TrekkingListsView.as_view()), name="trekkings-lists"),
+
+    path('tours/details/<int:pk>/', cache_page(0*60)(ToursDetailsView.as_view()), name="tour_details"),
 
     path('blogs/', BlogsView.as_view(), name="blogs"),
     path('blogs/details/<int:id>/', BlogDetailsView.as_view(), name="blog_details"),
