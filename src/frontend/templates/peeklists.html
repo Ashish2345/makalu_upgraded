@@ -33,7 +33,16 @@
 
       <div class="row pt-30">
         <div class="col-auto">
+          {% if region_selected %}
+
+          <h2 class="pageHeader__title">Explore all {{type|lower|default_if_none:"Expedition"}} in {{region_selected}}</h2>
+
+
+          {% else %}
+
           <h1 class="pageHeader__title">Explore all {{type|title|default_if_none:"Expedition"}}</h1>
+
+          {% endif %}
         </div>
       </div>
     </div>

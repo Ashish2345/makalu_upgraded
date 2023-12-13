@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
-
+from django.db.models import Q
 from django.http import JsonResponse
 
 from .models import *
@@ -18,7 +18,7 @@ class FrontendMixin:
         expediton_peeks = []
         all_expedition = ["8000","7000","6000"]
         for region in region:
-            region_trek = PeeksLists.objects.filter(region_peak=region, peek_type="treks").values("name","id")[:6]
+            region_trek = PeeksLists.objects.filter(region_peak=region, peek_type="treks")[:6]
             all_region_treks.append(region_trek)
 
         for region in all_expedition:
@@ -27,6 +27,7 @@ class FrontendMixin:
         # print(PeeksLists.objects.filter(region_peak__in=region))
         context["regions"] = Region.objects.all()
         context["regions_peek"] = all_region_treks
+        context["recent_searchs"] = PeeksLists.objects.order_by("?")[:5]
         
         context["expeditions_peek"] = expediton_peeks
         return context
@@ -40,6 +41,8 @@ class HomeView(FrontendMixin, TemplateView):
         context["all_exp"] = PeeksLists.objects.filter(peek_type="expedition")[:4]
         context["top_trendings"] = trending_destination
         context["blogs"] = Blogs.objects.all()[:3]
+
+        
         return context
 
 
@@ -49,35 +52,24 @@ class HomeView(FrontendMixin, TemplateView):
         return JsonResponse({"sucesss": True})
 
 
-class AboutUsView(View):
+class AboutUsView(FrontendMixin, TemplateView):
+    template_name = "about.html"
 
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "about.html"
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+class ContactUsView(FrontendMixin, TemplateView):
+    template_name = "contact.html"
 
-class ContactUsView(View):
-
-    def dispatch(self, request, *args, **kwargs):
-        self.template_name = "contact.html"
-        self.args = {}
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-    
     def post(self, request, *args, **kwargs):
         data = request.POST.dict()
         data.pop("csrfmiddlewaretoken")
         contact = ContactUsModel(**data)
         contact.save()
+
         if contact:
-            self.args = {
+            self.extra_context = {
                 "success": "Thank you for contacting Malaku Mountaineering! Your message has been successfully sent."
-            }   
-        return render(request, self.template_name, self.args)
+            }
+
+        return super().get(request, *args, **kwargs)
 
 
 
@@ -120,6 +112,34 @@ class PeekListsView(FrontendMixin, ListView):
             context["type"] = "Peeks"
         return context
 
+
+class SearchPeekListsView(FrontendMixin, ListView):
+    model = PeeksLists 
+    template_name = "peeklists.html"
+    context_object_name = "object_lists"
+    paginate_by = 8
+
+    def get_queryset(self):
+        search_val = self.request.GET.get("q", None)
+        if search_val:
+            all_peeks =  PeeksLists.objects.filter(Q(name__icontains=search_val) | Q(region_peak__name=search_val)).distinct()
+            return all_peeks
+        region = self.request.GET.get("region", None)
+        tour_type = self.request.GET.get("tour_type", None)
+        if tour_type == "Trekking":
+            tour_type = "treks"
+        if region and tour_type:
+            all_peeks =  PeeksLists.objects.filter(region_peak__name=region,peek_type=tour_type).distinct()
+            return all_peeks
+
+        
+        return PeeksLists.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["type"] = self.request.GET.get("tour_type", "Peeks")
+        context["region_selected"] = self.request.GET.get("region", "Region")
+        return context
 
 class ExpeditionListsView(FrontendMixin, ListView):
     model = PeeksLists 
@@ -200,8 +220,12 @@ class FAQView(FrontendMixin, TemplateView):
     # You can override the get_context_data method to pass additional context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Example: Add data to the payload
-        # context['payload'] = {'key': 'value'}
+        search_query = self.request.GET.get('q', '')
+        print(search_query,5555555555555555555)
+        if search_query:
+            context["all_faq"] = FAQLists.objects.filter(questions__icontains=search_query)
+        else:
+            context["all_faq"] = FAQLists.objects.all()[:10]
         return context
     
 
@@ -211,3 +235,15 @@ class GalleryView(FrontendMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+
+
+
+class SearchPeekJsonView(View):
+   
+    def get(self, request, *args, **kwargs):
+        search_val = self.request.GET.get("q", None)
+        if search_val:
+            all_peeks =  list(PeeksLists.objects.filter(Q(name__icontains=search_val) | Q(region_peak__name=search_val)).distinct().values("id","name","region_peak__name","thumbnail")[:10])
+        print(all_peeks)
+        return JsonResponse({"all_peeks":all_peeks})

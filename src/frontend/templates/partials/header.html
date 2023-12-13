@@ -26,18 +26,20 @@
                 </div>
 
                 <div class="headerSearchRecent__list js-results">
-
-                  <button class="headerSearchRecent__item js-search-option" data-x-click="headerSearch">
+                  {% for recent_search in recent_searchs %}
+                  <a href="/peek/details/{{recent_search.id}}" class="headerSearchRecent__item js-search-option" data-x-click="headerSearch">
                     <div class="size-50 bg-white rounded-12 border-1 flex-center">
-                      <i class="icon-pin text-20"></i>
+                      <img src="{{recent_search.thumbnail.url}}" alt="image" class="rounded-12" style="height: 40px;">
                     </div>
                     <div class="ml-10">
-                      <div class="fw-500 js-search-option-target">MT MERA PEAK</div>
-                      <div class="lh-14 text-14 text-light-2">Everest Region</div>
+                      <div class="fw-500 js-search-option-target">{{recent_search.name|title}}</div>
+                      <div class="lh-14 text-14 text-light-2">{{recent_search.region_peak|title}}</div>
                     </div>
-                  </button>
-
-
+                  </a>
+                  
+                  
+                  
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -133,16 +135,17 @@
                   <div class="tabsMenu__content">
                     <div class="tabs__content js-tabs-content">
 
+
                       {% for peek in regions_peek %}
 
                       <div class="tabs__pane -tab-item-{{forloop.counter}} {% if forloop.counter == 1 %}is-tab-el-active{% endif %}">
-                       
+                   
                         <div class="row-image-test">
                           {% for individual_peek in peek %}
                             <div class="image-container">
                               <a href="/tours/details/{{individual_peek.id}}/">
                                 <div class="image-box-pair">
-                                  <img src="https://makalumountaineering.com/media/thumbnail/thumbnail/makalu_peak_wuAlFwE.png" alt="Image 1">  
+                                  <img src="{{individual_peek.thumbnail.url}}" alt="Image 1">  
                                   <div class="image-text">{{individual_peek.name|upper}}</div>
                                 </div>
                               </a>
@@ -360,7 +363,7 @@
 
         <div class="text-20 lh-12 fw-500 mt-20">
           <div>Speak to our expert at</div>
-          <div class="text-accent-1">(+977) 9843685256</div>
+          <div class="text-accent-1">+977 9843685256 (Whatsapp)</div>
         </div>
 
         <div class="d-flex items-center x-gap-10 pt-30">

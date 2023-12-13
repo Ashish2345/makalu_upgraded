@@ -106,7 +106,17 @@ class PeeksLists(AuditFields):
                 else:
                     image_quality -= 10
 
-            self.main_iamge = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
+            self.main_iamge = InMemoryUploadedFile(output, 
+            'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
+        if self.rating == 0 and self.rate_total == 0:
+
+            random_rating = random.uniform(4.4, 5)
+            random_rating = round(random_rating, 1)
+
+            self.rating = random_rating
+            self.rate_total = random.randint(200, 1000)
+
+
 
         super(PeeksLists, self).save(*args, **kwargs)
 
@@ -227,8 +237,22 @@ class FAQLists(AuditFields):
     answers = RichTextField(null=True, blank=True)
 
 
+class BlogCategory(models.Model):
+
+    name = models.CharField(max_length=50, null=True, blank=True)
+
+    class Meta:
+        verbose_name = ("BlogCategory")
+        verbose_name_plural = ("BlogCategorys")
+
+    def __str__(self):
+        return self.name
+
+
 
 class Blogs(AuditFields):
+
+    category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
     thumbnail = models.FileField(upload_to="thumbnail", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)

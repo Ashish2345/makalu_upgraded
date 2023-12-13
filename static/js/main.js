@@ -97,80 +97,76 @@ function initComponents() {
 	// your custom plugins init here
   //
 }
-
 function liveSearch() {
-  const targets = document.querySelectorAll('.js-liverSearch')
-  if (!targets) return
-
-  const data = [
-    { icon: "icon-pin", title: "Phuket", text: "Thailand, Asia" },
-    { icon: "icon-price-tag", title: "London Day Trips", text: "England" },
-    { icon: "icon-flag", title: "Europe", text: "Country" },
-    { image: "img/misc/icon.png", title: "Centipede Tour - Guided Arizona Desert Tour by ATV", text: "Country" },
-    { icon: "icon-pin", title: "Istanbul", text: "Turkey" },
-    { icon: "icon-pin", title: "Berlin", text: "Germany, Europe" },
-    { icon: "icon-pin", title: "London", text: "England, Europe" },
-  ]
+  const targets = document.querySelectorAll('.js-liverSearch');
+  if (!targets) return;
 
   targets.forEach(el => {
-    const search = el.querySelector('.js-search')
-    const results = el.querySelector('.js-results')
-    let searchTerm = ''
+    const search = el.querySelector('.js-search');
+    const results = el.querySelector('.js-results');
+    let searchTerm = '';
 
     results.querySelectorAll('.js-search-option').forEach(option => {
-      const title = option.querySelector('.js-search-option-target').innerHTML
-      option.addEventListener('click', () => search.value = title)
-    })
+      const title = option.querySelector('.js-search-option-target').innerHTML;
+      option.addEventListener('click', () => search.value = title);
+    });
 
     search.addEventListener('input', (event) => {
-      searchTerm = event.target.value.toLowerCase()
-      showList(searchTerm, results)
+      searchTerm = event.target.value.toLowerCase();
 
-      results.querySelectorAll('.js-search-option').forEach(option => {
-        const title = option.querySelector('.js-search-option-target').innerHTML
-        option.addEventListener('click', () => search.value = title)
-      })
-    })
-  })
+      fetch(`/search/json/?q=${encodeURIComponent(searchTerm)}`)
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data
+          showList(data.all_peeks, results);
+        })
+        .catch(error => {
+          console.error('Error fetching search results:', error);
+        });
+    });
+  });
 
-  const showList = (searchTerm, resultsEl) => {
+  const showList = (data, resultsEl) => {
+    console.log("@2222222222222222", resultsEl, data);
     resultsEl.innerHTML = '';
 
     data
-      .filter((item) => item.title.toLowerCase().includes(searchTerm))
+    
       .forEach((e) => {
-        const div = document.createElement('div')
+        console.log(e)
+        const div = document.createElement('div');
 
-        if (e.image) {
+        if (e.thumbnail) {
           div.innerHTML = `
-            <button class="headerSearchRecent__item js-search-option" data-x-click="headerSearch">
+            <a href="/peek/details/${e.id}" class="headerSearchRecent__item js-search-option" data-x-click="headerSearch">
               <div class="size-50 bg-white rounded-12 border-1 flex-center">
-                <img src="${e.image}" alt="image" class="rounded-12">
+                <img src="/media/${e.thumbnail}" alt="image" class="rounded-12" style="height: 40px;">
               </div>
               <div class="ml-10">
-                <div class="text-overflow fw-500 js-search-option-target">${e.title}</div>
-                <div class="lh-14 text-14 text-light-2">${e.text}</div>
+                <div class="text-overflow fw-500 js-search-option-target">${e["name"]}</div>
+                <div class="lh-14 text-14 text-light-2">${e.region_peak__name}</div>
               </div>
-            </button>
-          `
+            </a>
+          `;
         } else {
           div.innerHTML = `
             <button class="headerSearchRecent__item js-search-option" data-x-click="headerSearch">
               <div class="size-50 bg-white rounded-12 border-1 flex-center">
-                <i class="${e.icon} text-20"></i>
+                <i class="icon-pin text-20"></i>
               </div>
               <div class="ml-10">
-                <div class="fw-500 js-search-option-target">${e.title}</div>
-                <div class="lh-14 text-14 text-light-2">${e.text}</div>
+                <div class="fw-500 js-search-option-target">${e["name"]}</div>
+                <div class="lh-14 text-14 text-light-2">${e.region_peak__name}</div>
               </div>
             </button>
-          `
+          `;
         }
 
-        resultsEl.appendChild(div)
-      })
-  }
+        resultsEl.appendChild(div);
+      });
+  };
 }
+
 
 function selectControl() {
   const targets = document.querySelectorAll('.js-select-control')
@@ -2171,7 +2167,11 @@ window.onclick = function(event) {
   if (
     !event.target.closest(".js-form-dd")
   ) {
-    console.log('test')
+    let region = document.getElementById("region_pick").innerHTML
+    let tour_pick = document.getElementById("tour_pick").innerHTML
+    window.location.href = `/search/?region=${region}&tour_type=${tour_pick}`;
+
+    console.log(region, tour_pick)
     closeAllDropdowns()
   }
 

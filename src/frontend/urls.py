@@ -12,12 +12,13 @@ urlpatterns = [
     
 
     path('peeks/', cache_page(0*60)(PeekListsView.as_view()), name="peek-lists"),
+    path('search/', cache_page(0*60)(SearchPeekListsView.as_view()), name="search-peek-lists"),
 
 
     path('expeditions/', cache_page(0*60)(ExpeditionListsView.as_view()), name="expeditions-lists"),
     path('trekkings/', cache_page(0*60)(TrekkingListsView.as_view()), name="trekkings-lists"),
 
-    path('tours/details/<int:pk>/', cache_page(0*60)(ToursDetailsView.as_view()), name="tour_details"),
+    path('peek/details/<int:pk>/', cache_page(0*60)(ToursDetailsView.as_view()), name="tour_details"),
 
     path('blogs/', BlogsView.as_view(), name="blogs"),
     path('blogs/details/<int:id>/', BlogDetailsView.as_view(), name="blog_details"),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('faq/', FAQView.as_view(), name="faq"),
     path('gallery/', GalleryView.as_view(), name="blogs"),
 
+    path('search/json/', cache_page(0*60)(SearchPeekJsonView.as_view())),
 ]
