@@ -128,17 +128,42 @@ class SearchPeekListsView(FrontendMixin, ListView):
         tour_type = self.request.GET.get("tour_type", None)
         if tour_type == "Trekking":
             tour_type = "treks"
+        
+        if region == "Search destinations" or tour_type == "All tour":
+            all_peeks =  PeeksLists.objects.filter(Q(region_peak__name=region) | Q(peek_type=tour_type)).distinct()
+            if not all_peeks:
+                return PeeksLists.objects.all()
+            return all_peeks
+            
+
+
         if region and tour_type:
             all_peeks =  PeeksLists.objects.filter(region_peak__name=region,peek_type=tour_type).distinct()
+            if not all_peeks:
+                return PeeksLists.objects.all()
             return all_peeks
-
-        
         return PeeksLists.objects.all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["type"] = self.request.GET.get("tour_type", "Peeks")
-        context["region_selected"] = self.request.GET.get("region", "Region")
+        region = self.request.GET.get("region", None)
+        tour_type = self.request.GET.get("tour_type", None)
+        if region == "Search destinations" and tour_type == "All tour":
+
+            context["type"] = "Peeks"
+        elif self.request.GET.get("q", None):
+            context["type"] = self.request.GET.get("q")
+            context["search"] = True
+
+        else:
+            if region == "Search destinations":
+
+                context["region_selected"] = self.request.GET.get("tour_type", "Tour")
+            elif tour_type == "All tour":
+                context["region_selected"] = self.request.GET.get("region", "Region")
+            else:
+                context["region_selected"] = self.request.GET.get("region", "Region")
+                context["type"] = self.request.GET.get("tour_type", "Tour")
         return context
 
 class ExpeditionListsView(FrontendMixin, ListView):

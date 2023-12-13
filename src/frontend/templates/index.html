@@ -2556,7 +2556,7 @@
                 </div>
 
                 <div class="searchForm__button">
-                  <button class="button -dark-1 bg-accent-1 text-white">
+                  <button class="button -dark-1 bg-accent-1 text-white" onclick="search_peeks()">
                     <i class="icon-search text-16 mr-10"></i>
                     Search
                   </button>
@@ -3381,3 +3381,27 @@
 
 
 {% endblock %}
+
+
+{% block js %}
+
+<script>
+    function search_peeks() {
+  
+
+      let region = document.getElementById("region_pick").innerHTML
+        let tour_pick = document.getElementById("tour_pick").innerHTML
+        window.location.href = `/search/?region=${region}&tour_type=${tour_pick}`;
+    
+    }
+</script>
+
+
+
+
+{% endblock js %}
+
+
+
+
+

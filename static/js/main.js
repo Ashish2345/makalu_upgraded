@@ -2163,14 +2163,13 @@ function closeAllDropdowns() {
   })
 }
 
+
+
 window.onclick = function(event) {
   if (
     !event.target.closest(".js-form-dd")
   ) {
-    let region = document.getElementById("region_pick").innerHTML
-    let tour_pick = document.getElementById("tour_pick").innerHTML
-    window.location.href = `/search/?region=${region}&tour_type=${tour_pick}`;
-
+    
     console.log(region, tour_pick)
     closeAllDropdowns()
   }
@@ -2197,6 +2196,8 @@ window.onclick = function(event) {
     })
   }
 }
+
+
 
 
 })();
