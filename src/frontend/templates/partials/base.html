@@ -175,6 +175,10 @@
   flex: 0 0 30%; /* 24% to allow for some spacing between the elements */
 }
 
+.toast-success {
+  background-color: green;
+}
+
 
   </style>
 
@@ -239,6 +243,75 @@
         e.preventDefault();
         searchWrapper.classList.remove("active");
       });
+    </script>
+
+
+    <script>
+
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function isValidEmail(email) {
+      // Use a regular expression or any other method to validate the email
+      // This is a simple example, and you may need to adjust it based on your requirements
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+  }
+
+
+      $('#subscribe-btn').on('click', function(event) {
+        event.preventDefault(); 
+
+      var email = $('#email-input').val();
+      var csrfToken = getCookie('csrftoken');
+
+      var data = {
+          email: email ,
+          csrfmiddlewaretoken: csrfToken
+      };
+
+      if (isValidEmail(email)) {
+
+        $.ajax({
+            url: '{% url 'frontend:home_view' %}',
+            type: 'POST',
+            data: data,
+            dataType: 'json', 
+            success: function(response) {
+              if (response.sucesss)
+              {
+               
+                toastr.success('Newsletter Subscribed!');
+                $('#email-input').val('');
+              }
+
+            },
+            error: function(error) {
+                // Handle errors that occurred during the POST request
+                console.error('Error subscribing:', error);
+                // You can display an error message or handle the error in any other way here
+            }
+        });
+      } else {
+        // Display an error message or take appropriate action for invalid email
+        toastr.error('Invalid Email Address');
+        $('#email-input').val('');
+    }
+    });
+
     </script>
 
     {% block js %}

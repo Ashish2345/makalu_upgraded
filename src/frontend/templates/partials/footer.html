@@ -19,7 +19,7 @@
                 <div class="col-auto">
                   <div class="text-20 fw-500">
                     Speak to our expert at
-                    <span class="text-accent-1">(+977) 9843685256</span>
+                    <span class="text-accent-1">(+977) <a href="tel:+9779843685256">9843685256</a></span>
                   </div>
                 </div>
               </div>
@@ -57,26 +57,14 @@
               <h4 class="text-20 fw-500">Region</h4>
 
               <div class="y-gap-10 mt-20">
-
-                <a class="d-block fw-500" href="#">
-                  Everest Region
+                {% for region in regions|slice:"0:7" %}
+                <a class="d-block fw-500" href="/search/?region={{region.name}}">
+                  {{region.name|title}}
                 </a>
 
-                <a class="d-block fw-500" href="#">
-                  Annapurna Region
-                </a>
+                {% endfor %}
 
-                <a class="d-block fw-500" href="#">
-                  Langtang Region
-                </a>
-
-                <a class="d-block fw-500" href="#">
-                  Mustang Region
-                </a>
-
-                <a class="d-block fw-500" href="#">
-                  Manasalu Region
-                </a>
+                
 
               </div>
             </div>
@@ -90,7 +78,7 @@
                   Get in Touch
                 </a>
 
-                <a class="d-block fw-500" href="/teams/">
+                <a class="d-block fw-500" href="/about-us/">
                   Teams
                 </a>
 
@@ -114,8 +102,8 @@
               <p class="mt-20">Subscribe to the free newsletter and stay up to date</p>
 
               <div class="footer__newsletter">
-                <input type="Email" placeholder="Your email address">
-                <button>Send</button>
+                <input type="email" placeholder="Your email address" id="email-input">
+                <button id="subscribe-btn">Send</button>
               </div>
 
               <h4 class="text-20 fw-500 mt-50">We Accept</h4>
@@ -124,10 +112,11 @@
                 <div class="footer__images d-flex items-center x-gap-10">
                   <img src="{% static "img/footer/cards/1.png" %}" alt="image">
                   <img src="{% static "img/footer/cards/2.png" %}" alt="image">
-                  <img src="{% static "img/footer/cards/3.png" %}" alt="image">
-                  <img src="{% static "img/footer/cards/4.png" %}" alt="image">
-                  <img src="{% static "img/footer/cards/5.png" %}" alt="image">
+                  {% comment %} <img src="{% static "img/footer/cards/3.png" %}" alt="image"> {% endcomment %}
+                  {% comment %} <img src="{% static "img/footer/cards/4.png" %}" alt="image"> {% endcomment %}
+                  {% comment %} <img src="{% static "img/footer/cards/5.png" %}" alt="image"> {% endcomment %}
                   <img src="{% static "img/footer/cards/6.png" %}" alt="image">
+                  {% comment %} <img src="{% static "img/footer/cards/7.jpg" %}" alt="image"> {% endcomment %}
                 </div>
               </div>
 
@@ -143,12 +132,12 @@
       <div class="footer__bottom">
         <div class="row y-gap-5 justify-between items-center">
           <div class="col-auto">
-            <div>© Copyright Makalu Mountaineering 2023</div>
+            <div><a href="/">© Copyright Makalu Mountaineering 2023</a></div>
           </div>
 
           <div class="col-auto">
             <div class="footer__images d-flex items-center x-gap-10">
-              Terms and Conditions / Privacy Policy
+              <a href="/terms-and-conditions/">Terms and Conditions</a> / Privacy Policy
             </div>
           </div>
         </div>

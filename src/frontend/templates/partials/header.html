@@ -88,7 +88,7 @@
                         <div class="row-image-test">
                           {% for individual_peek in expeditions_individual %}
                             <div class="image-container">
-                              <a href="/tours/details/{{individual_peek.id}}/">
+                              <a href="/peek/details/{{individual_peek.id}}/">
                                 <div class="image-box-pair">
                                   <img src="{{individual_peek.thumbnail.url}}" alt="Image 1">  
                                   <div class="image-text">{{individual_peek.name|upper}}</div>
@@ -363,7 +363,7 @@
 
         <div class="text-20 lh-12 fw-500 mt-20">
           <div>Speak to our expert at</div>
-          <div class="text-accent-1">+977 9843685256 (Whatsapp)</div>
+          <div class="text-accent-1"><a href="tel:+9779843685256">+977 9843685256 (Whatsapp)</a></div>
         </div>
 
         <div class="d-flex items-center x-gap-10 pt-30">

@@ -20,8 +20,8 @@ class AuditFields(models.Model):
 class NewsLetterModel(AuditFields):
     email = models.EmailField(max_length=254, null=True, blank=True)
 
-    def __str__(self):
-        return self.email
+    # def __str__(self):
+    #     return self.email
     
     class Meta:
         verbose_name_plural = "NewsLEtter Lists"

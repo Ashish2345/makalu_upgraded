@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Q
@@ -218,10 +218,20 @@ class ToursDetailsView(FrontendMixin, DetailView):
     #     self.object.message = message
     #     return self.render_to_response(self.get_context_data())
 
-    
 
-class BlogsView(FrontendMixin, TemplateView):
+
+class BlogsView(FrontendMixin, ListView):
+    model = Blogs 
     template_name = "blogs.html"
+    context_object_name = "object_lists"
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['blog_category'] = BlogCategory.objects.all()[::-1]
+        context['related_posts'] = Blogs.objects.order_by("?")
+
+        return context
 
 class BlogDetailsView(FrontendMixin, TemplateView):
     template_name = "blogs-details.html"
@@ -230,7 +240,7 @@ class BlogDetailsView(FrontendMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Example: Fetch blog details using the provided ID
-        # context['blog'] = get_object_or_404(Blogs, id=self.kwargs.get("id"))
+        context['blog'] = get_object_or_404(Blogs, id=self.kwargs.get("id"))
         return context
 
 class TermsandConditionView(FrontendMixin, TemplateView):

@@ -2170,7 +2170,6 @@ window.onclick = function(event) {
     !event.target.closest(".js-form-dd")
   ) {
     
-    console.log(region, tour_pick)
     closeAllDropdowns()
   }
 
