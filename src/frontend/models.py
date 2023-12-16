@@ -48,6 +48,7 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 
+
 class PeeksLists(AuditFields):
     choices = (
         ("expedition", "expedition"),
@@ -77,7 +78,6 @@ class PeeksLists(AuditFields):
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=150)
     popular = models.BooleanField(default=False)
-    location_frame = models.TextField(null=True, blank=True)
     price = models.IntegerField(default=0)
 
     trending = models.BooleanField(default=False)
@@ -144,6 +144,21 @@ class PeeksLists(AuditFields):
             return CommentsTours.objects.filter(peek_info = self)
         else:
             return None 
+        
+
+    def get_location(self):
+        if PeeksLocation.objects.filter(peek_info = self).exists():
+            return PeeksLocation.objects.filter(peek_info = self).first().location_frame
+        else:
+            return None 
+
+
+class PeeksLocation(AuditFields):
+    peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_location")
+    location_frame = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.peek_info.name
 
 
 class PopularPeaks(AuditFields):
