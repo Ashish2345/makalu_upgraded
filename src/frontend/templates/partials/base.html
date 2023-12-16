@@ -183,7 +183,24 @@
 .toast-success {
   background-color: green;
 }
+.remove_opa{
+  opacity: 0 !important;
+}
 
+
+
+
+
+.add_opa
+{
+  opacity: 1 !important;
+}
+
+
+.add_opa2
+{
+  opacity: 0 !important;
+}
 
   </style>
 
@@ -333,10 +350,173 @@
   </script>
   <!--End of Tawk.to Script-->
 
+
+
+
     {% block js %}
     
     
     {% endblock js %}
+
+
+    <script>
+
+      var element1, element2, element3;
+
+
+      let element4= document.getElementById('exp_back');
+      let element5= document.getElementById('trek_back');
+      let element6= document.getElementById('quick_back');
+
+
+      {% comment %} $(document).ready(function() { {% endcomment %}
+      $(function() {
+        element1 = $('#exp_back');
+        element2 = $('#trek_back');
+        element3 = $('#quick_back');
+
+        isBackClicked = false;
+
+
+      });
+
+
+      
+      function back_exp() {
+        console.log("12222222222")
+        element1.addClass('add_opa2');
+
+        element2.addClass('add_opa2');
+        element3.addClass('add_opa2');
+        
+
+      }
+      
+      function expedicitonClick() {
+        console.log("Click 1");
+        element1.addClass("add_opa")
+        element2.addClass('remove_opa')
+        element3.addClass('remove_opa')
+
+        element2.addClass('add_opa2');
+        element3.addClass('add_opa2');
+      }
+
+
+
+      document.getElementById('exp_back').addEventListener('click', function(event) {
+
+
+        event.stopPropagation()
+        element2.removeClass()
+        element1.removeClass()
+        element3.removeClass()
+
+        element2.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element1.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element3.addClass("submenu__item js-nav-list-back remove_opa")
+
+      })
+      
+      document.getElementById('expedicitonClick').addEventListener('click', function() {
+
+          element3.removeClass()
+          element2.removeClass()
+          element1.removeClass()
+
+          element3.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element2.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element1.addClass("submenu__item js-nav-list-back")
+
+      })
+
+
+
+
+      document.getElementById('trek_back').addEventListener('click', function(event) {
+
+
+        event.stopPropagation()
+        element2.removeClass()
+        element1.removeClass()
+        element3.removeClass()
+
+        element2.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element1.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element3.addClass("submenu__item js-nav-list-back remove_opa")
+
+      })
+      
+      document.getElementById('treekingClick').addEventListener('click', function() {
+
+          element3.removeClass()
+          element2.removeClass()
+          element1.removeClass()
+
+          element3.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element1.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element2.addClass("submenu__item js-nav-list-back")
+
+      })
+
+
+
+
+
+
+      document.getElementById('quick_back').addEventListener('click', function(event) {
+
+
+        event.stopPropagation()
+        element2.removeClass()
+        element1.removeClass()
+        element3.removeClass()
+
+        element2.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element1.addClass("submenu__item js-nav-list-back remove_opa")
+
+        element3.addClass("submenu__item js-nav-list-back remove_opa")
+
+
+       
+
+      })
+      
+      document.getElementById('quickLinks').addEventListener('click', function() {
+
+          element3.removeClass()
+          element2.removeClass()
+          element1.removeClass()
+
+          element2.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element1.addClass("submenu__item js-nav-list-back remove_opa")
+
+          element3.addClass("submenu__item js-nav-list-back")
+
+      })
+
+
+
+      
+
+      
+
+     
+
+      
+  
+  
+    </script>
 
 
 </body>
