@@ -31,39 +31,32 @@
   </section>
   <section class="layout-pt-xl layout-pb-xl">
     <div class="container">
-
+        <div class="row y-gap-30 pt-40 sm:pt-20">
         {% if object_lists %}
+       
 
         {% for object in object_lists %}
 
-    <div class="col-lg-4 col-md-6">
-        {% comment %} <a href="{{object.certificates.url}}" class="blogCard -type-1">
-          <div class="blogCard__image ratio ratio-41:30">
-            <img src="{{object.certificates.url}}" alt="image" class="img-ratio rounded-12">
+                <div class="col-lg-4 col-md-6">
+                
 
-          </div>
 
-          <div class="blogCard__content mt-30">
-           
-            <h3 class="blogCard__title text-18 fw-500 mt-10">{{object.name}}</h3>
-          </div>
-        </a> {% endcomment %}
+                    <div class="image-container">
+                        <a href="{{object.certificates.url}}">
+                        <div class="image-box-pair" style="width: 400px; height: 450px;">
+                            <img src="{{object.certificates.url}}" alt="Image 1">  
+                            <div class="image-text">{{object.name|title}}</div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
 
-        <div class="image-container">
-            <a href="{{object.certificates.url}}">
-              <div class="image-box-pair" style="width: 400px; height: 450px;">
-                <img src="{{object.certificates.url}}" alt="Image 1">  
-                <div class="image-text">{{object.name|title}}</div>
-              </div>
-            </a>
-          </div>
-      </div>
-
-    <div>
         {% endfor %}
+        <div>
 {% else %}
         <p style="display: flex; justify-content: center; font-size: 35px; font-weight: 500;">Documents Not added.<p>
 
-        {% endif %}
+        
     </section>
+    {% endif %}
 {% endblock %}
