@@ -62,7 +62,7 @@
       font-size: 18px;
     }
 
-
+   
 
     
 </style>
@@ -249,56 +249,41 @@
 
           <div class="line mt-20 mb-20"></div>
 
-
+            {% if tour.get_included or tour.get_notincluded %}
           <h2 class="text-30">What's included</h2>
 
           <div class="row x-gap-130 y-gap-20 pt-20">
+            {% if tour.get_included %}
             <div class="col-lg-6">
               <div class="y-gap-15">
+
+                {% for included_info in tour.get_included %}
                 <div class="d-flex">
                   <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  Beverages, drinking water, morning tea and buffet lunch
+                  {{included_info.name|title}}
                 </div>
+                {% endfor %}
+               
+              </div>
+            </div>
+            {% endif %}
+            {% if tour.get_notincluded %}
+            <div class="col-lg-6">
+              <div class="y-gap-15">
+
+                {% for notincluded_info in tour.get_notincluded %}
                 <div class="d-flex">
-                  <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  Local taxes
+                  <i class="icon-cross flex-center text-10 size-24 rounded-full text-red-3 bg-red-4 mr-15"></i>
+                  {{notincluded_info.name|title}}
                 </div>
-                <div class="d-flex">
-                  <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  Hotel pickup and drop-off by air-conditioned minivan
-                </div>
-                <div class="d-flex">
-                  <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  InsuranceTransfer to a private pier
-                </div>
-                <div class="d-flex">
-                  <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  Soft drinks
-                </div>
-                <div class="d-flex">
-                  <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
-                  Tour Guide
-                </div>
+                {% endfor %}
+                
               </div>
             </div>
 
-            <div class="col-lg-6">
-              <div class="y-gap-15">
-                <div class="d-flex">
-                  <i class="icon-cross flex-center text-10 size-24 rounded-full text-red-3 bg-red-4 mr-15"></i>
-                  Towel
-                </div>
-                <div class="d-flex">
-                  <i class="icon-cross flex-center text-10 size-24 rounded-full text-red-3 bg-red-4 mr-15"></i>
-                  Tips
-                </div>
-                <div class="d-flex">
-                  <i class="icon-cross flex-center text-10 size-24 rounded-full text-red-3 bg-red-4 mr-15"></i>
-                  Alcoholic Beverages
-                </div>
-              </div>
-            </div>
+            {% endif %}
           </div>
+          {% endif %}
 
 
           <div class="line mt-60 mb-60"></div>
@@ -384,7 +369,7 @@
           {% endif %}
 
 
-          <h2 class="text-30">Customer Reviews</h2>
+          <h2 class="text-30 mt-30">Customer Reviews</h2>
 
 
           <div class="overallRating mt-30">
@@ -552,10 +537,10 @@
                 <i class="icon-star text-yellow-2 text-10"></i>
 
               </div>
-              <div class="text-16 fw-500 ml-10">Take this tour! Its fantastic!</div>
+              <div class="text-16 fw-500 ml-10">{{comments.title}}</div>
             </div>
 
-            <p class="mt-10">{{comments.subject}}</p>
+            <p class="mt-10">{{comments.message}}</p>
 
             {% comment %} <div class="row x-gap-20 y-gap-20 pt-20">
 
@@ -699,12 +684,15 @@
 
           </div>
 
+          <form method="post" action="{% url "frontend:book_tour" tour.id %}">
+            {% csrf_token %}
+
           <div class="contactForm y-gap-30 pt-30">
             <div class="row y-gap-30">
               <div class="col-md-6">
 
                 <div class="form-input ">
-                  <input type="text" required="">
+                  <input type="text" required="" name="name">
                   <label class="lh-1 text-16 text-light-1">Name</label>
                 </div>
 
@@ -713,7 +701,7 @@
               <div class="col-md-6">
 
                 <div class="form-input ">
-                  <input type="email" required="">
+                  <input type="email" required=""  name="email">
                   <label class="lh-1 text-16 text-light-1">Email</label>
                 </div>
 
@@ -724,7 +712,7 @@
               <div class="col-12">
 
                 <div class="form-input ">
-                  <input type="text" required="">
+                  <input type="text" required=""  name="title">
                   <label class="lh-1 text-16 text-light-1">Title</label>
                 </div>
 
@@ -735,7 +723,7 @@
               <div class="col-12">
 
                 <div class="form-input ">
-                  <textarea required="" rows="5"></textarea>
+                  <textarea required="" rows="5" name="message"></textarea>
                   <label class="lh-1 text-16 text-light-1">Comment</label>
                 </div>
 
@@ -744,13 +732,14 @@
 
             <div class="row">
               <div class="col-12">
-                <button class="button -md -dark-1 bg-accent-1 text-white">
+                <button class="button -md -dark-1 bg-accent-1 text-white" name="comments">
                   Post Comment
                   <i class="icon-arrow-top-right text-16 ml-10"></i>
                 </button>
               </div>
             </div>
           </div>
+        </form>
         </div>
 
         <div class="col-lg-4" style="">
@@ -760,8 +749,9 @@
                 <div>From</div>
                 <div class="text-20 fw-500 ml-10">${{tour.price}}</div>
               </div>
+              <div class="line"></div>
 
-              <div class="searchForm -type-1 -sidebar mt-20">
+              {% comment %} <div class="searchForm -type-1 -sidebar mt-20">
                 <div class="searchForm__form">
                   <div class="searchFormItem js-select-control js-form-dd js-calendar">
                     <div class="searchFormItem__button" data-x-click="calendar">
@@ -3177,190 +3167,61 @@
                     </div>
                   </div>
 
-                  <div class="searchFormItem js-select-control js-form-dd">
-                    <div class="searchFormItem__button" data-x-click="time">
-                      <div class="searchFormItem__icon size-50 rounded-12 bg-light-1 flex-center">
-                        <i class="text-20 icon-clock"></i>
-                      </div>
-                      <div class="searchFormItem__content">
-                        <h5>Time</h5>
-                        <div class="js-select-control-chosen">Choose time</div>
-                      </div>
-                      <div class="searchFormItem__icon_chevron">
-                        <i class="icon-chevron-down d-flex text-18"></i>
-                      </div>
-                    </div>
-
-                    <div class="searchFormItemDropdown -tour-type" data-x="time" data-x-toggle="is-active">
-                      <div class="searchFormItemDropdown__container">
-                        <div class="searchFormItemDropdown__list sroll-bar-1">
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">12:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">13:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">14:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">15:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">16:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">17:00</span>
-                            </button>
-                          </div>
-
-                          <div class="searchFormItemDropdown__item">
-                            <button class="js-select-control-button">
-                              <span class="js-select-control-choice">18:00</span>
-                            </button>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
+                  
                 </div>
-              </div>
+              </div> {% endcomment %}
+              <form method="post" action="{% url "frontend:book_tour" tour.id %}">
 
+                {% csrf_token %}
+                <div class="row contactForm mt-5">
 
-              <h5 class="text-18 fw-500 mb-20 mt-20">Tickets</h5>
-
-              <div>
-                <div class="d-flex items-center justify-between">
-                  <div class="text-14">Adult (18+ years) <span class="fw-500">$94.00</span></div>
-
-                  <div class="d-flex items-center js-counter">
-                    <button class="button size-30 border-1 rounded-full js-down">
-                      <i class="icon-minus text-10"></i>
-                    </button>
-
-                    <div class="flex-center ml-10 mr-10">
-                      <div class="text-14 size-20 js-count">3</div>
-                    </div>
-
-                    <button class="button size-30 border-1 rounded-full js-up">
-                      <i class="icon-plus text-10"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-15">
-                <div class="d-flex items-center justify-between">
-                  <div class="text-14">Youth (13-17 years) <span class="fw-500">$84.00</span></div>
-
-                  <div class="d-flex items-center js-counter">
-                    <button class="button size-30 border-1 rounded-full js-down">
-                      <i class="icon-minus text-10"></i>
-                    </button>
-
-                    <div class="flex-center ml-10 mr-10">
-                      <div class="text-14 size-20 js-count">4</div>
-                    </div>
-
-                    <button class="button size-30 border-1 rounded-full js-up">
-                      <i class="icon-plus text-10"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-15">
-                <div class="d-flex items-center justify-between">
-                  <div class="text-14">Children (0-12 years) <span class="fw-500">$20.00</span></div>
-
-                  <div class="d-flex items-center js-counter">
-                    <button class="button size-30 border-1 rounded-full js-down">
-                      <i class="icon-minus text-10"></i>
-                    </button>
-
-                    <div class="flex-center ml-10 mr-10">
-                      <div class="text-14 size-20 js-count">2</div>
-                    </div>
-
-                    <button class="button size-30 border-1 rounded-full js-up">
-                      <i class="icon-plus text-10"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <h5 class="text-18 fw-500 mb-20 mt-20">Add Extra</h5>
-
-              <div class="d-flex items-center justify-between">
-                <div class="d-flex items-center">
-                  <div class="form-checkbox">
-                    <input type="checkbox">
-                    <div class="form-checkbox__mark">
-                      <div class="form-checkbox__icon">
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.29082 0.971021C9.01235 0.692189 8.56018 0.692365 8.28134 0.971021L3.73802 5.51452L1.71871 3.49523C1.43988 3.21639 0.987896 3.21639 0.709063 3.49523C0.430231 3.77406 0.430231 4.22604 0.709063 4.50487L3.23309 7.0289C3.37242 7.16823 3.55512 7.23807 3.73783 7.23807C3.92054 7.23807 4.10341 7.16841 4.24274 7.0289L9.29082 1.98065C9.56965 1.70201 9.56965 1.24984 9.29082 0.971021Z" fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ml-10">Add Service per booking</div>
+                <div >
+                  <label class="text-16" style="line-height: 3 !important;">Full Name</label>
+                  <input type="text" required="" name="name" style="    height: 40px;">
                 </div>
 
-                <div class="text-14">$40</div>
-              </div>
-
-              <div class="d-flex justify-between mt-20">
-                <div class="d-flex">
-                  <div class="form-checkbox mt-5">
-                    <input type="checkbox">
-                    <div class="form-checkbox__mark">
-                      <div class="form-checkbox__icon">
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.29082 0.971021C9.01235 0.692189 8.56018 0.692365 8.28134 0.971021L3.73802 5.51452L1.71871 3.49523C1.43988 3.21639 0.987896 3.21639 0.709063 3.49523C0.430231 3.77406 0.430231 4.22604 0.709063 4.50487L3.23309 7.0289C3.37242 7.16823 3.55512 7.23807 3.73783 7.23807C3.92054 7.23807 4.10341 7.16841 4.24274 7.0289L9.29082 1.98065C9.56965 1.70201 9.56965 1.24984 9.29082 0.971021Z" fill="white"></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="ml-10">
-                    Add Service per person
-                    <div class="lh-16">Adult: <span class="fw-500">$17.00</span> - Youth: <span class="fw-500">$14.00</span></div>
-                  </div>
+                <div >
+                  <label class="text-16" style="line-height: 3 !important;">Email</label>
+                  <input type="text" required="" name="email" style="    height: 40px;">
                 </div>
 
-                <div class="text-14">$40</div>
-              </div>
+                <div >
+                  <label class="text-16" style="line-height: 3 !important;">Phone Number</label>
+                  <input type="text" required="" name="phone" style="    height: 40px;">
+                </div>
+                <div >
+                  <label class="text-16" style="line-height: 3 !important;">Country</label>
+                  <input type="text" required="" name="country" style="    height: 40px;">
+                </div>
 
+               
+
+
+                <div>
+                  <label class="text-16" style="line-height: 3 !important;">Arrival Date</label>
+                  <input type="text" id="datepicker" autocomplete="off" name="arrival_time" style="    height: 40px;">
+                </div>
+
+                <div>
+                  <label class="text-16" style="line-height: 3 !important;">Departure Date</label>
+                  <input type="text" id="datepicker2" autocomplete="off" name="departure_date" style="    height: 40px;">
+                </div>
+
+                <div>
+                  <label class="text-16" style="line-height: 3 !important;">Message</label>
+                  <textarea required="" rows="8" name="message"></textarea>
+                </div>
+
+                
+              </div>
               <div class="line mt-20 mb-20"></div>
 
-              <div class="d-flex items-center justify-between">
-                <div class="text-18 fw-500">Total:</div>
-                <div class="text-18 fw-500">$392.09</div>
-              </div>
-
+             
               <button class="button -md -dark-1 col-12 bg-accent-1 text-white mt-20">
                 Book Now
                 <i class="icon-arrow-top-right ml-10"></i>
               </button>
+            </form>
             </div>
           </div></div>
         </div>
@@ -3459,5 +3320,13 @@
       var url = encodeURIComponent('http://127.0.0.1:8000/expeditions/details/1/');
       window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'Share on Facebook', 'width=600,height=400');
   }
+</script>
+
+<script>
+
+  {% if message %}
+      toastr.success(`{{message|safe}}`);
+  {% endif %}
+
 </script>
 {% endblock js %}

@@ -86,6 +86,7 @@ class PeeksLists(AuditFields):
     
     class Meta:
         verbose_name_plural = "Treks/Expedition Lists"
+        ordering = ["-created_at"]
 
 
     def save(self, *args, **kwargs):
@@ -151,6 +152,19 @@ class PeeksLists(AuditFields):
             return PeeksLocation.objects.filter(peek_info = self).first().location_frame
         else:
             return None 
+        
+    def get_included(self):
+        if PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "Included").exists():
+            return PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "Included")
+        else:
+            return None 
+        
+
+    def get_notincluded(self):
+        if PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "NotIncluded").exists():
+            return PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "NotIncluded")
+        else:
+            return None 
 
 
 class PeeksLocation(AuditFields):
@@ -174,6 +188,7 @@ class PopularPeaks(AuditFields):
     
     class Meta:
         verbose_name_plural = "Popular Peaks Lists"
+        ordering = ["-created_at"]
     
 
 class PeeeksHighlights(AuditFields):
@@ -199,6 +214,28 @@ class PeeeksItenary(AuditFields):
     class Meta:
         verbose_name_plural = "Peeeks Itenary Lists"
 
+
+class PeeekIncludeExclude(AuditFields):
+
+    choices = (
+        ("Included","Included"),
+        ("NotIncluded","NotIncluded")
+    )
+    inc_type = models.CharField(max_length=200, choices=choices, default="Included")
+    peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_inc_exe")
+    
+    name=models.CharField(max_length=250)
+
+
+    def __str__(self) -> str:
+        return self.peek_info.name
+
+    class Meta:
+        verbose_name_plural = "Peeks Included/Excluded Lists"
+        ordering = ["-created_at"]
+
+
+
 class BookaTour(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=True, blank=True)
@@ -211,10 +248,12 @@ class BookaTour(AuditFields):
 
     class Meta:
         verbose_name_plural = "Booked Tour Lists"
+        ordering = ["-created_at"]
 
 
 class CommentsTours(AuditFields):
-    peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE)
+    peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE,null=True, blank=True)
+    blogs = models.ForeignKey("Blogs", on_delete=models.CASCADE,null=True, blank=True)
     name = models.CharField(max_length=50,null=True, blank=True)
     email = models.EmailField(max_length=254,null=True, blank=True)
     title = models.CharField(max_length=250,null=True, blank=True)
@@ -227,6 +266,7 @@ class CommentsTours(AuditFields):
 
     class Meta:
         verbose_name_plural = "Comments"
+        ordering = ["-created_at"]
 
 class ContactUsModel(AuditFields):
     name = models.CharField(max_length=50)
@@ -237,6 +277,7 @@ class ContactUsModel(AuditFields):
 
     class Meta:
         verbose_name_plural = "Contacted Lists"
+        ordering = ["-created_at"]
 
 class DealsLists(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE)
@@ -275,3 +316,22 @@ class Blogs(AuditFields):
     title = models.CharField(max_length=255)
     description = RichTextField(null=True, blank=True)
     user = models.CharField(max_length=255)
+
+    def get_comments(self):
+        if CommentsTours.objects.filter(blogs = self).exists():
+            return CommentsTours.objects.filter(blogs = self)
+        else:
+            return None 
+        
+
+    class Meta:
+        ordering = ["-created_at"]
+
+
+class Certificates(AuditFields):
+
+    name = models.CharField(max_length=255, null=True, blank=True)
+
+    certificates = models.FileField(upload_to="certificates", 
+        validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
+    

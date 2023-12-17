@@ -105,7 +105,7 @@
 
               <div class="d-flex flex-column y-gap-5">
                 {% for catg in blog_category %}
-                <a href="{{catg.name}}">{{catg.name}}</a>
+                <a href="?q={{catg.name}}">{{catg.name}}</a>
                 
                 {% endfor %}
               </div>
