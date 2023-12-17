@@ -75,7 +75,7 @@ class PeeksLists(AuditFields):
     highest_elevation = models.CharField(max_length=150)
     accomodation = models.CharField(max_length=150)
     season = models.CharField(max_length=150)
-    age = models.IntegerField(default=0)
+    age = models.CharField(max_length=150)
     location = models.CharField(max_length=150)
     popular = models.BooleanField(default=False)
     price = models.IntegerField(default=0)
