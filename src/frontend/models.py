@@ -315,7 +315,7 @@ class Blogs(AuditFields):
     
     title = models.CharField(max_length=255)
     description = RichTextField(null=True, blank=True)
-    user = models.CharField(max_length=255)
+    # user = models.CharField(max_length=255)
 
     def get_comments(self):
         if CommentsTours.objects.filter(blogs = self).exists():
