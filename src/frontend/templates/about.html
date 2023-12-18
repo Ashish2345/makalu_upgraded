@@ -4,15 +4,239 @@
 {% load static %} 
 
 {% block css %}
+<style>
+  .about-img {
+    margin-bottom: 30px;
+    position: relative;
+}
+.about-img .experience {
+  text-align: center;
+  background-color: #2e8ab7;
+  -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  padding: 10px;
+  position: absolute;
+  bottom: 108px;
+  right: -130px;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.about-img .experience h2 {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: #ffffff;
+}
+.about-content {
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.about-content2 {
+  margin-left: 30px;
+  margin-top:145px;
+  margin-bottom: 30px;
+}
+
+.about-content2 .top-title {
+  color: #2e8ab7;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 550;
+}
+.about-content2 h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+
+.about-content .top-title {
+  color: #2e8ab7;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 550;
+}
+.about-content h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+.about-content p {
+  margin-bottom: 20px;
+}
+
+.about-content ul li i {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background-color: #2e8ab7;
+  text-align: center;
+  color: #ffffff;
+}
+@media (max-width: 768px) {
+  .about-content2 {
+    margin-left: 5px;
+    margin-top:30px
+    margin-bottom: 30px;
+  }
+  .about-content {
+    margin-left: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+
+}
+
+
+</style>
 
 {% endblock css %}
 
 {% block content %}
 
 
-{% include "breadcumb.html" %}
+{% comment %} {% include "breadcumb.html" %} {% endcomment %}
+<section data-anim="fade" class="pageHeader -type-2 is-in-view">
+  <div class="pageHeader__bg">
+    <img src="{% static "img/pageHeader/2.jpg" %}" alt="image">
+    <img src="{% static "img/hero/1/shape.svg" %}" alt="image">
+  </div>
 
-<section class="layout-pt-lg">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="col-12">
+        <div class="pageHeader__content">
+          <h1 class="pageHeader__title">
+            About Us
+          </h1>
+
+          <p class="pageHeader__text">
+            Welcome to Makalu Mountaineering Treks and Expedition
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="layout-pt-xl">
+    <div data-anim-wrap class="container">
+      <div data-anim-child="slide-up" class="row">
+          <div class="col-lg-6">
+              <div class="about-img">
+                  <img src="{% static "img/about/11.jpg" %}" alt="Image">
+
+                  <div class="experience">
+                      <div class="">
+                          <h2>16 Years Of Experience</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-6">
+              <div class="about-content">
+                  <span class="top-title">About Us</span>
+                  <h2>Premier Trekking and Expedition Company</h2>
+                  <p>Makalu Mountaineering is trekking and Expedition Company based in Nepal, dedicated to providing high-quality services to adventure seekers from around the world. Our team of experienced and licensed guides are passionate about sharing their love of the Himalayas and providing a safe and memorable trekking and expedition experience. Trekking & Expedition We offer a variety of trekking itineraries that cater to trekkers of all experience levels. Our treks range from short and easy walks to challenging high-altitude treks that take you through remote villages and stunning landscapes. Our popular trekking routes include the Everest Base Camp Trek, Annapurna Circuit Trek, and the Langtang Valley Trek.</p>
+                  
+              
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div data-anim-wrap class="container  mt-20">
+      <div data-anim-child="slide-up" class="row">
+        <div class="col-lg-6">
+          <div class="about-content2">
+              <h2>Our team</h2>
+              <p>Our team also offers a range of expedition services that take you to some of the most remote and challenging peaks in the Himalayas. We specialize in organizing expeditions to Mt. Everest, Mt. Makalu, and other 8,000-meter peaks in Nepal. Our experienced team of guides, porters, and support staff ensure that your expedition is safe, enjoyable, and successful.</p>
+              
+          
+          </div>
+      </div>
+          <div class="col-lg-6">
+              <div class="about-img">
+                  <img src="{% static "img/about/22.jpg" %}" alt="Image">
+
+                  
+              </div>
+          </div>
+
+         
+      </div>
+    </div>
+
+    <div data-anim-wrap class="container mt-20">
+      <div data-anim-child="slide-up" class="row">
+          <div class="col-lg-6">
+              <div class="about-img">
+                  <img src="{% static "img/about/33.jpg" %}" alt="Image">
+
+                 
+              </div>
+          </div>
+
+          <div class="col-lg-6">
+              <div class="about-content" style="    margin-top: 13px;">
+                  <h2>Why Choose Makalu Mountaineering Treks and Expedition?</h2>
+                  <p>Mountaineering Treks and Expedition, we believe in providing exceptional services and experiences to our guest. Here are some reasons to choose us for your trekking and expedition</p>
+                  <div class="y-gap-15">
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    Experienced and licensed guides
+                  </div>
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    Flexible and customizable itineraries
+                  </div>
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    Affordable pricing and transparent fees
+                  </div>
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    High-quality equipment and gear
+                  </div>
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    Safe and eco-friendly practices
+                  </div>
+
+                  <div class="d-flex">
+                    <i class="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
+                    Customer satisfaction guaranteed
+                  </div>
+
+                </div>
+              
+              </div>
+          </div>
+      </div>
+    </div>
+
+</section>
+
+{% comment %} <section class="layout-pt-lg">
     <div data-anim-wrap class="container">
       <div class="row y-gap-20 justify-between">
         <div data-anim-child="slide-up" class="col-lg-6">
@@ -30,26 +254,28 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> {% endcomment %}
 
 
-{% comment %}   
-  <section data-anim="fade" class="layout-pt-xl relative">
+
+
+
+  
+  <section data-anim="fade" class="mt-50 relative">
     <div class="relative xl:unset container">
       <div class="layout-pt-xl layout-pb-xl rounded-12">
         <div class="sectionBg">
           <img src="{% static "img/about/1/1.png" %}" alt="image" class="img-ratio rounded-12 md:rounded-0">
         </div>
-
         <div class="row y-gap-30 justify-center items-center">
           <div class="col-lg-4 col-md-6">
             <h2 class="text-40 lh-13">
-              We Make<br class="md:d-none">
-              World Travel Easy
+              Discover Himalayas<br class="md:d-none">
+              with Makalu 
             </h2>
 
-            <p class="mt-10">Traveling under your own power and at your own pace, you'll connect more meaningfully with your destination and have more fun!</p>
-            <button class="button -md -dark-1 bg-accent-1 text-white mt-60 md:mt-30">Explore Our Tours</button>
+            <p class="mt-10">Join us as we navigate the trails together, making every step a memorable part of your Himalayan adventure. Makalu Mountaineering - where every trek is a story waiting to be written.</p>
+            <a class="button -md -dark-1 bg-accent-1 text-white mt-60 md:mt-30" href="/search/">Explore Our Tours</a>
           </div>
 
           <div class="col-md-6">
@@ -57,19 +283,19 @@
 
               <div class="featuresGrid__item px-40 py-40 text-center bg-white rounded-12">
                 <img src="{% static "img/icons/2/1.svg" %}" alt="icon">
-                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">240</div>
+                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">100+</div>
                 <div>Total Destinations</div>
               </div>
 
               <div class="featuresGrid__item px-40 py-40 text-center bg-white rounded-12">
                 <img src="{% static "img/icons/2/2.svg" %}" alt="icon">
-                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">3672</div>
+                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">50+</div>
                 <div>Amazing Tours</div>
               </div>
 
               <div class="featuresGrid__item px-40 py-40 text-center bg-white rounded-12">
                 <img src="{% static "img/icons/2/3.svg" %}" alt="icon">
-                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">92,842</div>
+                <div class="text-40 fw-700 text-accent-1 mt-20 lh-14">3000+</div>
                 <div>Happy Customer</div>
               </div>
 
@@ -78,11 +304,11 @@
         </div>
       </div>
     </div>
-  </section> {% endcomment %}
+  </section>
 
 
 
-  <section class="layout-pt-xl layout-pb-xl">
+  <section class="mt-50 mb-50">
       <div data-anim-wrap class="container">
         <div data-anim-child="slide-up" class="row">
           <div class="col-auto">
@@ -151,5 +377,39 @@
         </div>
       </div>
     </section>
+
+    
+  <section data-anim="slide-up" class="cta -type-4 -style-2 is-in-view">
+    <div class="container">
+      <div class="cta__content" style="background-color: #D8F1FD !important">
+        <div class="row justify-between">
+          <div class="col-xl-12 col-lg-8">
+            <h2 class="text-24 lh-13">
+              Contact Us
+            </h2>
+
+            <div class="mt-10" style="display: flex; justify-content: space-between;">
+              <p id="content" style="display: inline-block; width: 80%;">
+                  Contact us today to book your trekking or expedition experience with Makalu Mountaineering Treks and Expedition. Our friendly and knowledgeable team is here to answer any questions you may have and help you plan the adventure of a lifetime.
+              </p>
+              <a id="see-more" class="button -md -accent-1 bg-dark-1 text-white" href="/contact-us/" onclick="toggleContent()">
+                  See More
+                  <i class="icon-arrow-top-right ml-10"></i>
+              </a>
+          </div>
+          
+         
+          
+          
+          
+
+            {% comment %} {% endcomment %}
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
 
 {% endblock %}

@@ -252,18 +252,13 @@ function calendarInteraction() {
             const item = elTarget.querySelector(`[data-index="${ getIndex(firstItem) + l }"]`)
             item.classList.add('-is-in-path')
           }
-          console.log(firstDate)
           if (firstDate) {
             firstDate.innerHTML = `${firstItem.querySelector('.js-date').innerHTML} ${firstItem.getAttribute('data-month')} -`
-            let get_start_date = firstDate.innerHTML
-            start_date_booking.value(get_start_date)
            
           }
 
           if (lastDate) {
             lastDate.innerHTML = `${lastItem.querySelector('.js-date').innerHTML} ${lastItem.getAttribute('data-month')}`
-            let get_end_date = lastDate.innerHTML
-            end_date_booking.value(get_start_date)
            
           }
     

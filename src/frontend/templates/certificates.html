@@ -4,7 +4,37 @@
 {% load static %} 
 
 {% block css %}
+<style>
 
+  #image-box-pair2
+  {
+    width: 400px; 
+    height: 450px;
+  }
+
+  @media only screen and (min-width: 1200px) and (max-width: 1400px) {
+
+    #image-box-pair2
+    {
+      width: 350px; !important
+      height: 350px; !important
+    }
+
+  }
+
+
+  @media only screen and (min-width: 750px) and (max-width: 1199px) {
+
+    #image-box-pair2
+    {
+      width: 300px; !important
+      height: 300px; !important
+    }
+
+  }
+  
+
+</style>
 {% endblock css %}
 
 {% block content %}
@@ -43,7 +73,7 @@
 
                     <div class="image-container">
                         <a href="{{object.certificates.url}}">
-                        <div class="image-box-pair" style="width: 400px; height: 450px;">
+                        <div class="image-box-pair" id="image-box-pair2">
                             <img src="{{object.certificates.url}}" alt="Image 1">  
                             <div class="image-text">{{object.name|title}}</div>
                         </div>
