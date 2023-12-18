@@ -34,6 +34,7 @@ urlpatterns = [
 
 
     path('document-and-certificates/', CertificatesView.as_view()),
+    path('privacy-policy/', PrivacyPolicyView.as_view()),
 
 
     

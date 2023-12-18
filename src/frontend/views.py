@@ -57,6 +57,12 @@ class HomeView(FrontendMixin, TemplateView):
 class AboutUsView(FrontendMixin, TemplateView):
     template_name = "about.html"
 
+
+    
+
+class PrivacyPolicyView(FrontendMixin, TemplateView):
+    template_name = "privacy_policy.html"
+
 class ContactUsView(FrontendMixin, TemplateView):
     template_name = "contact.html"
 
