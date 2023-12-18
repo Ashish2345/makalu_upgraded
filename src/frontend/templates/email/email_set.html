@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="x-apple-disable-message-reformatting">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <style>
+            .im{
+                color: #000 !important;
+            }
+            body{
+                margin-right: 100px;
+                margin-left: 100px;
+            }
+            @media (max-width: 768px) {
+                body{
+                margin-right: 15px;
+                margin-left: 15px;
+            }
+            }
+        </style>
+    </head>
+    <body style="font-family: Montserrat,sans-serif; font-size: 14px; line-height: 25px; color: #000;  ">
+        <div style="border: 1px solid #ccc;">
+            <div style="padding: 20px 20px; background-color: #000; color: #fff; text-align: center;">
+                <h1 style="text-transform: uppercase;">Makalu Mountaineering</h1>
+            </div>
+            <div style="padding: 20px;">
+               <p>Dear <strong>User</strong>,</p>
+                <p>
+                    {{object.name}} has contacted you.
+                </p>
+                <p>
+                    Email: {{object.email}}
+                </p>
+
+                <p>
+                    Phone: {{object.phone}}
+                </p>
+
+                <p>
+                    Subject: {{object.subject}}
+                </p>
+
+                <p>
+                    Message: {{object.message}}
+                </p>
+                 {% comment %} 
+                <p>
+                    Thank you for joining Global Panacea!<br/>
+                    Please enter this verification code to get started on TickersFund:<br/>
+                    <h1 style="color:#32a852;">{{otp}}</h1>
+                </p>
+                <p>
+                    This verification code expires after 5 minutes.
+                    Do not share this verification code with any unknown recipient.
+                </p> {% endcomment %}
+                {% comment %} <p>
+                    <strong>ATTENTION:</strong> Please do not reply to this email. This mailbox is not monitored and you will not receive a response.
+                </p> {% endcomment %}
+                {% comment %} <p>
+                    <strong>Regards,</strong><br/>
+                    Makalu Mountaineering 
+                </p> {% endcomment %}
+            </div>
+            <div style="padding: 40px 20px; background-color: #000; color: #fff; text-align: center;">
+                <table style="color: #fff; line-height: 25px; font-weight: 200; font-size: 14px; display: flex; justify-content: space-around;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="https://makalumountaineering.com/static/img/logo/logoblack.png" alt="company-logo" style="height: 80px;">
+                            </td>
+                            <td style="text-align: center;">
+                                If you have any questions, feel free message us at <a href="mailto:info@makalumountaineering.com" style="color:#fdc71b">info@makalumountaineering.com</a><br/>
+                                Contact No.: <a href="tel://+9779843685256" style="color:#fdc71b">(+977) 9843685256</a>, <a href="tel://+97715193058" style="color:#fdc71b">(+977) 1-519-3058</a><br/>
+                                Address: White Gumba, Ramkot - 6, Kathmandu<br/>
+                                Terms of use | Privacy Policy
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    
+                </p>
+            </div>
+        </div>
+        <p style="text-align: center; color: rgb(74, 75, 83); font-size: 12px;">
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved.
+        </p>
+        
+    </body>
+</html>

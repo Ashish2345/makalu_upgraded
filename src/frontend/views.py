@@ -10,6 +10,8 @@ from .models import *
 from django.shortcuts import render
 from .models import Region, PopularPeaks, Blogs
 
+from .emailsetup import _sendNormalEmail
+
 class FrontendMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,6 +65,8 @@ class ContactUsView(FrontendMixin, TemplateView):
         data.pop("csrfmiddlewaretoken")
         contact = ContactUsModel(**data)
         contact.save()
+        _sendNormalEmail(to="chhiringsh4@gmail.com", context={'object':contact},  template='email/email_set.html', purpose='Someone Contacted')
+
 
         if contact:
             self.extra_context = {
