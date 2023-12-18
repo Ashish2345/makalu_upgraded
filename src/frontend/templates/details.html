@@ -223,6 +223,7 @@
            
 
           </div>
+          {% if tour.overview %}
 
           <h2 class="text-30">Tour Overview</h2>
           <div class="mt-20 overview_text">
@@ -230,6 +231,7 @@
             {{tour.overview|safe}}
           
           </div>
+          {% endif %}
           {% if tour.get_highlight.highlights %}
           <h3 class="text-20 fw-500 mt-20">Tour Highlights</h3>
           {% comment %} <ul class="ulList mt-20">

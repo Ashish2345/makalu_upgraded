@@ -127,7 +127,7 @@ class PeeksLists(AuditFields):
         super(PeeksLists, self).save(*args, **kwargs)
 
     def total_booked(self):
-        random_number = random.randint(500, 1000)
+        random_number = random.randint(30, 60)
         if BookaTour.objects.filter(peek_info = self).exists():
             return BookaTour.objects.filter(peek_info = self).count() + random_number
         else:
