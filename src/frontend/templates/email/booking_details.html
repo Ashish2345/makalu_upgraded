@@ -23,12 +23,12 @@
     <body style="font-family: Montserrat,sans-serif; font-size: 14px; line-height: 25px; color: #000;  ">
         <div style="border: 1px solid #ccc;">
             <div style="padding: 20px 20px; background-color: #000; color: #fff; text-align: center;">
-                <h1 style="text-transform: uppercase;">Makalu Mountaineering</h1>
+                <h1 style="text-transform: uppercase;">Booking Request</h1>
             </div>
             <div style="padding: 20px;">
                <p>Dear <strong>User</strong>,</p>
                 <p>
-                    {{object.name|default_if_none:""}} has contacted you.
+                    {{object.name|default_if_none:""}} has booked a tour for {{object.peek_info.name|default_if_none:""}}.
                 </p>
                 <p>
                     Email: {{object.email|default_if_none:""}}
@@ -39,12 +39,23 @@
                 </p>
 
                 <p>
-                    Subject: {{object.subject|default_if_none:""}}
+                    Country: {{object.country|default_if_none:""}}
                 </p>
 
                 <p>
-                    Message: {{object.message|default_if_none:""}}
+                    Arrival Time: {{object.arrival_time|default_if_none:""}}
                 </p>
+
+
+                <p>
+                    Departure Time: {{object.departure_date|default_if_none:""}}
+                </p>
+
+                <p>
+                    MEssage: {{object.message|default_if_none:""}}
+                </p>
+
+
                  {% comment %} 
                 <p>
                     Thank you for joining Global Panacea!<br/>

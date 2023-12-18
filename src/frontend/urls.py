@@ -30,7 +30,7 @@ urlpatterns = [
     path('gallery/', GalleryView.as_view(), name="gallery"),
 
     path('search/json/', cache_page(0*60)(SearchPeekJsonView.as_view())),
-    path('blogs/book/<int:id>/', BookTour.as_view(), name="book_tour"),
+    path('peek/book/<int:id>/', BookTour.as_view(), name="book_tour"),
 
 
     path('document-and-certificates/', CertificatesView.as_view()),

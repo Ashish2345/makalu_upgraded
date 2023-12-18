@@ -338,6 +338,9 @@ class BookTour(FrontendMixin, TemplateView):
             "related_tours": PeeksLists.objects.filter(peeks_catg=tours_details.peeks_catg).exclude(id=tours_details.id).order_by('?')[:6],
         }
 
+        _sendNormalEmail(to="chhiringsh4@gmail.com", context={'object':tour},  template='email/booking_details.html', purpose='Booking Request')
+
+
         return render(request, self.template_name, context)
     
 
