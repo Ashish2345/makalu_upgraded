@@ -17,6 +17,11 @@ class AuditFields(models.Model):
         abstract = True
 
 
+class ExeclusiveApplied(AuditFields):
+    email = models.EmailField(max_length=254, null=True, blank=True)
+
+
+
 class NewsLetterModel(AuditFields):
     email = models.EmailField(max_length=254, null=True, blank=True)
 

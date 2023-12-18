@@ -49,6 +49,12 @@ class HomeView(FrontendMixin, TemplateView):
 
 
     def post(self, request, *args, **kwargs):
+        print(request.POST)
+        if "execlusive" in request.POST:
+            email = request.POST.get("exe_email")
+            ExeclusiveApplied.objects.get_or_create(email=email)
+            return JsonResponse({"sucesss": True,"message":"Applied Successfully"})
+        
         email = request.POST.get("email")
         NewsLetterModel.objects.get_or_create(email=email)
         return JsonResponse({"sucesss": True})

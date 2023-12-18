@@ -3179,23 +3179,24 @@
 
           <p class="mt-10 text-white">
 
-            Unlock exclusive savings with promo code 
+            Unlock exclusive savings 
+            {% comment %} with promo code  {% endcomment %}
             
-            <br class="lg:d-none">'MAKALUMOUNTAINEERING
+            {% comment %} <br class="lg:d-none">'MAKALUMOUNTAINEERING {% endcomment %}
           
           </p>
 
           <div class="text-18 text-white mt-40 md:mt-20">
-            Get a magic link sent to your email
+            {% comment %} Get a magic link sent to your email {% endcomment %}
           </div>
 
           <div class="mt-10">
             <div class="singleInput -type-2 row x-gap-10 y-gap-10">
               <div class="col-md-auto col-12">
-                <input type="email" placeholder="Email" class="">
+                <input type="email" placeholder="Email" class="" id="email-execlusive">
               </div>
               <div class="col-md-auto col-12">
-                <button class="button -md -accent-1 bg-white col-12 text-accent-2">Send</button>
+                <button class="button -md -accent-1 bg-white col-12 text-accent-2" id="execulsive-btn">Send</button>
               </div>
             </div>
           </div>
@@ -3339,6 +3340,48 @@
         window.location.href = `/search/?region=${region}&tour_type=${tour_pick}`;
     
     }
+
+
+    $('#execulsive-btn').on('click', function(event) {
+      event.preventDefault(); 
+
+      var email = $('#email-execlusive').val();
+      var csrfToken = getCookie('csrftoken');
+
+      var data = {
+          exe_email: email,
+          csrfmiddlewaretoken: csrfToken,
+          "execlusive":""
+      };
+
+      if (isValidEmail(email)) {
+
+        $.ajax({
+            url: '{% url 'frontend:home_view' %}',
+            type: 'POST',
+            data: data,
+            dataType: 'json', 
+            success: function(response) {
+              if (response.sucesss)
+              {
+              
+                toastr.success('Applied Successfully!');
+                $('#email-execlusive').val('');
+              }
+
+            },
+            error: function(error) {
+                // Handle errors that occurred during the POST request
+                console.error('Error subscribing:', error);
+                // You can display an error message or handle the error in any other way here
+            }
+        });
+      } else {
+        // Display an error message or take appropriate action for invalid email
+        toastr.error('Invalid Email Address');
+        $('#email-input').val('');
+    }
+  });
 </script>
 
 

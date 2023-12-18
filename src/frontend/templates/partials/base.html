@@ -407,40 +407,40 @@ table {
       $('#subscribe-btn').on('click', function(event) {
         event.preventDefault(); 
 
-      var email = $('#email-input').val();
-      var csrfToken = getCookie('csrftoken');
+        var email = $('#email-input').val();
+        var csrfToken = getCookie('csrftoken');
 
-      var data = {
-          email: email ,
-          csrfmiddlewaretoken: csrfToken
-      };
+        var data = {
+            email: email ,
+            csrfmiddlewaretoken: csrfToken
+        };
 
-      if (isValidEmail(email)) {
+        if (isValidEmail(email)) {
 
-        $.ajax({
-            url: '{% url 'frontend:home_view' %}',
-            type: 'POST',
-            data: data,
-            dataType: 'json', 
-            success: function(response) {
-              if (response.sucesss)
-              {
-               
-                toastr.success('Newsletter Subscribed!');
-                $('#email-input').val('');
+          $.ajax({
+              url: '{% url 'frontend:home_view' %}',
+              type: 'POST',
+              data: data,
+              dataType: 'json', 
+              success: function(response) {
+                if (response.sucesss)
+                {
+                
+                  toastr.success('Newsletter Subscribed!');
+                  $('#email-input').val('');
+                }
+
+              },
+              error: function(error) {
+                  // Handle errors that occurred during the POST request
+                  console.error('Error subscribing:', error);
+                  // You can display an error message or handle the error in any other way here
               }
-
-            },
-            error: function(error) {
-                // Handle errors that occurred during the POST request
-                console.error('Error subscribing:', error);
-                // You can display an error message or handle the error in any other way here
-            }
-        });
-      } else {
-        // Display an error message or take appropriate action for invalid email
-        toastr.error('Invalid Email Address');
-        $('#email-input').val('');
+          });
+        } else {
+          // Display an error message or take appropriate action for invalid email
+          toastr.error('Invalid Email Address');
+          $('#email-input').val('');
     }
     });
 
