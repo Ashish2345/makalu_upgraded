@@ -66,7 +66,7 @@
 
               <div class="y-gap-10 mt-20">
                 {% for region in regions|slice:"0:7" %}
-                <a class="d-block fw-500" href="/search/?region={{region.name}}">
+                <a class="d-block fw-500" href="/trekkings/?q={{region.name}}">
                   {{region.name|title}}
                 </a>
 

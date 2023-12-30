@@ -64,12 +64,22 @@ class PeeksLists(AuditFields):
         ("sightseeing" ,"sightseeing"),
     )
 
+    grading = (
+        ("Easy", "Easy"),
+        ("Moderate", "Moderate"),
+        ("Moderate to Strenuous", "Moderate to Strenuous"),
+        ("Strenuous", "Strenuous"),
+        ("Very Strenuous", "Very Strenuous"),
+    )
+
     peeks_catg = models.ForeignKey(PeeksModel, verbose_name=("Peeks Lists"), on_delete=models.CASCADE, null=True, blank=True)
     region_peak = models.ForeignKey(Region, verbose_name=("Peeks Region"), on_delete=models.SET_NULL, null=True, blank=True)
     peek_type = models.CharField(choices=choices, max_length=50, null=True, blank=True)
     name = models.CharField(max_length=150)
     thumbnail = models.FileField(upload_to="thumbnail", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
+    
+    grade = models.CharField(choices=grading, max_length=50, null=True, blank=True)
 
     main_iamge = models.FileField(upload_to="main_image", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
@@ -114,6 +124,7 @@ class PeeksLists(AuditFields):
 
             self.main_iamge = InMemoryUploadedFile(output, 
             'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
+        
         if self.rating == 0 and self.rate_total == 0:
 
             random_rating = random.uniform(4.4, 5)

@@ -350,3 +350,8 @@ class CertificatesView(FrontendMixin, ListView):
     template_name = "certificates.html"
     context_object_name = "object_lists"
     paginate_by = 8
+
+
+
+class RoalityFreeView(FrontendMixin, TemplateView):
+    template_name = "roality.html"
