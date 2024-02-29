@@ -38,6 +38,7 @@ urlpatterns = [
     path('royalty-free-peeks/', RoalityFreeView.as_view(), name="roality"),
 
 
+    path('expired/', HostingExpiredView.as_view(), name="hosting_expired")
     
 
 ]

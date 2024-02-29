@@ -355,3 +355,8 @@ class CertificatesView(FrontendMixin, ListView):
 
 class RoalityFreeView(FrontendMixin, TemplateView):
     template_name = "roality.html"
+
+
+class HostingExpiredView(FrontendMixin, TemplateView):
+    template_name = "hostingexpired.html"
+    
