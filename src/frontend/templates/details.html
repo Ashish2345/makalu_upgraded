@@ -66,7 +66,7 @@
 
     
 </style>
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock css %}
 
 {% block content %}
@@ -3214,6 +3214,9 @@
                   <textarea required="" rows="8" name="message"></textarea>
                 </div>
 
+
+                <div class="g-recaptcha"  data-sitekey="6LceTuApAAAAAFK6gdR0wuXj-wK1eh0e-XN3dvd0"></div>
+
                 
               </div>
               <div class="line mt-20 mb-20"></div>
@@ -3325,10 +3328,15 @@
 </script>
 
 <script>
-
   {% if message %}
+
+    {% if success == True %}
       toastr.success(`{{message|safe}}`);
+    {% else %}
+    toastr.error(`{{message|safe}}`);
+      {% endif %}
   {% endif %}
+  alert(message)
 
 </script>
 {% endblock js %}

@@ -12,6 +12,9 @@ from .models import Region, PopularPeaks, Blogs
 
 from .emailsetup import _sendNormalEmail
 
+from django.conf import settings
+import urllib,json
+
 class FrontendMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,8 +76,18 @@ class ContactUsView(FrontendMixin, TemplateView):
     template_name = "contact.html"
 
     def post(self, request, *args, **kwargs):
+        result = validate_captcha(request)
+        print(result["success"] != True)
+        
+        if result["success"] != True:
+            self.extra_context = {
+                "success": "Invalid Captcha",
+                "invalid": False
+            }
+            return super().get(request, *args, **kwargs)
         data = request.POST.dict()
         data.pop("csrfmiddlewaretoken")
+        data.pop("g-recaptcha-response")
         contact = ContactUsModel(**data)
         contact.save()
         _sendNormalEmail(to="chhiringsh4@gmail.com", context={'object':contact},  template='email/email_set.html', purpose='Someone Contacted')
@@ -298,6 +311,21 @@ class SearchPeekJsonView(View):
             all_peeks =  list(PeeksLists.objects.filter(Q(name__icontains=search_val) | Q(region_peak__name=search_val)).distinct().values("id","name","region_peak__name","thumbnail")[:10])
         print(all_peeks)
         return JsonResponse({"all_peeks":all_peeks})
+
+def validate_captcha(request):
+    recaptcha_response = request.POST.get('g-recaptcha-response')
+    url = 'https://www.google.com/recaptcha/api/siteverify'
+    values = { 
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+            }
+    
+    data = urllib.parse.urlencode(values).encode()
+    req =  urllib.request.Request(url, data=data)
+    response = urllib.request.urlopen(req)
+    result = json.loads(response.read().decode())
+    
+    return result
     
 
 class BookTour(FrontendMixin, TemplateView):
@@ -316,10 +344,24 @@ class BookTour(FrontendMixin, TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        
+        result = validate_captcha(request)
+        
         peek_id = kwargs.get("id")
         tours_details = get_object_or_404(PeeksLists, id=peek_id)
         data = request.POST.dict()
         data.pop('csrfmiddlewaretoken', None)
+        data.pop('g-recaptcha-response', None)
+
+        if result["success"] != True:
+            context = {
+                    "tour": tours_details,
+                    "message": "Invalid Captcha!",
+                    "success": False,
+                    "related_tours": PeeksLists.objects.filter(peeks_catg=tours_details.peeks_catg).exclude(id=tours_details.id).order_by('?')[:6],
+                }
+            return render(request, self.template_name, context)
+
 
         if "comments" in request.POST:
             data.pop('comments', None)
@@ -336,6 +378,7 @@ class BookTour(FrontendMixin, TemplateView):
             "tour": tours_details,
             "message": message,
             "related_tours": PeeksLists.objects.filter(peeks_catg=tours_details.peeks_catg).exclude(id=tours_details.id).order_by('?')[:6],
+            "success": True
         }
 
         _sendNormalEmail(to="chhiringsh4@gmail.com", context={'object':tour},  template='email/booking_details.html', purpose='Booking Request')
