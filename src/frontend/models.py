@@ -389,4 +389,4 @@ class InstagramPosts(AuditFields):
 
     class Meta:
         verbose_name_plural = "Instagram Post"
-        ordering = ("priority")
+        ordering = ("priority",)
