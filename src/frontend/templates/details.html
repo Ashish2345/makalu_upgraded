@@ -370,7 +370,7 @@
           </div>
           {% endif %}
 
-
+{% comment %} 
           <h2 class="text-30 mt-30">Customer Reviews</h2>
 
 
@@ -504,7 +504,7 @@
               </div>
 
             </div>
-          </div>
+          </div> {% endcomment %}
 
           {% if tour.get_comments %}
           {% for comments in tour.get_comments %}
@@ -572,7 +572,7 @@
 
 
           <h2 class="text-30 pt-60">Leave a Reply</h2>
-          <p class="mt-30">Your email address will not be published. Required fields are marked *</p>
+          {% comment %} <p class="mt-30">Your email address will not be published. Required fields are marked *</p>
 
           <div class="reviewsGrid pt-30">
 
@@ -684,7 +684,7 @@
               </div>
             </div>
 
-          </div>
+          </div> {% endcomment %}
 
           <form method="post" action="{% url "frontend:book_tour" tour.id %}">
             {% csrf_token %}
