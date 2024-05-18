@@ -1,6 +1,11 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator, MaxValueValidator
 from django.urls import reverse
+    
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 from ckeditor.fields import RichTextField
 
@@ -47,11 +52,7 @@ class Region(AuditFields):
 
     def __str__(self):
         return self.name
-    
-from PIL import Image
-from io import BytesIO
-from django.core.files.uploadedfile import InMemoryUploadedFile
-import sys
+
 
 
 class PeeksLists(AuditFields):
