@@ -385,6 +385,8 @@ class InstagramPosts(AuditFields):
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
     description = RichTextField(null=True, blank=True)
     post_url = models.URLField(max_length=200)
+    priority = models.IntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Instagram Post"
+        ordering = ("priority")
