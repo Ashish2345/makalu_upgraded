@@ -3253,7 +3253,7 @@
     </div>
   </div>
 </section>
-
+{% if instagram_post %}
 <section class="layout-pt-lg layout-pb-lg">
   <div data-anim-wrap="" class="container animated">
     <div data-anim-child="slide-up" class="row y-gap-15 justify-between items-end is-in-view">
@@ -3270,56 +3270,32 @@
       </div>
 
     </div>
+    
 
     <div class="row y-gap-30 pt-40 sm:pt-20">
 
+
+      {% for insta_post in instagram_post %}
       <div data-anim-child="slide-up delay-1" class="col-lg-3 col-sm-6 is-in-view">
-        <a href="https://www.instagram.com/p/C083U5LI2pu/" class="featureCard -type-6 -hover-image-scale">
+        <a href="{{insta_post.post_url}}" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12" style=" height: 300px; ">
-            <img src="{% static "img/instagram/6.jpg" %}" alt="image">
+            <img src="{{insta_post.thumbnail.url}}" alt="image">
           </div>
 
-          {% comment %} <div class="featureCard__content">
-            <p class="text-white lh-16">10 Likes</p>
-          </div> {% endcomment %}
+          
         </a>
       </div>
+      {% endfor %}
 
-      <div data-anim-child="slide-up delay-2" class="col-lg-3 col-sm-6 is-in-view">
-        <a href="https://www.instagram.com/p/CxsDhGsJb8N/" class="featureCard -type-6 -hover-image-scale">
-          <div class="featureCard__image -hover-image-scale__image rounded-12" style=" height: 300px; ">
-            <img src="{% static "img/instagram/5.jpg" %}" alt="image">
-          </div>
-
-        </a>
-      </div>
-
-      <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-        <a href="https://www.instagram.com/p/CwzzyRKISI5/" class="featureCard -type-6 -hover-image-scale">
-          <div class="featureCard__image -hover-image-scale__image rounded-12" style=" height: 300px; ">
-            <img src="{% static "img/instagram/1.jpg" %}" alt="image">
-          </div>
-
-         
-        </a>
-      </div>
-
-      
-      <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-        <a href="https://www.instagram.com/p/CuGf_jdJ-HU/" class="featureCard -type-6 -hover-image-scale">
-          <div class="featureCard__image -hover-image-scale__image rounded-12" style=" height: 300px; ">
-            <img src="{% static "img/instagram/4.jpg" %}" alt="image">
-          </div>
-
-         
-        </a>
-      </div>
 
 
 
     </div>
+
   </div>
 </section>
+{% endif %}
+
 
 
 

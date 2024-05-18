@@ -3,7 +3,7 @@ from .models import (
     ExeclusiveApplied, NewsLetterModel, PeeksModel, Region, PeeksLists, 
     PeeksLocation, PopularPeaks, PeeeksHighlights, PeeeksItenary, 
     PeeekIncludeExclude, BookaTour, CommentsTours, ContactUsModel, 
-    DealsLists, FAQLists, BlogCategory, Blogs, Certificates
+    DealsLists, FAQLists, BlogCategory, Blogs, Certificates, InstagramPosts
 )
 
 
@@ -15,7 +15,6 @@ class ExeclusiveAppliedAdmin(admin.ModelAdmin):
 class NewsLetterModelAdmin(admin.ModelAdmin):
     list_display = ('email', 'created_at', 'updated_at')
     search_fields = ('email',)
-    verbose_name_plural = "NewsLetter Lists"
 
 
 class PeeksModelAdmin(admin.ModelAdmin):
@@ -33,7 +32,6 @@ class PeeksListsAdmin(admin.ModelAdmin):
     list_filter = ('peek_type', 'grade', 'region_peak')
     search_fields = ('name',)
     ordering = ('-created_at',)
-    verbose_name_plural = "Treks/Expedition Lists"
 
 
 class PeeksLocationAdmin(admin.ModelAdmin):
@@ -45,65 +43,56 @@ class PopularPeaksAdmin(admin.ModelAdmin):
     list_display = ('title', 'offer', 'price', 'popular_last_month', 'created_at')
     list_filter = ('popular_last_month',)
     search_fields = ('title', 'peek_info__name')
-    verbose_name_plural = "Popular Peaks Lists"
 
 
 class PeeeksHighlightsAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'created_at', 'updated_at')
     search_fields = ('peek_info__name',)
-    verbose_name_plural = "Peeeks Highlights Lists"
 
 
 class PeeeksItenaryAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'day', 'title', 'created_at', 'updated_at')
     search_fields = ('peek_info__name', 'title')
-    verbose_name_plural = "Peeeks Itenary Lists"
 
 
 class PeeekIncludeExcludeAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'inc_type', 'name', 'created_at', 'updated_at')
     list_filter = ('inc_type',)
     search_fields = ('peek_info__name', 'name')
-    verbose_name_plural = "Peeks Included/Excluded Lists"
 
 
 class BookaTourAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'name', 'email', 'phone', 'country', 'arrival_time', 'departure_date', 'created_at')
     search_fields = ('peek_info__name', 'name', 'email')
     ordering = ('-created_at',)
-    verbose_name_plural = "Booked Tour Lists"
+    
 
 
 class CommentsToursAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'blogs', 'name', 'email', 'title', 'created_at')
     search_fields = ('peek_info__name', 'blogs__title', 'name', 'email')
     ordering = ('-created_at',)
-    verbose_name_plural = "Comments"
 
 
 class ContactUsModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'subject', 'created_at')
     search_fields = ('name', 'email', 'phone')
     ordering = ('-created_at',)
-    verbose_name_plural = "Contacted Lists"
 
 
 class DealsListsAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'till', 'percentage', 'created_at', 'updated_at')
     search_fields = ('peek_info__name',)
-    verbose_name_plural = "Deal Lists"
 
 
 class FAQListsAdmin(admin.ModelAdmin):
     list_display = ('questions', 'created_at', 'updated_at')
     search_fields = ('questions',)
-    verbose_name_plural = "FAQ Lists"
 
 
 class BlogCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    verbose_name_plural = "BlogCategorys"
 
 
 class BlogsAdmin(admin.ModelAdmin):
@@ -115,8 +104,22 @@ class BlogsAdmin(admin.ModelAdmin):
 class CertificatesAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'updated_at')
     search_fields = ('name',)
-    verbose_name_plural = "Certificates"
 
+from django.utils.html import format_html
+class InstagramPostsAdmin(admin.ModelAdmin):
+    list_display = ('thumbnail', 'description', 'post_url')
+    search_fields = ('description', 'post_url')
+    list_filter = ('post_url',)
+    ordering = ('-id',)
+
+    def thumbnail_tag(self, obj):
+        if obj.thumbnail:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.thumbnail.url))
+        return "No Image"
+    thumbnail_tag.short_description = 'Thumbnail'
+    list_display = ('thumbnail_tag', 'description', 'post_url')
+
+admin.site.register(InstagramPosts, InstagramPostsAdmin)
 
 admin.site.register(ExeclusiveApplied, ExeclusiveAppliedAdmin)
 admin.site.register(NewsLetterModel, NewsLetterModelAdmin)

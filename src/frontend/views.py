@@ -35,6 +35,7 @@ class FrontendMixin:
         context["recent_searchs"] = PeeksLists.objects.order_by("?")[:5]
         
         context["expeditions_peek"] = expediton_peeks
+        context["instagram_post"] = InstagramPosts.objects.order_by("-created_at")[:4]
         return context
 
 class HomeView(FrontendMixin, TemplateView):

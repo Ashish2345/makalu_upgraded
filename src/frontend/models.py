@@ -25,17 +25,15 @@ class AuditFields(models.Model):
 class ExeclusiveApplied(AuditFields):
     email = models.EmailField(max_length=254, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "Exclusive Applied"
 
 
 class NewsLetterModel(AuditFields):
     email = models.EmailField(max_length=254, null=True, blank=True)
 
-    # def __str__(self):
-    #     return self.email
-    
     class Meta:
-        verbose_name_plural = "NewsLEtter Lists"
-    
+        verbose_name_plural = "NewsLetters"
 
 # class ContactUsModel(AuditFields):
 
@@ -45,6 +43,9 @@ class PeeksModel(AuditFields):
     def __str__(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = "Peeks"
+    
 
 
 class Region(AuditFields):
@@ -52,6 +53,9 @@ class Region(AuditFields):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Regions"
 
 
 
@@ -101,8 +105,9 @@ class PeeksLists(AuditFields):
         return self.name
     
     class Meta:
-        verbose_name_plural = "Treks/Expedition Lists"
         ordering = ["-created_at"]
+        verbose_name_plural = "Treks/Expedition"
+
 
 
     def save(self, *args, **kwargs):
@@ -190,6 +195,10 @@ class PeeksLocation(AuditFields):
 
     def __str__(self):
         return self.peek_info.name
+    
+    class Meta:
+        verbose_name_plural = "Peaks Location"
+
 
 
 class PopularPeaks(AuditFields):
@@ -204,8 +213,9 @@ class PopularPeaks(AuditFields):
         return self.title
     
     class Meta:
-        verbose_name_plural = "Popular Peaks Lists"
         ordering = ["-created_at"]
+        verbose_name_plural = "Popular Peaks"
+
     
 
 class PeeeksHighlights(AuditFields):
@@ -214,10 +224,12 @@ class PeeeksHighlights(AuditFields):
 
     def __str__(self) -> str:
         return self.peek_info.name
-
+    
     class Meta:
-        verbose_name_plural = "Peeeks Highlights Lists"
+        ordering = ["-created_at"]
+        verbose_name_plural = "Peaks Highlights"
 
+    
 class PeeeksItenary(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_itemary")
     day = models.CharField(max_length=250)
@@ -229,7 +241,8 @@ class PeeeksItenary(AuditFields):
         return self.peek_info.name
 
     class Meta:
-        verbose_name_plural = "Peeeks Itenary Lists"
+        ordering = ["-created_at"]
+        verbose_name_plural = "Peaks Itinerary"
 
 
 class PeeekIncludeExclude(AuditFields):
@@ -248,8 +261,9 @@ class PeeekIncludeExclude(AuditFields):
         return self.peek_info.name
 
     class Meta:
-        verbose_name_plural = "Peeks Included/Excluded Lists"
         ordering = ["-created_at"]
+        verbose_name_plural = "Included/Excluded"
+
 
 
 
@@ -264,8 +278,8 @@ class BookaTour(AuditFields):
     message = models.TextField(null=True,blank=True)
 
     class Meta:
-        verbose_name_plural = "Booked Tour Lists"
         ordering = ["-created_at"]
+        verbose_name_plural = "Booked Tour"
 
 
 class CommentsTours(AuditFields):
@@ -282,8 +296,9 @@ class CommentsTours(AuditFields):
         return url
 
     class Meta:
-        verbose_name_plural = "Comments"
         ordering = ["-created_at"]
+        verbose_name_plural = "Comments"
+
 
 class ContactUsModel(AuditFields):
     name = models.CharField(max_length=50)
@@ -293,8 +308,9 @@ class ContactUsModel(AuditFields):
     message = models.TextField(null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "Contacted Lists"
         ordering = ["-created_at"]
+        verbose_name_plural = "Contacts"
+
 
 class DealsLists(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE)
@@ -302,7 +318,7 @@ class DealsLists(AuditFields):
     percentage = models.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
-        verbose_name_plural = "Deal Lists"
+        verbose_name_plural = "Deals"
 
 class FAQLists(AuditFields):
 
@@ -310,17 +326,21 @@ class FAQLists(AuditFields):
     answers = RichTextField(null=True, blank=True)
 
 
+    class Meta:
+        verbose_name_plural = "FAQ's"
+
+
+
 class BlogCategory(models.Model):
 
     name = models.CharField(max_length=50, null=True, blank=True)
 
-    class Meta:
-        verbose_name = ("BlogCategory")
-        verbose_name_plural = ("BlogCategorys")
-
+  
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Blogs Category"
 
 
 class Blogs(AuditFields):
@@ -343,6 +363,8 @@ class Blogs(AuditFields):
 
     class Meta:
         ordering = ["-created_at"]
+        verbose_name_plural = "Blogs"
+
 
 
 class Certificates(AuditFields):
@@ -351,4 +373,18 @@ class Certificates(AuditFields):
 
     certificates = models.FileField(upload_to="certificates", 
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    
+
+
+    class Meta:
+        verbose_name_plural = "Legal Documents"
+
+
+class InstagramPosts(AuditFields):
+
+    thumbnail = models.FileField(upload_to="instapost", 
+        validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
+    description = RichTextField(null=True, blank=True)
+    post_url = models.URLField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "Instagram Post"
