@@ -33,7 +33,6 @@ def scrape_user_posts(username: str, num_posts: int = 3):
             from django.utils import timezone
             timestamp = node["taken_at_timestamp"]
             dt_taken = datetime.datetime.fromtimestamp(timestamp, tz=timezone.get_current_timezone())
-            breakpoint()
             post_details = {
                 "post_id": node["id"],
                 "caption": node.get("edge_media_to_caption", {}).get("edges", [{}])[0].get("node", {}).get("text", ""),
