@@ -48,16 +48,18 @@ class HomeView(FrontendMixin, TemplateView):
     def fetch_instagram_posts(self):
         post_count = InstagramPost.objects.count()
         current_time = timezone.now()
-        print(post_count)
-        if post_count < 3:
-            posts = scrape_user_posts("makalumountaineering", num_posts=5)
-        else:
-            oldest_post = InstagramPost.objects.order_by("created_at").first()
-            if oldest_post and (current_time - oldest_post.created_at) > timedelta(days=1):
-                InstagramPost.objects.all().delete()
+        try:
+            if post_count < 3:
                 posts = scrape_user_posts("makalumountaineering", num_posts=5)
             else:
-                posts =  InstagramPost.objects.all()
+                oldest_post = InstagramPost.objects.order_by("created_at").first()
+                if oldest_post and (current_time - oldest_post.created_at) > timedelta(days=1):
+                    InstagramPost.objects.all().delete()
+                    posts = scrape_user_posts("makalumountaineering", num_posts=5)
+                else:
+                    posts =  InstagramPost.objects.all()
+        except:
+            posts =  InstagramPost.objects.all()
         return posts[:3]
 
     def get_context_data(self, **kwargs):
