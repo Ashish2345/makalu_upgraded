@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import (
-    ExeclusiveApplied, NewsLetterModel, PeeksModel, Region, PeeksLists, 
-    PeeksLocation, PopularPeaks, PeeeksHighlights, PeeeksItenary, 
-    PeeekIncludeExclude, BookaTour, CommentsTours, ContactUsModel, 
-    DealsLists, FAQLists, BlogCategory, Blogs, Certificates, InstagramPosts
+    ExeclusiveApplied, NewsLetterModel, PeeksModel, Region, PeeksLists,
+    PeeksLocation, PopularPeaks, PeeeksHighlights, PeeeksItenary,
+    PeeekIncludeExclude, BookaTour, CommentsTours, ContactUsModel,
+    DealsLists, FAQLists, BlogCategory, Blogs, Certificates, InstagramPost, Teams
 )
 
 
@@ -65,7 +65,7 @@ class BookaTourAdmin(admin.ModelAdmin):
     list_display = ('peek_info', 'name', 'email', 'phone', 'country', 'arrival_time', 'departure_date', 'created_at')
     search_fields = ('peek_info__name', 'name', 'email')
     ordering = ('-created_at',)
-    
+
 
 
 class CommentsToursAdmin(admin.ModelAdmin):
@@ -105,21 +105,8 @@ class CertificatesAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'updated_at')
     search_fields = ('name',)
 
-from django.utils.html import format_html
-class InstagramPostsAdmin(admin.ModelAdmin):
-    list_display = ('thumbnail', 'description', 'post_url')
-    search_fields = ('description', 'post_url')
-    list_filter = ('post_url',)
-    ordering = ('-id',)
 
-    def thumbnail_tag(self, obj):
-        if obj.thumbnail:
-            return format_html('<img src="{}" width="50" height="50" />'.format(obj.thumbnail.url))
-        return "No Image"
-    thumbnail_tag.short_description = 'Thumbnail'
-    list_display = ('thumbnail_tag', 'description', 'post_url')
-
-admin.site.register(InstagramPosts, InstagramPostsAdmin)
+admin.site.register(InstagramPost)
 
 admin.site.register(ExeclusiveApplied, ExeclusiveAppliedAdmin)
 admin.site.register(NewsLetterModel, NewsLetterModelAdmin)
@@ -139,3 +126,16 @@ admin.site.register(FAQLists, FAQListsAdmin)
 admin.site.register(BlogCategory, BlogCategoryAdmin)
 admin.site.register(Blogs, BlogsAdmin)
 admin.site.register(Certificates, CertificatesAdmin)
+
+@admin.register(Teams)
+class TeamsAdmin(admin.ModelAdmin):
+    list_display = ("priority", "name", "position", "thumbnail_preview")
+    search_fields = ("name", "position")
+    ordering = ("priority",)
+
+    def thumbnail_preview(self, obj):
+        if obj.thumbnail:
+            return f'<img src="{obj.thumbnail.url}" width="50" height="50" style="object-fit: cover; border-radius: 5px;" />'
+        return "No Image"
+    thumbnail_preview.allow_tags = True
+    thumbnail_preview.short_description = "Thumbnail"

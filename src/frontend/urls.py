@@ -8,8 +8,9 @@ app_name = "frontend"
 urlpatterns = [
     path('', cache_page(0*60)(HomeView.as_view()), name="home_view"),
     path('about-us/', AboutUsView.as_view(), name="about_us"),
+    path('team/<slug:slug>/', TeamDetailView.as_view(), name="team-detail"),
     path('contact-us/', ContactUsView.as_view(), name="contact_us"),
-    
+
 
     path('peeks/', cache_page(0*60)(PeekListsView.as_view()), name="peek-lists"),
     path('search/', cache_page(0*60)(SearchPeekListsView.as_view()), name="search-peek-lists"),
@@ -39,6 +40,6 @@ urlpatterns = [
 
 
     path('expired/', HostingExpiredView.as_view(), name="hosting_expired")
-    
+
 
 ]

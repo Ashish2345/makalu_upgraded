@@ -1,7 +1,7 @@
-{% extends 'partials/base.html' %} 
+{% extends 'partials/base.html' %}
 
 
-{% load static %} 
+{% load static %}
 
 {% block css %}
 <style>
@@ -172,7 +172,7 @@
           <p class="pageHeader__text">
             Welcome to Makalu Mountaineering Treks and Expedition
           </p>
-          
+
         </div>
       </div>
     </div>
@@ -200,8 +200,8 @@
                   <h2>Premier Trekking and Expedition Company</h2>
                   <p>Makalu Mountaineering is trekking and Expedition Company based in Nepal, dedicated to providing high-quality services to adventure seekers from around the world. Our team of experienced and licensed guides are passionate about sharing their love of the Himalayas and providing a safe and memorable trekking and expedition experience.<p>
                     <p> We offer a variety of trekking itineraries that cater to trekkers of all experience levels. Our treks range from short and easy walks to challenging high-altitude treks that take you through remote villages and stunning landscapes. Our popular trekking routes include the Everest Base Camp, Annapurna Circuit, and the Langtang Valley Trek.</p>
-                  
-              
+
+
               </div>
           </div>
       </div>
@@ -213,19 +213,19 @@
           <div class="about-content2">
               <h2>Our team</h2>
               <p>Our team also offers a range of expedition services that take you to some of the most remote and challenging peaks in the Himalayas. We specialize in organizing expeditions to Mt. Everest, Mt. Makalu, and other 8,000-meter peaks in Nepal. Our experienced team of guides, porters, and support staff ensure that your expedition is safe, enjoyable, and successful.</p>
-              
-          
+
+
           </div>
       </div>
           <div class="col-lg-6">
               <div class="about-img">
                   <img src="{% static "img/about/22.jpg" %}" alt="Image">
 
-                  
+
               </div>
           </div>
 
-         
+
       </div>
     </div>
 
@@ -235,7 +235,7 @@
               <div class="about-img">
                   <img class="third_img" src="{% static "img/about/33.jpg" %}" alt="Image">
 
-                 
+
               </div>
           </div>
 
@@ -276,7 +276,7 @@
                   </div>
 
                 </div>
-              
+
               </div>
           </div>
       </div>
@@ -293,7 +293,7 @@
 
         <div data-anim-child="slide-up delay-2" class="col-lg-5">
           <p>
-            We are a premier trekking and Expedition Company based in Nepal, dedicated to providing high-quality services to adventure seekers from around the world. 
+            We are a premier trekking and Expedition Company based in Nepal, dedicated to providing high-quality services to adventure seekers from around the world.
             <br><br>
             Our team of experienced and licensed guides are passionate about sharing their love of the Himalayas and providing a safe and memorable trekking and expedition experience.
           </p>
@@ -308,7 +308,7 @@
 
 
 
-  
+
   <section data-anim="fade" class="mt-50 relative">
     <div class="relative xl:unset container">
       <div class="layout-pt-xl layout-pb-xl rounded-12">
@@ -319,7 +319,7 @@
           <div class="col-lg-4 col-md-6">
             <h2 class="text-40 lh-13">
               Discover Himalayas<br class="md:d-none">
-              with Makalu 
+              with Makalu
             </h2>
 
             <p class="mt-10">Join us as we navigate the trails together, making every step a memorable part of your Himalayan adventure. Makalu Mountaineering - where every trek is a story waiting to be written.</p>
@@ -366,52 +366,19 @@
 
         <div class="row y-gap-30 pt-40 sm:pt-20">
 
-          <div data-anim-child="slide-up delay-1" class="col-lg col-md-4 col-sm-6">
+          {% for team in teams %}
+          <a href="{% url "frontend:team-detail" team.slug %}" data-anim-child="slide-up delay-{{forloop.counter}}" class="col-lg col-md-4 col-sm-6">
             <div class="ratio ratio-23:26">
               {% comment %} <img src="{% static "img/logocrp.png" %}" alt="image" class="img-ratio bg-light-1 rounded-12" style="object-fit: contain; padding: 35px;"> {% endcomment %}
-              <img src="{% static "img/team/founder.jpg" %}" alt="image" class="img-ratio bg-light-1 rounded-12">
-            
+              <img src="{{team.thumbnail.url}}" alt="image" class="img-ratio bg-light-1 rounded-12">
+
             </div>
 
-            <h3 class="text-16 fw-500 mt-20">Chhiring Sherpa</h3>
-            <p class="text-14 lh-16">Founder/ Managing Director</p>
-          </div>
+            <h3 class="text-16 fw-500 mt-20">{{team.name}}</h3>
+            <p class="text-14 lh-16">{{team.position}}</p>
+          </a>
+          {% endfor %}
 
-          <div data-anim-child="slide-up delay-2" class="col-lg col-md-4 col-sm-6">
-            <div class="ratio ratio-23:26">
-              <img src="{% static "img/team/2.webp" %}" alt="image" class="img-ratio bg-light-1 rounded-12">
-            </div>
-
-            <h3 class="text-16 fw-500 mt-20">Csaba Precup</h3>
-            <p class="text-14 lh-16">President/ Expedition Leader</p>
-          </div>
-
-          <div data-anim-child="slide-up delay-3" class="col-lg col-md-4 col-sm-6">
-            <div class="ratio ratio-23:26">
-              <img src="{% static "img/team/1.jpg" %}" alt="image" class="img-ratio bg-light-1 rounded-12">
-            </div>
-
-            <h3 class="text-16 fw-500 mt-20">Kami Sherpa</h3>
-            <p class="text-14 lh-16">Logistic Manager/ Senior Guide</p>
-          </div>
-
-          <div data-anim-child="slide-up delay-4" class="col-lg col-md-4 col-sm-6">
-            <div class="ratio ratio-23:26">
-              <img src="{% static "img/team/exppp.jpg" %}" alt="image" class="img-ratio bg-light-1 rounded-12">
-            </div>
-
-            <h3 class="text-16 fw-500 mt-20">Nima Sherpa</h3>
-            <p class="text-14 lh-16">Expedition Leader</p>
-          </div>
-
-          <div data-anim-child="slide-up delay-5" class="col-lg col-md-4 col-sm-6">
-            <div class="ratio ratio-23:26">
-              <img src="{% static "img/team/ram2.jpg" %}" alt="image" class="img-ratio bg-light-1 rounded-12">
-            </div>
-
-            <h3 class="text-16 fw-500 mt-20">Ram Tamang</h3>
-            <p class="text-14 lh-16">Trekking Assistant</p>
-          </div>
 
 
           {% comment %} <div data-anim-child="slide-up delay-5" class="col-lg col-md-4 col-sm-6">
@@ -428,7 +395,7 @@
       </div>
     </section>
 
-    
+
   <section data-anim="slide-up" class="cta -type-4 -style-2 is-in-view">
     <div class="container">
       <div class="cta__content" style="background-color: #D8F1FD !important">
@@ -443,7 +410,7 @@
                       Contact us today to book your trekking or expedition experience with Makalu Mountaineering Treks and Expedition. Our friendly and knowledgeable team is here to answer any questions you may have and help you plan the adventure of a lifetime.
                   </p>
               </div>
-              
+
               <div class="col-xl-2 mt-10">
                   <a id="see-more" class="button -md -accent-1 bg-dark-1 text-white" href="/contact-us/" onclick="toggleContent()">
                       See More
@@ -451,16 +418,16 @@
                   </a>
               </div>
           </div>
-          
-          
-          
-          
+
+
+
+
 
             {% comment %} {% endcomment %}
           </div>
         </div>
 
-        
+
       </div>
     </div>
   </section>

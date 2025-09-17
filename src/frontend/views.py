@@ -4,9 +4,13 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.db.models import Q
 from django.http import JsonResponse
 
+from datetime import timedelta
+
+from .instagram_fetcher import scrape_user_posts
+
 from .models import *
 
-
+from django.utils import timezone
 from django.shortcuts import render
 from .models import Region, PopularPeaks, Blogs
 
@@ -33,13 +37,28 @@ class FrontendMixin:
         context["regions"] = Region.objects.all()
         context["regions_peek"] = all_region_treks
         context["recent_searchs"] = PeeksLists.objects.order_by("?")[:5]
-        
+
         context["expeditions_peek"] = expediton_peeks
-        context["instagram_post"] = InstagramPosts.objects.order_by("-created_at")[:4]
+        context["instagram_post"] = InstagramPost.objects.order_by("-created_at")[:4]
         return context
 
 class HomeView(FrontendMixin, TemplateView):
     template_name = "index.html"
+
+    def fetch_instagram_posts(self):
+        post_count = InstagramPost.objects.count()
+        current_time = timezone.now()
+        print(post_count)
+        if post_count < 3:
+            posts = scrape_user_posts("makalumountaineering", num_posts=5)
+        else:
+            oldest_post = InstagramPost.objects.order_by("created_at").first()
+            if oldest_post and (current_time - oldest_post.created_at) > timedelta(days=1):
+                InstagramPost.objects.all().delete()
+                posts = scrape_user_posts("makalumountaineering", num_posts=5)
+            else:
+                posts =  InstagramPost.objects.all()
+        return posts[:3]
 
     def get_context_data(self, **kwargs):
         trending_destination = PeeksLists.objects.select_related("region_peak").filter(trending=True)[:5]
@@ -48,7 +67,9 @@ class HomeView(FrontendMixin, TemplateView):
         context["top_trendings"] = trending_destination
         context["blogs"] = Blogs.objects.all()[:3]
 
-        
+        context["instagram_posts"] = self.fetch_instagram_posts()
+
+
         return context
 
 
@@ -58,7 +79,7 @@ class HomeView(FrontendMixin, TemplateView):
             email = request.POST.get("exe_email")
             ExeclusiveApplied.objects.get_or_create(email=email)
             return JsonResponse({"sucesss": True,"message":"Applied Successfully"})
-        
+
         email = request.POST.get("email")
         NewsLetterModel.objects.get_or_create(email=email)
         return JsonResponse({"sucesss": True})
@@ -67,8 +88,18 @@ class HomeView(FrontendMixin, TemplateView):
 class AboutUsView(FrontendMixin, TemplateView):
     template_name = "about.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["teams"] = Teams.objects.all()[:5]
+        return context
 
-    
+class TeamDetailView(DetailView):
+    model = Teams
+    template_name = "team_details.html"
+    context_object_name = "team"
+    slug_field = "slug"
+    slug_url_kwarg = "slug"
+
 
 class PrivacyPolicyView(FrontendMixin, TemplateView):
     template_name = "privacy_policy.html"
@@ -79,7 +110,7 @@ class ContactUsView(FrontendMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         result = validate_captcha(request)
         print(result["success"] != True)
-        
+
         if result["success"] != True:
             self.extra_context = {
                 "success": "Invalid Captcha",
@@ -104,7 +135,7 @@ class ContactUsView(FrontendMixin, TemplateView):
 
 
 class TrekkingListsView(FrontendMixin, ListView):
-    model = PeeksLists 
+    model = PeeksLists
     template_name = "peeklists.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -124,7 +155,7 @@ class TrekkingListsView(FrontendMixin, ListView):
 
 
 class PeekListsView(FrontendMixin, ListView):
-    model = PeeksLists 
+    model = PeeksLists
     template_name = "peeklists.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -133,7 +164,7 @@ class PeekListsView(FrontendMixin, ListView):
         if self.request.GET.get("q") == "trending":
             return PeeksLists.objects.filter(trending = True)
         return PeeksLists.objects.filter(peek_type="expedition")
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.GET.get("q"):
@@ -144,7 +175,7 @@ class PeekListsView(FrontendMixin, ListView):
 
 
 class SearchPeekListsView(FrontendMixin, ListView):
-    model = PeeksLists 
+    model = PeeksLists
     template_name = "peeklists.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -158,13 +189,13 @@ class SearchPeekListsView(FrontendMixin, ListView):
         tour_type = self.request.GET.get("tour_type", None)
         if tour_type == "Trekking":
             tour_type = "treks"
-        
+
         if region == "Search destinations" or tour_type == "All tour":
             all_peeks =  PeeksLists.objects.filter(Q(region_peak__name=region) | Q(peek_type=tour_type)).distinct()
             if not all_peeks:
                 return PeeksLists.objects.all()
             return all_peeks
-            
+
 
 
         if region and tour_type:
@@ -173,7 +204,7 @@ class SearchPeekListsView(FrontendMixin, ListView):
                 return PeeksLists.objects.all()
             return all_peeks
         return PeeksLists.objects.all()
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         region = self.request.GET.get("region", None)
@@ -197,7 +228,7 @@ class SearchPeekListsView(FrontendMixin, ListView):
         return context
 
 class ExpeditionListsView(FrontendMixin, ListView):
-    model = PeeksLists 
+    model = PeeksLists
     template_name = "peeklists.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -206,7 +237,7 @@ class ExpeditionListsView(FrontendMixin, ListView):
         if self.request.GET.get("q"):
             return PeeksLists.objects.filter(peek_type="expedition",peeks_catg__name = self.request.GET.get("q"))
         return PeeksLists.objects.filter(peek_type="expedition")
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.GET.get("q"):
@@ -228,7 +259,7 @@ class ToursDetailsView(FrontendMixin, DetailView):
 
 
 class BlogsView(FrontendMixin, ListView):
-    model = Blogs 
+    model = Blogs
     template_name = "blogs.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -238,7 +269,7 @@ class BlogsView(FrontendMixin, ListView):
         if self.request.GET.get("q"):
             return Blogs.objects.filter(category__name=self.request.GET.get("q"))
         return Blogs.objects.all()
-    
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -254,7 +285,7 @@ class BlogDetailsView(FrontendMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['blog'] = get_object_or_404(Blogs, id=self.kwargs.get("id"))
         return context
-    
+
     def post(self, request, *args, **kwargs):
         blog_id = kwargs.get("id")
         blog_details = get_object_or_404(Blogs, id=blog_id)
@@ -281,7 +312,7 @@ class TripAdvisory(FrontendMixin, TemplateView):
 
 class FAQView(FrontendMixin, TemplateView):
     template_name = "faq.html"
-    
+
     # You can override the get_context_data method to pass additional context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -292,7 +323,7 @@ class FAQView(FrontendMixin, TemplateView):
         else:
             context["all_faq"] = FAQLists.objects.all()[:10]
         return context
-    
+
 
 class GalleryView(FrontendMixin, TemplateView):
     template_name = "gallery.html"
@@ -300,12 +331,12 @@ class GalleryView(FrontendMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-    
+
 
 
 
 class SearchPeekJsonView(View):
-   
+
     def get(self, request, *args, **kwargs):
         search_val = self.request.GET.get("q", None)
         if search_val:
@@ -316,18 +347,18 @@ class SearchPeekJsonView(View):
 def validate_captcha(request):
     recaptcha_response = request.POST.get('g-recaptcha-response')
     url = 'https://www.google.com/recaptcha/api/siteverify'
-    values = { 
+    values = {
             'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
             'response': recaptcha_response
             }
-    
+
     data = urllib.parse.urlencode(values).encode()
     req =  urllib.request.Request(url, data=data)
     response = urllib.request.urlopen(req)
     result = json.loads(response.read().decode())
-    
+
     return result
-    
+
 
 class BookTour(FrontendMixin, TemplateView):
     template_name = "details.html"
@@ -345,9 +376,9 @@ class BookTour(FrontendMixin, TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        
+
         result = validate_captcha(request)
-        
+
         peek_id = kwargs.get("id")
         tours_details = get_object_or_404(PeeksLists, id=peek_id)
         data = request.POST.dict()
@@ -386,11 +417,11 @@ class BookTour(FrontendMixin, TemplateView):
 
 
         return render(request, self.template_name, context)
-    
+
 
 
 class CertificatesView(FrontendMixin, ListView):
-    model = Certificates 
+    model = Certificates
     template_name = "certificates.html"
     context_object_name = "object_lists"
     paginate_by = 8
@@ -403,4 +434,3 @@ class RoalityFreeView(FrontendMixin, TemplateView):
 
 class HostingExpiredView(FrontendMixin, TemplateView):
     template_name = "hostingexpired.html"
-    

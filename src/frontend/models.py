@@ -1,13 +1,14 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator, MaxValueValidator
 from django.urls import reverse
-    
+
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 import random
 
@@ -42,10 +43,10 @@ class PeeksModel(AuditFields):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name_plural = "Peeks"
-    
+
 
 
 class Region(AuditFields):
@@ -53,7 +54,7 @@ class Region(AuditFields):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name_plural = "Regions"
 
@@ -81,12 +82,12 @@ class PeeksLists(AuditFields):
     region_peak = models.ForeignKey(Region, verbose_name=("Peeks Region"), on_delete=models.SET_NULL, null=True, blank=True)
     peek_type = models.CharField(choices=choices, max_length=50, null=True, blank=True)
     name = models.CharField(max_length=150)
-    thumbnail = models.FileField(upload_to="thumbnail", 
+    thumbnail = models.FileField(upload_to="thumbnail",
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    
+
     grade = models.CharField(choices=grading, max_length=50, null=True, blank=True)
 
-    main_iamge = models.FileField(upload_to="main_image", 
+    main_iamge = models.FileField(upload_to="main_image",
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
     rating = models.DecimalField(max_digits=5, decimal_places=1)
     rate_total = models.IntegerField(default=0)
@@ -103,7 +104,7 @@ class PeeksLists(AuditFields):
     trending = models.BooleanField(default=False)
     def __str__(self) -> str:
         return self.name
-    
+
     class Meta:
         ordering = ["-created_at"]
         verbose_name_plural = "Treks/Expedition"
@@ -128,9 +129,9 @@ class PeeksLists(AuditFields):
                 else:
                     image_quality -= 10
 
-            self.main_iamge = InMemoryUploadedFile(output, 
+            self.main_iamge = InMemoryUploadedFile(output,
             'ImageField', "%s.jpg" % self.main_iamge.name.split('.')[0], 'image/jpeg', file_size, None)
-        
+
         if self.rating == 0 and self.rate_total == 0:
 
             random_rating = random.uniform(4.4, 5)
@@ -149,44 +150,44 @@ class PeeksLists(AuditFields):
             return BookaTour.objects.filter(peek_info = self).count() + random_number
         else:
             return random_number
-        
+
     def get_highlight(self):
         if PeeeksHighlights.objects.filter(peek_info = self).exists():
             return PeeeksHighlights.objects.filter(peek_info = self).first()
         else:
-            return None 
-        
+            return None
+
     def get_itenary(self):
         if PeeeksItenary.objects.filter(peek_info = self).exists():
             return PeeeksItenary.objects.filter(peek_info = self)
         else:
-            return None 
-        
+            return None
+
     def get_comments(self):
         if CommentsTours.objects.filter(peek_info = self).exists():
             return CommentsTours.objects.filter(peek_info = self)
         else:
-            return None 
-        
+            return None
+
 
     def get_location(self):
         if PeeksLocation.objects.filter(peek_info = self).exists():
             return PeeksLocation.objects.filter(peek_info = self).first().location_frame
         else:
-            return None 
-        
+            return None
+
     def get_included(self):
         if PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "Included").exists():
             return PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "Included")
         else:
-            return None 
-        
+            return None
+
 
     def get_notincluded(self):
         if PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "NotIncluded").exists():
             return PeeekIncludeExclude.objects.filter(peek_info=self,inc_type = "NotIncluded")
         else:
-            return None 
+            return None
 
 
 class PeeksLocation(AuditFields):
@@ -195,7 +196,7 @@ class PeeksLocation(AuditFields):
 
     def __str__(self):
         return self.peek_info.name
-    
+
     class Meta:
         verbose_name_plural = "Peaks Location"
 
@@ -211,12 +212,12 @@ class PopularPeaks(AuditFields):
 
     def __str__(self):
         return self.title
-    
+
     class Meta:
         ordering = ["-created_at"]
         verbose_name_plural = "Popular Peaks"
 
-    
+
 
 class PeeeksHighlights(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_highlights")
@@ -224,12 +225,12 @@ class PeeeksHighlights(AuditFields):
 
     def __str__(self) -> str:
         return self.peek_info.name
-    
+
     class Meta:
         ordering = ["-created_at"]
         verbose_name_plural = "Peaks Highlights"
 
-    
+
 class PeeeksItenary(AuditFields):
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_itemary")
     day = models.CharField(max_length=250)
@@ -253,7 +254,7 @@ class PeeekIncludeExclude(AuditFields):
     )
     inc_type = models.CharField(max_length=200, choices=choices, default="Included")
     peek_info = models.ForeignKey(PeeksLists, on_delete=models.CASCADE, related_name="peek_inc_exe")
-    
+
     name=models.CharField(max_length=250)
 
 
@@ -335,7 +336,7 @@ class BlogCategory(models.Model):
 
     name = models.CharField(max_length=50, null=True, blank=True)
 
-  
+
     def __str__(self):
         return self.name
 
@@ -347,9 +348,9 @@ class Blogs(AuditFields):
 
     category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
-    thumbnail = models.FileField(upload_to="thumbnail", 
+    thumbnail = models.FileField(upload_to="thumbnail",
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    
+
     title = models.CharField(max_length=255)
     description = RichTextField(null=True, blank=True)
     # user = models.CharField(max_length=255)
@@ -358,8 +359,8 @@ class Blogs(AuditFields):
         if CommentsTours.objects.filter(blogs = self).exists():
             return CommentsTours.objects.filter(blogs = self)
         else:
-            return None 
-        
+            return None
+
 
     class Meta:
         ordering = ["-created_at"]
@@ -371,7 +372,7 @@ class Certificates(AuditFields):
 
     name = models.CharField(max_length=255, null=True, blank=True)
 
-    certificates = models.FileField(upload_to="certificates", 
+    certificates = models.FileField(upload_to="certificates",
         validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
 
 
@@ -379,14 +380,42 @@ class Certificates(AuditFields):
         verbose_name_plural = "Legal Documents"
 
 
-class InstagramPosts(AuditFields):
-
-    thumbnail = models.FileField(upload_to="instapost", 
-        validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
-    description = RichTextField(null=True, blank=True)
-    post_url = models.URLField(max_length=200)
-    priority = models.IntegerField(null=True, blank=True)
+class InstagramPost(AuditFields):
+    """Model to store Instagram post details"""
+    post_id = models.CharField(max_length=50, blank=True, null=True)
+    caption = models.TextField(blank=True, null=True)
+    taken_date = models.DateTimeField(auto_now_add=False,blank=True, null=True)
+    short_code = models.CharField(max_length=50, blank=True, null=True)
+    likes_count = models.CharField(max_length=50, blank=True, null=True)
+    comments_count = models.CharField(max_length=50, blank=True)
+    is_video = models.BooleanField(default=False)
+    thumbnail = models.FileField(upload_to="instagram_thumbnails", null=True)
 
     class Meta:
-        verbose_name_plural = "Instagram Post"
+        verbose_name = "Instagram Post"
+        verbose_name_plural = "Instagram Posts"
+
+class Teams(AuditFields):
+    thumbnail = models.FileField(upload_to="team",
+        validators=[FileExtensionValidator(allowed_extensions=["jpg","png", "jpeg"])], null=True)
+    priority = models.IntegerField(default=0)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    facebook = models.URLField(max_length=200, null=True, blank=True)
+    twitter = models.URLField(max_length=200, null=True, blank=True)
+    position = models.CharField(max_length=255, null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.name and not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while Teams.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
+    class Meta:
+        verbose_name_plural = "Makalu Teams"
         ordering = ("priority",)

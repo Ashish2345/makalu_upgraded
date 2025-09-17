@@ -1,7 +1,7 @@
-{% extends 'partials/base.html' %} 
+{% extends 'partials/base.html' %}
 
 
-{% load static %} 
+{% load static %}
 
 {% load rating %}
 
@@ -77,7 +77,7 @@
                           </div>
 
                           {% endfor %}
-                          
+
 
 
                         </div>
@@ -2661,7 +2661,7 @@
                   <img src="{{top_trending.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                 </div>
 
-               
+
               </div>
 
               <div class="tourCard__content px-10 pt-10">
@@ -2753,62 +2753,62 @@
           <div class="row y-gap-30 pt-30">
 
 
-            
+
             {% for expedition in all_exp %}
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-  
+
               <a href="{% url "frontend:tour_details" expedition.id %}" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
                     <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
-  
+
                 </div>
-  
+
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
                     {{expedition.region_peak|title}}
                   </div>
-  
+
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
                     <span>{{expedition.name|title}}</span>
                   </h3>
-  
+
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
-  
+
                       {% render_stars expedition.rating %}
                     </div>
-  
+
                     <span class="text-dark-1 ml-10">{{expedition.rating|default_if_none:"4.0"}} ({{expedition.rate_total|default_if_none:"668"}})</span>
                   </div>
-  
+
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
                     <div class="d-flex items-center">
                       <i class="icon-clock text-16 mr-5"></i>
                       {{expedition.duration}} days
                     </div>
-  
+
                     <div>From <span class="text-16 fw-500">${{expedition.price|default_if_none:"999"}}</span></div>
                   </div>
                 </div>
               </a>
-  
+
             </div>
             {% endfor %}
 
             <div class="see__more-wrapper" style="padding-top: 50px; ">
               <a class="button -h-50 px-20 -outline-dark-1 text-dark-1" href="/expeditions/">Explore More <i class="fas fa-angle-right" style="padding-left: 10px;"></i></a>
-             
+
             </div>
 
 
 
               {% comment %} <a class="button -h-50 px-20 -text-dark-1">Explore All</button> {% endcomment %}
-            
-  
-  
+
+
+
           </div>
         </div>
 
@@ -2818,57 +2818,57 @@
             {% for expedition in expeditions_peek.0|slice:"0:4" %}
 
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-  
+
               <a href="{% url "frontend:tour_details" expedition.id %}" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
                     <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
                 </div>
-  
+
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
                     {{expedition.region_peak}}
                   </div>
-  
+
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
                     <span>{{expedition.name|title}}</span>
                   </h3>
-  
+
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
                       {% render_stars expedition.rating %}
                     </div>
-  
+
                     <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
-  
+
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
                     <div class="d-flex items-center">
                       <i class="icon-clock text-16 mr-5"></i>
                       {{expedition.duration}} days
                     </div>
-  
+
                     <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
-  
+
             </div>
 
             {% endfor %}
 
-            
+
             <div class="see__more-wrapper" style="padding-top: 50px; ">
               <a class="button -h-50 px-20 -outline-dark-1 text-dark-1" href="/expeditions/?q=8000">Explore More <i class="fas fa-angle-right" style="padding-left: 10px;"></i></a>
-             
+
             </div>
-            
-  
-  
+
+
+
           </div>
-          
+
         </div>
 
         <div class="tabs__pane -tab-item-3">
@@ -2877,55 +2877,55 @@
             {% for expedition in expeditions_peek.1|slice:"0:4" %}
 
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-  
+
               <a href="{% url "frontend:tour_details" expedition.id %}" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
                     <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
                 </div>
-  
+
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
                     {{expedition.region_peak}}
                   </div>
-  
+
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
                     <span>{{expedition.name|title}}</span>
                   </h3>
-  
+
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
                       {% render_stars expedition.rating %}
                     </div>
-  
+
                     <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
-  
+
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
                     <div class="d-flex items-center">
                       <i class="icon-clock text-16 mr-5"></i>
                       {{expedition.duration}} days
                     </div>
-  
+
                     <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
-  
+
             </div>
 
             {% endfor %}
 
-             
+
             <div class="see__more-wrapper" style="padding-top: 50px; ">
               <a class="button -h-50 px-20 -outline-dark-1 text-dark-1" href="/expeditions/?q=7000">Explore More <i class="fas fa-angle-right" style="padding-left: 10px;"></i></a>
-             
+
             </div>
-            
-  
-  
+
+
+
           </div>
         </div>
 
@@ -2935,54 +2935,54 @@
             {% for expedition in expeditions_peek.2|slice:"0:4" %}
 
             <div data-anim-child="slide-up delay-3" class="col-lg-3 col-sm-6 is-in-view">
-  
+
               <a href="{% url "frontend:tour_details" expedition.id %}" class="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow">
                 <div class="tourCard__header">
                   <div class="tourCard__image ratio ratio-28:20">
                     <img src="{{expedition.thumbnail.url}}" alt="image" class="img-ratio rounded-12">
                   </div>
                 </div>
-  
+
                 <div class="tourCard__content px-10 pt-10">
                   <div class="tourCard__location d-flex items-center text-13 text-light-2">
                     <i class="icon-pin d-flex text-16 text-light-2 mr-5"></i>
                     {{expedition.region_peak}}
                   </div>
-  
+
                   <h3 class="tourCard__title text-16 fw-500 mt-5">
                     <span>{{expedition.name|title}}</span>
                   </h3>
-  
+
                   <div class="tourCard__rating d-flex items-center text-13 mt-5">
                     <div class="d-flex x-gap-5">
                       {% render_stars expedition.rating %}
                     </div>
-  
+
                     <span class="text-dark-1 ml-10">{{expedition.rating}} ({{expedition.rate_total}})</span>
                   </div>
-  
+
                   <div class="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
                     <div class="d-flex items-center">
                       <i class="icon-clock text-16 mr-5"></i>
                       {{expedition.duration}} days
                     </div>
-  
+
                     <div>From <span class="text-16 fw-500">${{expedition.price}} </span></div>
                   </div>
                 </div>
               </a>
-  
+
             </div>
 
             {% endfor %}
-              
+
             <div class="see__more-wrapper" style="padding-top: 50px; ">
               <a class="button -h-50 px-20 -outline-dark-1 text-dark-1" href="/expeditions/?q=6000">Explore More <i class="fas fa-angle-right" style="padding-left: 10px;"></i></a>
-             
+
             </div>
-            
-  
-  
+
+
+
           </div>
         </div>
 
@@ -3037,7 +3037,7 @@
                 <div class="text-15 fw-500 mt-15">“From start to finish, Kami, our guide made us feel like part of their trekking family. The guides were so friendly and knowledgeable, and their passion for the trails was contagious. The whole trip felt personalized, safe, and just filled with amazing moments. I can't thank them enough for making my trek so memorable!”</div>
 
                 <div class="d-flex items-center mt-20 pt-20 border-1-top">
-                  
+
                   <div class="">
                     <div class="lh-16 text-16 fw-500">Antoine Martin</div>
                     <div class="lh-16">France</div>
@@ -3061,7 +3061,7 @@
                 <div class="text-15 fw-500 mt-15">"Kami Sherpa, our guide was a true gem. His in-depth knowledge of the trails and local culture added immense value to our trek. Not only was he a skilled navigator, but Kami also went above and beyond, sharing captivating stories and ensuring everyone felt safe and engaged throughout the journey.”</div>
 
                 <div class="d-flex items-center mt-20 pt-20 border-1-top">
-                  
+
                   <div class="">
                     <div class="lh-16 text-16 fw-500">Jan Richter</div>
                     <div class="lh-16">Germany</div>
@@ -3098,8 +3098,8 @@
               </div>
             <div class="swiper-slide-shadow" style="opacity: 0;"></div></div>
 
-           
-           
+
+
           </div>
 
           <div class="pagination -type-1 justify-center pt-60 md:pt-40 js-testimonials-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><div class="pagination__item is-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 2"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 3"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 4"></div><div class="pagination__item" tabindex="0" role="button" aria-label="Go to slide 5"></div></div>
@@ -3150,10 +3150,10 @@
             <h3 class="blogCard__title text-18 fw-500 mt-10">{{blogs.title}}</h3>
           </div>
         </a>
-        
+
       </div>
 
-      {% endfor %} 
+      {% endfor %}
 
 
     </div>
@@ -3179,11 +3179,11 @@
 
           <p class="mt-10 text-white">
 
-            Unlock exclusive savings 
+            Unlock exclusive savings
             {% comment %} with promo code  {% endcomment %}
-            
+
             {% comment %} <br class="lg:d-none">'MAKALUMOUNTAINEERING {% endcomment %}
-          
+
           </p>
 
           <div class="text-18 text-white mt-40 md:mt-20">
@@ -3213,7 +3213,7 @@
 </section>
 
 
-{% comment %} 
+{% comment %}
 
 <section class="layout-pt-xl layout-pb-xl bg-light-1">
   <div class="container">
@@ -3253,7 +3253,7 @@
     </div>
   </div>
 </section> {% endcomment %}
-{% if instagram_post %}
+{% comment %} {% if instagram_post %}
 <section class="layout-pt-lg layout-pb-lg">
   <div data-anim-wrap="" class="container animated">
     <div data-anim-child="slide-up" class="row y-gap-15 justify-between items-end is-in-view">
@@ -3270,21 +3270,24 @@
       </div>
 
     </div>
-    
+
 
     <div class="row y-gap-30 pt-40 sm:pt-20">
 
 
-      {% for insta_post in instagram_post %}
+      {% for insta_post in instagram_posts %}
+      {% if insta_post.thumbnail %}
       <div data-anim-child="slide-up delay-1" class="col-lg-3 col-sm-6 is-in-view">
-        <a href="{{insta_post.post_url}}" class="featureCard -type-6 -hover-image-scale">
+        <a href="" class="featureCard -type-6 -hover-image-scale">
           <div class="featureCard__image -hover-image-scale__image rounded-12" style=" height: 300px; ">
-            <img src="{{insta_post.thumbnail.url}}" alt="image">
+            <img src="{{ insta_post.thumbnail.url }}" alt="image">
+
           </div>
 
-          
+
         </a>
       </div>
+      {% endif %}
       {% endfor %}
 
 
@@ -3294,9 +3297,61 @@
 
   </div>
 </section>
-{% endif %}
+{% endif %} {% endcomment %}
 
+<section class="layout-pt-xl layout-pb-xl">
+      <div data-anim-wrap="" class="container animated">
+        <div data-anim-child="slide-up" class="row justify-between items-end y-gap-10 is-in-view">
+          <div class="col-auto">
+            <h2 class="text-30 md:text-24">Instagram Posts</h2>
+          </div>
 
+          <div class="col-auto">
+
+            <a href="https://www.instagram.com/makalumountaineering/" class="buttonArrow d-flex items-center ">
+              <span>See all</span>
+              <i class="icon-arrow-top-right text-16 ml-10"></i>
+            </a>
+
+          </div>
+        </div>
+
+        <div data-anim-child="slide-up delay-2" class="row y-gap-30 pt-40 sm:pt-20 is-in-view">
+           {% for insta_post in instagram_posts %}
+  {% if insta_post.thumbnail %}
+  <div class="col-lg-4 col-md-6">
+    <a href="https://www.instagram.com/p/{{ insta_post.short_code }}/" class="blogCard -type-1" target="_blank">
+
+      <!-- Image -->
+      <div class="blogCard__image ratio ratio-41:30">
+        <img src="{{ insta_post.thumbnail.url }}" alt="{{ insta_post.caption|default:'Instagram post' }}" class="img-ratio rounded-12">
+
+        <!-- Optional badge if you want to show likes -->
+        <div class="blogCard__badge">{{ insta_post.likes_count }} Likes</div>
+      </div>
+
+      <!-- Content -->
+      <div class="blogCard__content mt-30">
+        <div class="blogCard__info text-14">
+          <!-- You could use a formatted date if you have a timestamp field -->
+          <div class="lh-13">{{ insta_post.taken_date|date:"M d, Y" }}</div>
+          <div class="blogCard__line"></div>
+          <!-- Author placeholder, replace if you have actual author info -->
+          <div class="lh-13">Instagram</div>
+        </div>
+
+        <!-- Caption -->
+        <h3 class="blogCard__title text-18 fw-500 mt-10">{{ insta_post.caption|truncatewords:15 }}</h3>
+      </div>
+
+    </a>
+  </div>
+  {% endif %}
+{% endfor %}
+
+        </div>
+      </div>
+    </section>
 
 
 
@@ -3309,17 +3364,17 @@
 
 <script>
     function search_peeks() {
-  
+
 
       let region = document.getElementById("region_pick").innerHTML
         let tour_pick = document.getElementById("tour_pick").innerHTML
         window.location.href = `/search/?region=${region}&tour_type=${tour_pick}`;
-    
+
     }
 
 
     $('#execulsive-btn').on('click', function(event) {
-      event.preventDefault(); 
+      event.preventDefault();
 
       var email = $('#email-execlusive').val();
       var csrfToken = getCookie('csrftoken');
@@ -3336,11 +3391,11 @@
             url: '{% url 'frontend:home_view' %}',
             type: 'POST',
             data: data,
-            dataType: 'json', 
+            dataType: 'json',
             success: function(response) {
               if (response.sucesss)
               {
-              
+
                 toastr.success('Applied Successfully!');
                 $('#email-execlusive').val('');
               }

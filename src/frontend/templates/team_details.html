@@ -1,0 +1,198 @@
+{% extends 'partials/base.html' %}
+
+
+{% load static %}
+
+{% block css %}
+<style>
+  .about-img {
+    margin-bottom: 30px;
+    position: relative;
+}
+.about-img .experience {
+  text-align: center;
+  background-color: #2e8ab7;
+  -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  padding: 10px;
+  position: absolute;
+  bottom: 108px;
+  right: -130px;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.about-img .experience h2 {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: #ffffff;
+}
+.about-content {
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.about-content2 {
+  margin-left: 30px;
+  margin-top:145px;
+  margin-bottom: 30px;
+}
+
+.about-content2 .top-title {
+  color: #2e8ab7;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 550;
+}
+.about-content2 h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+
+.about-content .top-title {
+  color: #2e8ab7;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 550;
+}
+.about-content h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+.about-content p {
+  margin-bottom: 20px;
+}
+
+.about-content ul li i {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background-color: #2e8ab7;
+  text-align: center;
+  color: #ffffff;
+}
+@media (max-width: 768px) {
+  .about-content2 {
+    margin-left: 5px;
+    margin-top:30px;
+    margin-bottom: 30px;
+  }
+  .about-content {
+    margin-left: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .cta.-type-4 .cta__content {
+    padding: 34px;
+
+
+
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+
+  .about-content2 {
+    margin-left: 5px;
+    margin-top:100px;
+    margin-bottom: 30px;
+  }
+  .about-content h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+    .third_img
+    {
+      height: 472px
+    }
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1199px) {
+
+
+
+  .about-content p {
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.about-content2 {
+  margin-left: 30px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+.about-content h2 {
+  font-size: 23px;
+  margin-bottom: 25px;
+}
+    .third_img
+    {
+      height: 415px
+    }
+
+}
+
+
+</style>
+
+{% endblock css %}
+
+{% block content %}
+
+
+{% comment %} {% include "breadcumb.html" %} {% endcomment %}
+
+<section class="layout-pt-xl">
+    <div data-anim-wrap class="container">
+      <div data-anim-child="slide-up" class="row">
+        <div class="col-lg-3">
+            <div class="about-img">
+                <img src="{{team.thumbnail.url}}" alt="Image" style="border: 3px solid gainsboro;border-radius: 20px;width: 350px; height: auto;">
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="about-content">
+                <span class="top-title">{{team.position}}</span>
+                <h2>{{team.name|upper}}</h2>
+                <div class="social__handles" style="display: flex; align-items: center; grid-gap: 10px; margin-top: 15px;">
+                        {% if team.facebook %}
+                        <a href="{{team.facebook}}" class="social facebook" style="min-width: 30px; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: #083791;">
+                            <svg style="color: white; display: flex ; font-size: 16px;" class="svg-inline--fa fa-facebook-f" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg><!-- <i class="fa-brands fa-facebook-f"></i> Font Awesome fontawesome.com -->
+                        </a>
+                        {% endif %}
+                        {% if team.twitter %}
+
+                        <a href="{{team.twitter}}" class="social facebook" style="min-width: 30px; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: black;">
+                            <svg style="color: white; display: flex ; font-size: 16px;" class="svg-inline--fa fa-x-twitter" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="x-twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg><!-- <i class="fa-brands fa-x-twitter"></i> Font Awesome fontawesome.com -->
+                        </a>
+                        {% endif %}
+
+                    </div>
+                {% comment %} <p>{{team.description|safe}}</p> {% endcomment %}
+
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div>
+                <p style="margin-bottom: 20px;">{{team.description|safe}}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+</section>
+{% endblock %}
