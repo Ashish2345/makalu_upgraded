@@ -58,7 +58,8 @@ class HomeView(FrontendMixin, TemplateView):
                     posts = scrape_user_posts("makalumountaineering", num_posts=5)
                 else:
                     posts =  InstagramPost.objects.all()
-        except:
+        except Exception as e:
+            print(e)
             posts =  InstagramPost.objects.all()
         return posts[:3]
 
